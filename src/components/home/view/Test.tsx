@@ -1,6 +1,5 @@
-import Template from "../design/Template";
-
-export default function Home() {
+import Template from "@/design/Template";
+export default function Test() {
   return (
     <div>
       <div className="text-2xl font-bold">ㅎㅇ</div>
