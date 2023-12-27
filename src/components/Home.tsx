@@ -5,7 +5,7 @@ export default function Home() {
     <div>
       <div className="text-2xl font-bold">ㅎㅇ</div>
       <Template subject="This is Template's Subject">
-        <div>This is Template's Children</div>
+        <div>This is Template's Children </div>
       </Template>
     </div>
   );

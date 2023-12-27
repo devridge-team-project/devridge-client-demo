@@ -1,5 +1,6 @@
-import Routers from "./routes/Routers";
 import { BrowserRouter } from "react-router-dom";
+import Routers from "./routes/Routers";
+
 export default function App() {
   return (
     <div>

@@ -1,4 +1,4 @@
-export interface SsoUser {
+export interface UserProps {
   id: number;
   name: string;
   email: string;
@@ -8,12 +8,3 @@ export interface SsoUser {
   addr: [string, string];
   createdAt: Date;
 }
-export interface OlympiadUser {
-  id: number;
-  school: string;
-  academies: string[];
-  info: string;
-  status: Object;
-}
-
-export interface UserInfo extends SsoUser, OlympiadUser {}
