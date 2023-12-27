@@ -1,4 +1,5 @@
 {
+  "root":true,
   "extends": [
     "airbnb",
     "airbnb-typescript",
@@ -7,15 +8,28 @@
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "plugin:tailwindcss/recommended"
+  ],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js"],
+      "parser": "@typescript-eslint/parser"
+    }
   ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
   "parser": "@typescript-eslint/parser",
-  "plugins": ["@typescript-eslint", "react-hooks", "plugin:tailwindcss/recommended"],
+  "plugins": ["@typescript-eslint", "react-hooks", "eslint-plugin-tailwindcss"],
   "rules": {
-    "prettier/prettier": 0,
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "react/jsx-filename-extension": [
       2,
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
