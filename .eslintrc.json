@@ -38,8 +38,12 @@
     "react/no-unescaped-entities": 0
   },
   "settings": {
+    "import/parsers": {
+      "@typescript-eslint/parser": [".ts", ".tsx"]
+    },
     "import/resolver": {
       "node": {
+        "paths": ["src", "src/design"],
         "extensions": [".js", ".jsx", ".ts", ".tsx"]
       }
     }
