@@ -23,6 +23,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "eslint-plugin-tailwindcss"],
   "rules": {
+    "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
       "error",

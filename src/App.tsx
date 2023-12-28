@@ -3,7 +3,7 @@ import Routers from "./routes/Routers";
 
 export default function App() {
   return (
-    <div className="font-pretendard-medium">
+    <div className="relative min-h-screen font-pretendard-medium">
       <BrowserRouter>
         <Routers />
       </BrowserRouter>

@@ -5,7 +5,11 @@ module.exports = {
     fontFamily: {
       "pretendard-medium": ["pretendard-medium"],
     },
-    extend: {},
+    extend: {
+      spacing: {
+        128: "32rem",
+      },
+    },
   },
   plugins: [],
 };
