@@ -10,7 +10,7 @@ export const between = {
 export const center = {
   col: (gap: number) => `gap-${gap} flex flex-col items-center `,
   row: "flex flex-row justify-center items-center ",
-  colO: "flex flex-col justify-center items-center ",
+  colO: (gap: number) => `gap-${gap} flex flex-col justify-center items-center `,
   rowO: (gap: number) => `gap-${gap} flex flex-row justify-center items-center `,
 };
 

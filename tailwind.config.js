@@ -9,6 +9,14 @@ module.exports = {
       spacing: {
         128: "32rem",
       },
+      colors: {
+        "kakao-yellow": "#FEE500",
+        "kakao-brown": "#3C1E1E",
+        "naver-green": "#03C75A",
+        "charcoal-grey": "#242424",
+        "near-black": "#0C0E0F",
+        "medium-grey": "#AFAFAF",
+      },
     },
   },
   safelist: [

@@ -23,6 +23,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "eslint-plugin-tailwindcss"],
   "rules": {
+    "import/prefer-default-export": "off",
     "@typescript-eslint/no-shadow": "off",
     "no-useless-concat": "off",
     "react/button-has-type": "off",
