@@ -28,6 +28,7 @@
     "no-useless-concat": "off",
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
+    "react/no-array-index-key": "off",
     "prettier/prettier": [
       "error",
       {

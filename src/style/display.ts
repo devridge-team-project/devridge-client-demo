@@ -1,6 +1,6 @@
 export const row = (gap?: number | "between") =>
   `${gap === "between" ? "justify-between" : `gap-${gap}`} ` + "flex flex-row  ";
-export const col = (gap?: number) => `gap-${gap} flex flex-col `;
+export const col = (gap = 6) => `gap-${gap} flex flex-col `;
 
 export const between = {
   row: "flex flex-row justify-between items-center ",
@@ -10,7 +10,7 @@ export const between = {
 export const center = {
   col: (gap: number) => `gap-${gap} flex flex-col items-center `,
   row: "flex flex-row justify-center items-center ",
-  colO: (gap: number) => `gap-${gap} flex flex-col justify-center items-center `,
+  colO: (gap = 12) => `gap-${gap} flex flex-col justify-center items-center `,
   rowO: (gap: number) => `gap-${gap} flex flex-row justify-center items-center `,
 };
 

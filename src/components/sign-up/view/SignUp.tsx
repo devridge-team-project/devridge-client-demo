@@ -29,9 +29,12 @@ export default function SignUp() {
             <hr className="my-8 h-px w-full bg-black" />
             <div className="absolute left-1/2 -translate-x-1/2 bg-white px-3">또는</div>
           </div>
-          <button className={`${center.colO(0)} h-12 w-full rounded-md bg-black text-white`}>
+          <Link
+            to="/sign-up/processing"
+            className={`${center.colO(0)} h-12 w-full rounded-md bg-black text-white`}
+          >
             이메일로 가입하기
-          </button>
+          </Link>
         </div>
       </div>
     </div>
