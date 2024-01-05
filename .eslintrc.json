@@ -32,6 +32,7 @@
     "prettier/prettier": [
       "error",
       {
+        "useTabs": false,
         "endOfLine": "auto"
       }
     ],
@@ -40,7 +41,8 @@
       { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
     ],
     "quotes": [2, "double"],
-    "react/no-unescaped-entities": 0
+    "react/no-unescaped-entities": 0,
+    "react/require-default-props": "off"
   },
   "settings": {
     "import/parsers": {
