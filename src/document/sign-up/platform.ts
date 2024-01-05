@@ -1,4 +1,7 @@
-const { REACT_APP_GITHUB_CLIENT_ID: gitHubClientId } = process.env;
+const { REACT_APP_GOOGLE_CLIENT_ID: googleClientId, REACT_APP_GITHUB_CLIENT_ID: gitHubClientId } =
+  process.env;
+
+const readOnly = "https%3A//www.googleapis.com/auth/drive.metadata.readonly";
 
 const contents = [
   {
@@ -15,7 +18,7 @@ const contents = [
     textColor: "text-black",
     borderColor: "medium-grey",
     image: "google",
-    href: "https://accounts.google.com/o/oauth2/v2/auth?",
+    href: `https://accounts.google.com/o/oauth2/v2/auth?scope=${readOnly}&access_type=offline&response_type=code&redirect_uri=http%3A//localhost%3A3000&client_id=${googleClientId}`,
   },
   {
     title: "깃허브",
