@@ -23,7 +23,7 @@ Start --> End
 ```
 
 ## Environment Variables
-- REACT_APP_KAKAO_CLIENT_ID=
-- REACT_APP_GOOGLE_CLIENT_ID=
-- REACT_APP_GITHUB_CLIENT_ID=
-- REACT_APP_NAVER_CLIENT_ID=
+- REACT_APP_KAKAO_CLIENT_ID= https://developers.kakao.com/
+- REACT_APP_GOOGLE_CLIENT_ID= https://cloud.google.com/
+- REACT_APP_GITHUB_CLIENT_ID= https://github.com/devridge-team-project
+- REACT_APP_NAVER_CLIENT_ID= https://developers.naver.com/main/
