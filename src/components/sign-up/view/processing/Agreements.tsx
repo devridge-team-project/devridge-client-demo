@@ -38,13 +38,17 @@ function Agreement({ title, contents }: { title: string; contents: string[] | nu
           <button className="h-6 w-6 border-2" />
           <div>{title}</div>
         </div>
-        <button onClick={() => setOpen(!open)}>{">"}</button>
+        {contents ? <button onClick={() => setOpen(!open)}>{">"}</button> : null}
       </div>
-      <div
-        className={`${open ? "h-12 border-2 p-2 " : "h-0"} overflow-y-scroll text-xs duration-500`}
-      >
-        <LineBreak contents={contents} />
-      </div>
+      {contents ? (
+        <div
+          className={`${
+            open ? "h-12 border-2 p-2 " : "h-0"
+          } overflow-y-scroll text-xs duration-500`}
+        >
+          <LineBreak contents={contents} />
+        </div>
+      ) : null}
       {contents === null ? <hr className="mt-5 h-px w-full bg-black/50" /> : null}
     </div>
   );
