@@ -4,12 +4,16 @@ interface WidgetProps {
   nowModal: string;
   setModal: (nowModal: string) => void;
   closeModal: () => void;
+  nowView: string;
+  setView: (nowView: string) => void;
 }
 
 export const useWidgetStore = create<WidgetProps>((set) => ({
   nowModal: "",
   setModal: (nowModal: string) => set({ nowModal }),
   closeModal: () => set({ nowModal: "" }),
+  nowView: "",
+  setView: (nowView: string) => set({ nowView }),
 }));
 
 interface TempProps {
