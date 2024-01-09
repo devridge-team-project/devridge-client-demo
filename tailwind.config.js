@@ -7,7 +7,9 @@ module.exports = {
     },
     extend: {
       spacing: {
+        7: "1.75rem",
         128: "32rem",
+        152: "38rem",
       },
       colors: {
         "kakao-yellow": "#FEE500",

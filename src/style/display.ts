@@ -1,5 +1,4 @@
-export const row = (gap?: number | "between") =>
-  `${gap === "between" ? "justify-between" : `gap-${gap}`} ` + "flex flex-row  ";
+export const row = (gap?: number) => `${`gap-${gap}`} ` + "flex flex-row ";
 export const col = (gap = 6) => `gap-${gap} flex flex-col `;
 
 export const between = {
