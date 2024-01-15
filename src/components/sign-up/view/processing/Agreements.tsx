@@ -1,6 +1,6 @@
 import { useState } from "react";
 import LineBreak from "design/LineBreak";
-import { agreements } from "document/sign-up/agreements";
+import { agreements } from "asset/sign-up/agreements";
 import { between, col, row } from "style/display";
 import Button from "design/widget/Button";
 

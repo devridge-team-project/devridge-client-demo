@@ -1,4 +1,4 @@
-import { contents } from "document/sign-up/platform";
+import { contents } from "asset/sign-up/platform";
 import { center, col } from "style/display";
 import { Link } from "react-router-dom";
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { center, col, row } from "style/display";
-import { contents } from "document/sign-up/platform";
+import { contents } from "asset/sign-up/platform";
 import { login } from "api/sign-in/loginService";
 
 import Input from "../../common/input";

@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import { contents } from "document/sign-up/platform";
+import { contents } from "asset/sign-up/platform";
 import SignUp from "../components/sign-up/view/SignUp";
 
 describe("SignUp Component", () => {
