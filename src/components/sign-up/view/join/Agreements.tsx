@@ -23,7 +23,7 @@ export default function Agreements() {
         <Button
           title="다음으로"
           onClick={() => {
-            setView("join");
+            setView("inputs");
           }}
         />
       </div>
