@@ -1,11 +1,11 @@
 import { BrowserRouter } from "react-router-dom";
-import Routers from "./routes/Routers";
+import Pages from "components/Pages";
 
 export default function App() {
   return (
     <div className="relative min-h-screen font-pretendard-medium">
       <BrowserRouter>
-        <Routers />
+        <Pages />
       </BrowserRouter>
     </div>
   );
