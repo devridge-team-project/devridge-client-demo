@@ -10,8 +10,8 @@ export default function Pages() {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/sign-in" element={<SignInPage />} />
-      {routers.map((route) => (
-        <Route key={route[0]} path={route[0]} element={route[1]} />
+      {routers.map(([path, element]) => (
+        <Route key={path} path={path} element={element} />
       ))}
     </Routes>
   );
