@@ -3,29 +3,31 @@ import LineBreak from "design/LineBreak";
 import { agreements } from "asset/sign-up/agreements";
 import { between, col, row } from "style/display";
 import Button from "design/widget/Button";
+import { useWidgetStore } from "shared/store";
+import SignUpLayout from "design/layout/sign-up/SignUpLayout";
 
 export default function Agreements() {
+  const { setView } = useWidgetStore();
   return (
-    <div className={`${between.col} h-152 w-80`}>
-      <div className={`${col(5)} w-full`}>
-        <div className="text-4xl font-bold">
-          <div className="leading-tight">약관 동의가</div>
-          <div>필요해요</div>
-        </div>
-        <div className={col(5)}>
-          {agreements.map(({ title, contents }) => (
-            <Agreement title={title} contents={contents} key={title} />
-          ))}
-        </div>
+    <SignUpLayout titles={["약관 동의가", "필요해요"]}>
+      <div className={col(5)}>
+        {agreements.map(({ title, contents }) => (
+          <Agreement title={title} contents={contents} key={title} />
+        ))}
       </div>
       <div className={`${col(5)} w-full `}>
         <div className={`${row(4)} rounded-md border-2 px-6 py-3`}>
           <button className="h-6 w-6 border-2" />
           <div>만 14세 이상입니다.</div>
         </div>
-        <Button title="다음으로" onClick={() => {}} />
+        <Button
+          title="다음으로"
+          onClick={() => {
+            setView("join");
+          }}
+        />
       </div>
-    </div>
+    </SignUpLayout>
   );
 }
 
