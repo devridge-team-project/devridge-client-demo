@@ -2,14 +2,16 @@ import { useState } from "react";
 import LineBreak from "design/LineBreak";
 import { agreements } from "asset/sign-up/agreements";
 import { between, col, row } from "style/display";
-import Button from "design/widget/Button";
 import { useWidgetStore } from "shared/store";
 import SignUpLayout from "design/layout/sign-up/SignUpLayout";
 
 export default function Agreements() {
   const { setView } = useWidgetStore();
   return (
-    <SignUpLayout titles={["약관 동의가", "필요해요"]}>
+    <SignUpLayout
+      titles={["약관 동의가", "필요해요"]}
+      buttons={[["다음으로", () => setView("credentials")]]}
+    >
       <div className={col(5)}>
         {agreements.map(({ title, contents }) => (
           <Agreement title={title} contents={contents} key={title} />
@@ -20,12 +22,6 @@ export default function Agreements() {
           <button className="h-6 w-6 border-2" />
           <div>만 14세 이상입니다.</div>
         </div>
-        <Button
-          title="다음으로"
-          onClick={() => {
-            setView("inputs");
-          }}
-        />
       </div>
     </SignUpLayout>
   );
