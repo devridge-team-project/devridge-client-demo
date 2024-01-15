@@ -44,7 +44,9 @@
     ],
     "quotes": [2, "double"],
     "react/no-unescaped-entities": 0,
-    "react/require-default-props": "off"
+    "react/require-default-props": "off",
+    "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/dot-notation": "off"
   },
   "settings": {
     "import/parsers": {

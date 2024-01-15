@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 const getAxiosInstance = (ContentType: string) => {
   const config: AxiosRequestConfig = {
-    baseURL: "http://localhost:3000",
+    baseURL: "/api",
     headers: {
       "Content-type": ContentType,
     },
