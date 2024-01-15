@@ -1,10 +1,10 @@
 import { center } from "style/display";
-import { ProcessingViews } from "../controller/Views";
+import { JoinViews } from "../controller/Views";
 
-export default function Processing() {
+export default function Join() {
   return (
     <div className={`${center.colO()} min-h-screen `}>
-      <ProcessingViews />
+      <JoinViews />
     </div>
   );
 }

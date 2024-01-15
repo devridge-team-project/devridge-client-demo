@@ -1,13 +1,13 @@
 import { useWidgetStore } from "shared/store";
-import Agreements from "../view/processing/Agreements";
-import Join from "../view/processing/Join";
-import Authentication from "../view/processing/Authentication";
-import Skills from "../view/processing/Skills";
-import PersonalInformation from "../view/processing/PersonalInformation";
+import Agreements from "../view/join/Agreements";
+import Inputs from "../view/join/Inputs";
+import Authentication from "../view/join/Authentication";
+import Skills from "../view/join/Skills";
+import PersonalInformation from "../view/join/PersonalInformation";
 
-export function ProcessingViews() {
+export function JoinViews() {
   const { nowView } = useWidgetStore();
-  if (nowView === "join") return <Join />;
+  if (nowView === "inputs") return <Inputs />;
   if (nowView === "authentication") return <Authentication />;
   if (nowView === "skills") return <Skills />;
   if (nowView === "personalInformation") return <PersonalInformation />;

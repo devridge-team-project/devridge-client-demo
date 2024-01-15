@@ -2,18 +2,36 @@ import { create } from "zustand";
 
 interface SignUpProps {
   email: string;
-  setEmail: (email: string) => void;
   password: string;
+  passwordConfirm: string;
+  provider: string;
+  nickname: string;
+  profileImageUrl: string;
+  skills: string[];
+
+  setEmail: (email: string) => void;
   setPassword: (password: string) => void;
-  confirmPassword: string;
-  setConfirmPassword: (confirmPassword: string) => void;
+  setPasswordConfirm: (passwordConfirm: string) => void;
+  setProvider: (provider: string) => void;
+  setNickname: (nickname: string) => void;
+  setProfileImageUrl: (profileImage: string) => void;
+  setSkills: (skills: string[]) => void;
 }
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
   email: "",
-  setEmail: (email: string) => set({ email }),
   password: "",
-  setPassword: (password: string) => set({ password }),
-  confirmPassword: "",
-  setConfirmPassword: (confirmPassword: string) => set({ confirmPassword }),
+  passwordConfirm: "",
+  provider: "",
+  nickname: "",
+  profileImageUrl: "",
+  skills: [],
+
+  setEmail: (email) => set({ email }),
+  setPassword: (password) => set({ password }),
+  setPasswordConfirm: (passwordConfirm) => set({ passwordConfirm }),
+  setProvider: (provider) => set({ provider }),
+  setNickname: (nickname) => set({ nickname }),
+  setProfileImageUrl: (profileImageUrl) => set({ profileImageUrl }),
+  setSkills: (skills) => set({ skills }),
 }));

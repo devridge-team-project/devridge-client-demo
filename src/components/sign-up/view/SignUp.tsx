@@ -30,7 +30,7 @@ export default function SignUp() {
             <div className="absolute left-1/2 -translate-x-1/2 bg-white px-3">또는</div>
           </div>
           <Link
-            to="/sign-up/processing"
+            to="/sign-up/join"
             className={`${center.colO(0)} h-12 w-full rounded-md bg-black text-white`}
           >
             이메일로 가입하기
