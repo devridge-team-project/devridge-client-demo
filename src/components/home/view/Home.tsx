@@ -1,22 +1,66 @@
 import Template from "design/Template";
-import { Link } from "react-router-dom";
-import { col } from "style/display";
+import { center, col, row } from "style/display";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuthStore } from "shared/auth/store";
+import { logout } from "api/sign-in/loginService";
+import Button from "../../common/button";
 
 export default function Test() {
+  const navigate = useNavigate();
+  const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
+  console.log(accessToken, signInType);
+  const onLogoutHandler = async () => {
+    const status = await logout();
+    if (status) {
+      setAccessToken(null);
+      setSignInType("");
+    }
+  };
   return (
-    <div>
-      <img src="/images/cat.png" alt="cat" width={500} height={500} />
-      <Template subject="This is Template's Subject">
-        <div>This is Template's Children </div>
-      </Template>
-      <div className={col(4)}>
-        <Link className="w-48 bg-black text-white" to="/sign-in">
-          Go to Sign In
-        </Link>
-        <Link className="w-48 bg-black text-white" to="/sign-up">
-          Go to Sign Up
-        </Link>
+    <div className={`min-h-screen ${center.colO(0)}`}>
+      {accessToken && signInType && (
+        <div className={`mt-7.5 w-80 ${row(2)}`}>
+          <img src="/images/mypage.png" alt="mypage" />
+          <Link to="/mypage">마이페이지</Link>
+        </div>
+      )}
+      <div className={`mt-7.5 w-80 ${row(2)}`}>
+        <img src="/images/q&a.png" alt="q&a" />
+        <Link to="/qnas">Q&A</Link>
       </div>
+      <div className={`mt-7.5 w-80 ${row(2)}`}>
+        <img src="/images/study&project.png" alt="study&project" />
+        <Link to="/study&projects">스터디 및 프로젝트</Link>
+      </div>
+      <div className={` mt-7.5 w-80 ${row(2)}`}>
+        <img src="/images/notice.png" alt="notice" />
+        <Link to="/notify">공지사항</Link>
+      </div>
+      {accessToken && signInType ? (
+        <div className={`mt-7.5 w-80 ${row(2)}`}>
+          <img src="/images/logout.png" alt="logout" />
+          <Link to="/" onClick={onLogoutHandler}>
+            로그아웃
+          </Link>
+        </div>
+      ) : (
+        <>
+          <Button
+            className="mt-12.5 block h-14 w-80  bg-black text-white"
+            onClick={() => navigate("/sign-in")}
+            type="button"
+          >
+            로그인 하러가기
+          </Button>
+          <Button
+            className="mt-5 block h-14 w-80 border border-solid border-black bg-white text-black"
+            onClick={() => navigate("/sign-up")}
+            type="button"
+          >
+            회원가입
+          </Button>
+        </>
+      )}
     </div>
   );
 }
