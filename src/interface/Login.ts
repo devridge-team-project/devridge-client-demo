@@ -4,9 +4,9 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
+  code: number;
   message: string;
   body: {
     accessToken: string;
-    status: number;
   };
 }
