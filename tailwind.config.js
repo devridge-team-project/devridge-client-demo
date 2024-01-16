@@ -10,6 +10,7 @@ module.exports = {
         7: "1.75rem",
         7.5: "1.875rem",
         12.5: "3.125rem",
+        25: "6.25rem",
         30: "7.5rem",
         50: "12.5rem",
         76: "19rem",
@@ -17,6 +18,12 @@ module.exports = {
         84: "21rem",
         128: "32rem",
         152: "38rem",
+      },
+      width: {
+        "9/10": "90%",
+      },
+      minWidth: {
+        80: "20rem",
       },
       colors: {
         "kakao-yellow": "#FEE500",

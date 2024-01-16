@@ -27,7 +27,7 @@ export default function Skills() {
       />
       <div className={col(2)}>
         <div className="font-bold">빠른 선택</div>
-        <div className="flex h-84 w-full flex-wrap gap-2 overflow-hidden ">
+        <div className="flex h-84 w-full flex-wrap gap-2 overflow-hidden">
           {techs.map((tech) => (
             <button
               key={tech}
@@ -36,7 +36,7 @@ export default function Skills() {
                 `${
                   skills.includes(tech) ? "bg-blue-500 border-blue-500 text-white" : "bg-white"
                 } ` +
-                "font-bold flex h-10 grow items-center justify-center rounded-full border-2 px-4"
+                "font-bold flex h-10 grow items-center justify-center rounded-full border-2 px-4 duration-500"
               }
             >
               {tech}

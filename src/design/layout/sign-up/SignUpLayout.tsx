@@ -3,10 +3,12 @@ import LineBreak from "design/LineBreak";
 
 export default function SignUpLayout({
   titles,
+  subTitles,
   children,
   buttons,
 }: {
   titles: string[];
+  subTitles?: string[];
   children: React.ReactNode;
   buttons?: [string, () => unknown | (() => Promise<unknown>)][];
 }) {
@@ -17,6 +19,9 @@ export default function SignUpLayout({
           {titles.map((title) => (
             <LineBreak contents={[title]} key={title} />
           ))}
+        </div>
+        <div className="text-gray-400  ">
+          {subTitles?.map((subTitle) => <LineBreak contents={[subTitle]} key={subTitle} />)}
         </div>
         {children}
         {buttons?.map(([title, onClick]) => (

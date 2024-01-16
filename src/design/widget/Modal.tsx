@@ -16,3 +16,18 @@ export default function ModalDesign({ children }: { children: React.ReactNode })
     </div>
   );
 }
+
+export function Alert({ children }: { children: React.ReactNode }) {
+  const { closeModal } = useWidgetStore();
+  return (
+    <div className="absolute left-0 top-0 z-50 flex min-h-screen w-full items-center justify-center bg-black/20">
+      <div className="flex h-60 w-1/4 min-w-80 flex-col items-center justify-center gap-4 rounded-xl bg-white shadow-md shadow-black/50">
+        <div className="h-12 w-12 rounded-full bg-black" />
+        <div className="w-9/10 text-center text-xl font-bold">{children}</div>
+        <button onClick={closeModal} className="rounded-xl bg-black px-6 py-2 font-bold text-white">
+          확인
+        </button>
+      </div>
+    </div>
+  );
+}

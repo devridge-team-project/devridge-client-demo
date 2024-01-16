@@ -1,9 +1,11 @@
 import { Dispatch } from "react";
 
 export default function Input<T extends string | number>({
+  title,
   onChange,
   placeholder,
 }: {
+  title?: string;
   onChange: [T, Dispatch<T>];
   placeholder?: string;
 }) {
@@ -13,12 +15,15 @@ export default function Input<T extends string | number>({
   };
 
   return (
-    <input
-      className="w-full rounded-md border-2 p-4 focus:outline-blue-500"
-      value={value}
-      onChange={onChangeValue}
-      placeholder={placeholder ?? ""}
-      type="text"
-    />
+    <div className="flex w-full flex-col gap-2">
+      <div>{title}</div>
+      <input
+        className="w-full rounded-md border-2 p-4 focus:outline-blue-500"
+        value={value}
+        onChange={onChangeValue}
+        placeholder={placeholder ?? ""}
+        type="text"
+      />
+    </div>
   );
 }
