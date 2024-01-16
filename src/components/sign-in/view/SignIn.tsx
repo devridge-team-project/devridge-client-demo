@@ -3,13 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { center, col, row } from "style/display";
 import { contents } from "asset/sign-up/platform";
 import { login } from "api/sign-in/loginService";
-
+import { useAuthStore } from "shared/auth/store";
 import Input from "../../common/input";
 import Button from "../../common/button";
 
 export default function SignIn() {
   const [info, setInfo] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+  const { setAccessToken, setSignInType } = useAuthStore();
   const { email, password } = info;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -17,14 +18,19 @@ export default function SignIn() {
   };
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const status = await login({ email, password });
+    const { status, accessToken } = await login({ email, password });
+    console.log(status);
+
+    console.log(accessToken);
     if (status === 200) {
+      setAccessToken(accessToken);
+      setSignInType("GeneralLogin");
       alert("로그인 되었습니다.");
       navigate("/");
     } else if (status === 400) {
       alert("이메일 또는 비밀번호가 틀렸습니다.");
     } else if (status === 401) {
-      alert("이 사이트의 회원이 아닙니다.");
+      alert("이메일 또는 비밀번호가 틀렸습니다.");
     }
     setInfo({ email: "", password: "" });
   };
