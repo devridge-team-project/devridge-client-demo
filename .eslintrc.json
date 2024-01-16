@@ -47,7 +47,8 @@
     "react/no-unescaped-entities": 0,
     "react/require-default-props": "off",
     "@typescript-eslint/no-var-requires": 0,
-    "@typescript-eslint/dot-notation": "off"
+    "@typescript-eslint/dot-notation": "off",
+    "consistent-return":"off"
   },
   "settings": {
     "import/parsers": {
