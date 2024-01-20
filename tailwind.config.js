@@ -20,10 +20,15 @@ module.exports = {
         152: "38rem",
       },
       width: {
+        "3/10": "30%",
         "9/10": "90%",
       },
       minWidth: {
+        72: "18rem",
         80: "20rem",
+      },
+      minHeight: {
+        60: "15rem",
       },
       colors: {
         "kakao-yellow": "#FEE500",
