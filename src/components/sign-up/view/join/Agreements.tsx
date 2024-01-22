@@ -10,6 +10,7 @@ export default function Agreements() {
   const { setView } = useWidgetStore();
   const { agreements, setAgreement } = useSignUpStore();
   const agreementsArray = Object.entries(agreements);
+  const chkAge = "flag6";
 
   return (
     <SignUpLayout
@@ -23,7 +24,10 @@ export default function Agreements() {
       </div>
       <div className={`${col(5)} w-full `}>
         <div className={`${row(4)} rounded-md border-2 px-6 py-3`}>
-          <button className="h-6 w-6 border-2" onClick={() => setAgreement("flag6")} />
+          <button
+            className={`h-6 w-6 border-2 ${agreements[chkAge] ? "bg-blue-500" : ""}`}
+            onClick={() => setAgreement(chkAge)}
+          />
           <div>만 14세 이상입니다.</div>
         </div>
       </div>
