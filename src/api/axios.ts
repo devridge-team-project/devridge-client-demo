@@ -1,4 +1,5 @@
-import axios, { AxiosRequestConfig } from "axios";
+import axios, { AxiosError, AxiosRequestConfig } from "axios";
+import { getCookie } from "util/cookies";
 
 const getAxiosInstance = (ContentType: string) => {
   const config: AxiosRequestConfig = {
@@ -7,8 +8,17 @@ const getAxiosInstance = (ContentType: string) => {
       "Content-type": ContentType,
     },
   };
-
   const instance = axios.create(config);
+  instance.interceptors.request.use(
+    (request) => {
+      const token = getCookie("accessToken");
+      if (token) request.headers["Authorization"] = `Bearer ${token}`;
+      return request;
+    },
+    (error: AxiosError) => {
+      console.log(error);
+    },
+  );
   return instance;
 };
 
