@@ -1,22 +1,12 @@
 import { contents } from "asset/sign-up/platform";
 import { center, col } from "style/display";
 import { Link } from "react-router-dom";
-import ErrorBoundary from "ErrorBoundary";
 
-function Example() {
-  const example: any = null;
-  return <div>{example.toString}</div>;
-}
 export default function SignUp() {
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
       <div className={`${col(12)} w-80`}>
-        <div className="text-3xl font-bold">
-          회원가입 방식
-          <ErrorBoundary fallback="nono">
-            <Example />
-          </ErrorBoundary>
-        </div>
+        <div className="text-3xl font-bold">회원가입 방식</div>
         <div className={col(2)}>
           {contents.map(({ href, textColor, bgColor, borderColor, title, image }) => (
             <Link
