@@ -11,37 +11,31 @@ export default function PersonalInformation() {
   const { email, password, skills, profileImageUrl, provider, nickname, setNickname } =
     useSignUpStore();
 
+  const signUp = async () => {
+    if (nickname === "") return setModal("necessary");
+    try {
+      const response = await fetch(`${serverOrigin}/users`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+          skills,
+          provider: "normal",
+          nickname,
+        }),
+      });
+      if (!response.ok) throw new Error("Failure to sign up");
+      redirect("/sign-up/success");
+    } catch (error) {
+      console.error(`Error: ${error}`);
+    }
+  };
+
   return (
-    <SignUpLayout
-      titles={["개인정보 입력"]}
-      buttons={[
-        [
-          "확인",
-          async () => {
-            if (nickname === "") return setModal("necessary");
-            try {
-              const response = await fetch(`${serverOrigin}/users`, {
-                method: "POST",
-                headers: {
-                  "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                  email,
-                  password,
-                  skills,
-                  provider: "normal",
-                  nickname,
-                }),
-              });
-              if (!response.ok) throw new Error("Failure to sign up");
-              window.location.href = "/sign-up/success";
-            } catch (error) {
-              console.error(`Error: ${error}`);
-            }
-          },
-        ],
-      ]}
-    >
+    <SignUpLayout titles={["개인정보 입력"]} buttons={[["확인", () => signUp()]]}>
       <div className="h-48 w-full ">
         <div className="text-lg font-bold">TEST</div>
         <div>{email}</div>

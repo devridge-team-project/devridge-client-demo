@@ -17,13 +17,19 @@ export default function ModalDesign({ children }: { children: React.ReactNode })
   );
 }
 
-export function Alert({ children }: { children: React.ReactNode }) {
+export function Alert({ scripts }: { scripts: string[] }) {
   const { closeModal } = useWidgetStore();
+  const scriptsClassNames = ["w-9/10 text-center font-bold", "lg:text-lg"].join(" ");
+
   return (
     <div className="absolute left-0 top-0 z-50 flex min-h-screen w-full items-center justify-center bg-black/20">
-      <div className="flex h-60 w-1/4 min-w-80 flex-col items-center justify-center gap-4 rounded-xl bg-white shadow-md shadow-black/50">
+      <div className="min-h-60 flex aspect-video w-3/10 min-w-72 flex-col items-center justify-center gap-4 rounded-xl bg-white shadow-md shadow-black/50">
         <div className="h-12 w-12 rounded-full bg-black" />
-        <div className="w-9/10 text-center text-xl font-bold">{children}</div>
+        <div className={scriptsClassNames}>
+          {scripts.map((script) => (
+            <div>{script}</div>
+          ))}
+        </div>
         <button onClick={closeModal} className="rounded-xl bg-black px-6 py-2 font-bold text-white">
           확인
         </button>
