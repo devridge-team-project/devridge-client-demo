@@ -1,11 +1,11 @@
 import { contents } from "asset/sign-up/platform";
-import { center, col } from "style/display";
+import { center, col } from "style";
 import { Link } from "react-router-dom";
 
 export default function SignUp() {
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <div className={`${col(12)} w-80`}>
+      <div className={`${col(12, 80)}`}>
         <div className="text-3xl font-bold">회원가입 방식</div>
         <div className={col(2)}>
           {contents.map(({ href, textColor, bgColor, borderColor, title, image }) => (

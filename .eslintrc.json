@@ -29,7 +29,7 @@
     "no-useless-concat": "off",
     "react/button-has-type": "off",
     "react/react-in-jsx-scope": "off",
-    "react/no-array-index-key": "off",
+    "react/jsx-key": "off",
     "react/jsx-no-useless-fragment": "off",
     "prettier/prettier": [
       "error",
