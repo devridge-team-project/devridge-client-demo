@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { center, col, row } from "style/display";
 import { contents } from "asset/sign-up/platform";
 import { login } from "api/sign-in/loginService";
 import { useAuthStore } from "shared/auth/store";
+
 import Input from "../../common/input";
 import Button from "../../common/button";
 
@@ -57,7 +58,13 @@ export default function SignIn() {
         <Button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
           로그인
         </Button>
+        <div className="mt-2 flex justify-end ">
+          <Link to="/help-pw" className=" block  text-xs text-gray-500 ">
+            비밀번호 찾기
+          </Link>
+        </div>
       </form>
+
       <div className={`mt-10 ${center.colO(0)}`}>다른 계정으로 로그인하기</div>
       <div className={`mx-8 mt-2 ${row(5)}`}>
         {contents.map(({ image, title, bgColor, textColor }) => (
