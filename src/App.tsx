@@ -1,15 +1,15 @@
 import { BrowserRouter } from "react-router-dom";
-import Pages from "components/Pages";
 import ErrorBoundary from "ErrorBoundary";
+import Routes from "./router/Routes";
 
 export default function App() {
   return (
     <ErrorBoundary>
-      <div className="relative min-h-screen font-pretendard-medium">
-        <BrowserRouter>
-          <Pages />
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <div className="relative min-h-screen font-pretendard-medium">
+          <Routes />
+        </div>
+      </BrowserRouter>
     </ErrorBoundary>
   );
 }

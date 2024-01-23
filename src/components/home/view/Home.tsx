@@ -6,6 +6,7 @@ import { authTest, logout } from "api/sign-in/loginService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
 import Button from "../../common/button";
+import Modals from "../controller/Modals";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -42,7 +43,7 @@ export default function Home() {
       )}
       <div className={`mt-7.5 w-80 ${row(2)}`}>
         <img src="/images/q&a.png" alt="q&a" />
-        <Link to="/qnas">Q&A</Link>
+        <Link to="/qna">Q&A</Link>
       </div>
       <div className={`mt-7.5 w-80 ${row(2)}`}>
         <img src="/images/study&project.png" alt="study&project" />
@@ -77,6 +78,7 @@ export default function Home() {
           </Button>
         </>
       )}
+      <Modals />
     </div>
   );
 }
