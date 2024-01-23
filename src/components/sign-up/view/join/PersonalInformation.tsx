@@ -14,7 +14,7 @@ export default function PersonalInformation() {
   const signUp = async () => {
     if (nickname === "") return setModal("necessary");
     try {
-      const response = await fetch(`${serverOrigin}/users`, {
+      const response = await fetch(`${serverOrigin}/api/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

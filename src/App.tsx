@@ -1,15 +1,17 @@
 import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ErrorBoundary from "ErrorBoundary";
 import Routes from "./router/Routes";
 
+const queryClient = new QueryClient();
 export default function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
-        <div className="relative min-h-screen font-pretendard-medium">
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
           <Routes />
-        </div>
-      </BrowserRouter>
+        </BrowserRouter>
+      </QueryClientProvider>
     </ErrorBoundary>
   );
 }
