@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 
 interface Props {
-  type: "submit" | "button" | "reset";
+  type?: "submit" | "button" | "reset";
   children: ReactNode;
   className?: string;
   onClick?: () => void;

@@ -2,6 +2,7 @@ import Template from "design/Template";
 import { center, col, row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "shared/auth/store";
+import { useSignUpStore } from "shared/sign-up/store";
 import { authTest, logout } from "api/sign-in/loginService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
@@ -11,6 +12,7 @@ import Modals from "../controller/Modals";
 export default function Home() {
   const navigate = useNavigate();
   const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
+  const { nickname, profileImageUrl } = useSignUpStore();
   console.log(accessToken, signInType);
 
   const onAuthTestHandler = async () => {
@@ -35,6 +37,12 @@ export default function Home() {
   }, []);
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
+      {getCookie("accessToken") && (
+        <>
+          <img src={profileImageUrl} alt="profileImage" />
+          <div>{nickname}</div>
+        </>
+      )}
       {getCookie("accessToken") && (
         <div className={`mt-7.5 w-80 ${row(2)}`}>
           <img src="/images/mypage.png" alt="mypage" />
