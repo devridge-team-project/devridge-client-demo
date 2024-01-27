@@ -1,25 +1,26 @@
 import axios, { AxiosError } from "axios";
 import { setCookie, removeCookie } from "util/cookies";
-import { LoginResponse, LoginRequest } from "../../interface/Login";
+import { LoginResponse, LoginRequest, PasswordRequest } from "../../interface/Login";
 import { axiosJsonInstance } from "../axios";
 
 export const login = async (user: LoginRequest) => {
   try {
-    const { data, status } = await axiosJsonInstance.post("/login", user);
-    const {
-      body: { accessToken },
-    } = data;
+    const { data, headers } = await axiosJsonInstance.post("/login", user);
     console.log(data);
+    const { accessToken, member } = data;
+    console.log(member);
     console.log(accessToken);
     const expiration = new Date(Date.now() + 900 * 1000);
     setCookie("accessToken", accessToken, { expires: expiration });
-    return { status, accessToken };
+
+    return { status: 200, accessToken, member };
   } catch (error) {
+    console.log(error);
     if (error instanceof AxiosError && error.response?.status) {
       const { status } = error.response;
-      return { status, accessToken: null };
+      return { status, accessToken: null, member: [] };
     }
-    return { status: 500, accessToken: null };
+    return { status: 500, accessToken: null, member: [] };
   }
 };
 
@@ -46,6 +47,22 @@ export const authTest = async () => {
     } = data;
     const expiration = new Date(Date.now() + 900 * 1000);
     setCookie("accessToken", accessToken, { expires: expiration });
+    return status;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response?.status) {
+      const { status } = error.response;
+      return status;
+    }
+    return 500;
+  }
+};
+
+export const deleteAccount = async (password: PasswordRequest) => {
+  console.log(password);
+  try {
+    const { status, data } = await axiosJsonInstance.delete("/users", { data: password });
+    removeCookie("accessToken");
+    console.log(status);
     return status;
   } catch (error) {
     if (error instanceof AxiosError && error.response?.status) {
