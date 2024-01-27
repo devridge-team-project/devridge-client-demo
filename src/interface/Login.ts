@@ -10,3 +10,7 @@ export interface LoginResponse {
     accessToken: string;
   };
 }
+
+export interface PasswordRequest {
+  password: string;
+}
