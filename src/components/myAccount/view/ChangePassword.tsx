@@ -21,7 +21,7 @@ export default function ChangePassword() {
   };
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <form className={`${col(2)} w-80`} onSubmit={onSubmitHandler}>
+      <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <div className="font-bold">비밀번호 변경</div>
         <div className="mt-5 font-bold">기존 비밀번호</div>
         <Input

@@ -11,7 +11,7 @@ export default function UpdateAccount() {
   };
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <form className={`${col(2)} w-80`} onSubmit={onSubmitHandler}>
+      <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <div className="text-2xl font-bold">회원정보 수정</div>
         <img src={profileImageUrl} alt="profileImage" />
         <div>{nickname}</div>

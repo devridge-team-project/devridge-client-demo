@@ -13,7 +13,7 @@ export default function HelpPw() {
   const onSubmitHandler = () => {};
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <form className={`${col(2)} w-80`} onSubmit={onSubmitHandler}>
+      <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <div className="text-2xl font-bold">비밀번호 찾기</div>
         <Input
           className="mt-2.5 block h-14 w-80 border"

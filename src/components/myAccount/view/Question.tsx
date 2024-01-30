@@ -20,7 +20,7 @@ export default function ChangePassword() {
   };
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <form className={`${col(2)} w-80`} onSubmit={onSubmitHandler}>
+      <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <div className="font-bold">문의사항</div>
         <div className="mt-5 font-bold">제목</div>
         <Input
