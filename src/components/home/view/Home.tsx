@@ -55,7 +55,7 @@ export default function Home() {
       </div>
       <div className={`mt-7.5 w-80 ${row(2)}`}>
         <img src="/images/study&project.png" alt="study&project" />
-        <Link to="/study&projects">스터디 및 프로젝트</Link>
+        <Link to="/project">스터디 및 프로젝트</Link>
       </div>
       <div className={` mt-7.5 w-80 ${row(2)}`}>
         <img src="/images/notice.png" alt="notice" />

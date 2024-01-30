@@ -1,3 +1,4 @@
+import { useMutation } from "@tanstack/react-query";
 import SignUpLayout from "design/layout/sign-up/SignUpLayout";
 import Input from "design/widget/Input";
 import { redirect } from "react-router-dom";
@@ -10,32 +11,28 @@ export default function PersonalInformation() {
   const { setModal } = useWidgetStore();
   const { email, password, skills, profileImageUrl, provider, nickname, setNickname } =
     useSignUpStore();
-
-  const signUp = async () => {
-    if (nickname === "") return setModal("necessary");
-    try {
-      const response = await fetch(`${serverOrigin}/api/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email,
-          password,
-          skills,
-          provider: "normal",
-          nickname,
-        }),
-      });
-      if (!response.ok) throw new Error("Failure to sign up");
-      redirect("/sign-up/success");
-    } catch (error) {
-      console.error(`Error: ${error}`);
-    }
+  const postUser = async () => {
+    const response = await fetch("/api/user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email,
+        password,
+        skills,
+        profileImageUrl,
+        provider,
+        nickname,
+      }),
+    });
+    const data = await response.json();
+    return data;
   };
+  const { mutate } = useMutation({ mutationKey: ["user"], mutationFn: postUser });
 
   return (
-    <SignUpLayout titles={["개인정보 입력"]} buttons={[["확인", () => signUp()]]}>
+    <SignUpLayout titles={["개인정보 입력"]} buttons={[["확인", mutate]]}>
       <div className="h-48 w-full ">
         <div className="text-lg font-bold">TEST</div>
         <div>{email}</div>
