@@ -4,7 +4,6 @@ import { center, col, row } from "style/display";
 import { contents } from "asset/sign-up/platform";
 import { login } from "api/sign-in/loginService";
 import { useAuthStore } from "shared/auth/store";
-import { useSignUpStore } from "shared/sign-up/store";
 
 import Input from "../../common/input";
 import Button from "../../common/button";
@@ -13,7 +12,6 @@ export default function SignIn() {
   const [info, setInfo] = useState({ email: "", password: "" });
   const navigate = useNavigate();
   const { setAccessToken, setSignInType } = useAuthStore();
-  const { setNickname, setProfileImageUrl } = useSignUpStore();
   const { email, password } = info;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -21,20 +19,14 @@ export default function SignIn() {
   };
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const {
-      status,
-      accessToken,
-      member: { nickname, imageUrl },
-    } = await login({ email, password });
+    const { status, accessToken } = await login({ email, password });
     console.log(status);
     console.log(accessToken);
-    console.log(nickname);
-    console.log(imageUrl);
+
     if (status === 200) {
       setAccessToken(accessToken);
       setSignInType("GeneralLogin");
-      setNickname(nickname);
-      setProfileImageUrl(imageUrl);
+
       alert("로그인 되었습니다.");
       navigate("/");
     } else if (status === 400) {
@@ -46,7 +38,7 @@ export default function SignIn() {
   };
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <form className={`${col(2)} w-80`} onSubmit={onSubmitHandler}>
+      <form className={`${col(2, 80)} `} onSubmit={onSubmitHandler}>
         <div className="text-2xl font-bold text-blue-600">로그인</div>
         <Input
           className="mt-2.5 block h-14 w-80 border"
