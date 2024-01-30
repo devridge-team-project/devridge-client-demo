@@ -36,10 +36,15 @@ interface QnaDetail {
   comments: QnaComments[];
 }
 
-export const getQna = () => {
+function getQna() {
   return httpRequest.get<Qna[]>("/api/qna?sortOption=views");
-};
+}
 
-export const getQnaById = (id: number) => {
+function getQnaById(id: number) {
   return httpRequest.get<QnaDetail>(`/api/qna/${id}`);
+}
+
+export const qna = {
+  get: getQna,
+  getById: getQnaById,
 };
