@@ -3,7 +3,7 @@ import { center, col, row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "shared/auth/store";
 import { useSignUpStore } from "shared/sign-up/store";
-import { authTest, logout } from "api/sign-in/loginService";
+import { authTest, logout, userInfo } from "api/sign-in/loginService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
 import Button from "../../common/button";
@@ -12,8 +12,17 @@ import Modals from "../controller/Modals";
 export default function Home() {
   const navigate = useNavigate();
   const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
-  const { nickname, profileImageUrl } = useSignUpStore();
+  const { nickname, setNickname, profileImageUrl, setProfileImageUrl } = useSignUpStore();
   console.log(accessToken, signInType);
+
+  const getUserInfo = async () => {
+    const { status, data } = await userInfo();
+    if (status === 200) {
+      const { id, nickname, imageUrl, introduction, skillIds } = data;
+      setNickname(nickname);
+      setProfileImageUrl(imageUrl);
+    }
+  };
 
   const onAuthTestHandler = async () => {
     const status = await authTest();
@@ -34,6 +43,7 @@ export default function Home() {
   };
   useEffect(() => {
     onAuthTestHandler();
+    getUserInfo();
   }, []);
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
