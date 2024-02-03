@@ -12,15 +12,17 @@ import Modals from "../controller/Modals";
 export default function Home() {
   const navigate = useNavigate();
   const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
-  const { nickname, setNickname, profileImageUrl, setProfileImageUrl } = useSignUpStore();
+  const { nickname, setNickname, profileImageUrl, setProfileImageUrl, occupation, setOccupation } =
+    useSignUpStore();
   console.log(accessToken, signInType);
 
   const getUserInfo = async () => {
     const { status, data } = await userInfo();
     if (status === 200) {
-      const { id, nickname, imageUrl, introduction, skillIds } = data;
+      const { id, nickname, imageUrl, introduction, skillIds, occupation } = data;
       setNickname(nickname);
       setProfileImageUrl(imageUrl);
+      setOccupation(occupation);
     }
   };
 
@@ -49,8 +51,13 @@ export default function Home() {
     <div className={`min-h-screen ${center.colO(0)}`}>
       {getCookie("accessToken") && (
         <>
-          <img src={profileImageUrl} alt="profileImage" />
-          <div>{nickname}</div>
+          <img
+            src={profileImageUrl}
+            className="h-25 w-25 rounded-full bg-gray-200 "
+            alt="profileImage"
+          />
+          <div className="mt-7 text-2xl font-bold">{nickname}</div>
+          <div className="mt-3 text-1xl font-bold text-blue-600 ">{occupation}</div>
         </>
       )}
       {getCookie("accessToken") && (
