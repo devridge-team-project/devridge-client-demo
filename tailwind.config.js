@@ -6,6 +6,9 @@ module.exports = {
       "pretendard-medium": ["pretendard-medium"],
     },
     extend: {
+      fontSize: {
+        "1xl": "0.875rem",
+      },
       spacing: {
         6: "1.5rem",
         7: "1.75rem",
