@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { center, col, row } from "style/display";
+import { changePassword } from "api/sign-in/myInfoService";
 import Input from "../../common/input";
 import Button from "../../common/button";
 
@@ -18,6 +19,12 @@ export default function ChangePassword() {
   };
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const status = await changePassword({ password: newPassword });
+    if (status === 200) {
+      alert("비밀번호가 변경되었습니다.");
+    } else {
+      alert("비밀번호 변경이 실패했습니다.");
+    }
   };
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
