@@ -19,6 +19,7 @@ interface SignUpProps {
   provider: string;
   nickname: string;
   profileImageUrl: string;
+  occupation: string;
   skills: string[];
 
   setEmail: (email: string) => void;
@@ -27,6 +28,7 @@ interface SignUpProps {
   setProvider: (provider: string) => void;
   setNickname: (nickname: string) => void;
   setProfileImageUrl: (profileImage: string) => void;
+  setOccupation: (occupation: string) => void;
   setSkills: (skill: string) => void;
 }
 
@@ -61,6 +63,7 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
   provider: "",
   nickname: "",
   profileImageUrl: "",
+  occupation: "",
   skills: [],
 
   setEmail: (email) => set({ email }),
@@ -69,6 +72,7 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
   setProvider: (provider) => set({ provider }),
   setNickname: (nickname) => set({ nickname }),
   setProfileImageUrl: (profileImageUrl) => set({ profileImageUrl }),
+  setOccupation: (occupation) => set({ occupation }),
   setSkills: (skill) =>
     set((state) => {
       const newSkills = state.skills.includes(skill)
