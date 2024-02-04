@@ -9,7 +9,7 @@ const { REACT_APP_SERVER_URL: serverOrigin } = process.env;
 
 export default function PersonalInformation() {
   const { setModal } = useWidgetStore();
-  const { email, password, skills, profileImageUrl, provider, nickname, setNickname } =
+  const { email, password, selectedSkills, profileImageUrl, provider, nickname, setNickname } =
     useSignUpStore();
   const postUser = async () => {
     const response = await fetch("/api/user", {
@@ -20,7 +20,7 @@ export default function PersonalInformation() {
       body: JSON.stringify({
         email,
         password,
-        skills,
+        selectedSkills,
         profileImageUrl,
         provider,
         nickname,
@@ -37,7 +37,7 @@ export default function PersonalInformation() {
         <div className="text-lg font-bold">TEST</div>
         <div>{email}</div>
         <div>{password}</div>
-        <span>{skills.map((skill) => skill)}</span>
+        <span>{selectedSkills.map((skill) => skill)}</span>
         <div>{profileImageUrl}</div>
         <div>{provider}</div>
         <div>{nickname}</div>

@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { cn } from "util/classNames";
-import { qna } from "connection/remotes";
+import { qna } from "connection";
 import { col, center } from "style/display";
 export default function Qna() {
   const { data: topQnaData, isLoading, error } = useQuery({ queryKey: ["qna"], queryFn: qna.get });

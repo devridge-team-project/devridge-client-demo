@@ -20,7 +20,7 @@ interface SignUpProps {
   nickname: string;
   profileImageUrl: string;
   occupation: string;
-  skills: string[];
+  selectedSkills: number[];
 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
@@ -29,7 +29,7 @@ interface SignUpProps {
   setNickname: (nickname: string) => void;
   setProfileImageUrl: (profileImage: string) => void;
   setOccupation: (occupation: string) => void;
-  setSkills: (skill: string) => void;
+  setSelectedSkills: (skillId: number) => void;
 }
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
@@ -64,7 +64,7 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
   nickname: "",
   profileImageUrl: "",
   occupation: "",
-  skills: [],
+  selectedSkills: [],
 
   setEmail: (email) => set({ email }),
   setPassword: (password) => set({ password }),
@@ -73,11 +73,11 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
   setNickname: (nickname) => set({ nickname }),
   setProfileImageUrl: (profileImageUrl) => set({ profileImageUrl }),
   setOccupation: (occupation) => set({ occupation }),
-  setSkills: (skill) =>
+  setSelectedSkills: (skill) =>
     set((state) => {
-      const newSkills = state.skills.includes(skill)
-        ? state.skills.filter((s) => s !== skill)
-        : [...state.skills, skill];
-      return { ...state, skills: newSkills };
+      const newSkills = state.selectedSkills.includes(skill)
+        ? state.selectedSkills.filter((s) => s !== skill)
+        : [...state.selectedSkills, skill];
+      return { ...state, selectedSkills: newSkills };
     }),
 }));
