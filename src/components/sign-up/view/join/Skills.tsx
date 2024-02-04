@@ -1,20 +1,27 @@
-import techs from "asset/sign-up/test/techs";
 import SignUpLayout from "design/layout/sign-up/SignUpLayout";
 import { useState } from "react";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";
 import { col } from "style/display";
+import { useQuery } from "@tanstack/react-query";
+import { Skill, skills } from "connection";
 
 export default function Skills() {
   const [keyword, setKeyword] = useState("");
   const { setView } = useWidgetStore();
-  const { skills, setSkills } = useSignUpStore();
+  const { selectedSkills, setSelectedSkills } = useSignUpStore();
+
+  const { data: techs, isLoading } = useQuery({
+    queryKey: ["techs"],
+    queryFn: skills.get,
+  });
+  if (!techs || isLoading) return <div>Not Found</div>;
 
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword(e.target.value);
   };
-  const findSkill = (tech: string[]) => {
-    const result = techs.filter((tech) => tech.includes(keyword));
+  const findSkill = (props: Skill[]) => {
+    const result = props.filter(({ skillName }) => skillName.includes(keyword));
     return result;
   };
 
@@ -32,18 +39,20 @@ export default function Skills() {
       <div className={col(2)}>
         <div className="font-bold">빠른 선택</div>
         <div className="flex max-h-84 w-full flex-wrap gap-2 overflow-hidden">
-          {findSkill(techs).map((tech) => (
+          {findSkill(techs).map(({ id, skillName }) => (
             <button
-              key={tech}
-              onClick={() => setSkills(tech)}
+              key={id}
+              onClick={() => setSelectedSkills(id)}
               className={
                 `${
-                  skills.includes(tech) ? "bg-blue-500 border-blue-500 text-white" : "bg-white"
+                  selectedSkills.includes(id)
+                    ? "bg-blue-500 border-blue-500 text-white"
+                    : "bg-white"
                 } ` +
                 "font-bold flex h-10 grow items-center justify-center rounded-full border-2 px-4 duration-500"
               }
             >
-              {tech}
+              {skillName}
             </button>
           ))}
         </div>
