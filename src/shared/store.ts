@@ -3,16 +3,16 @@ import { create } from "zustand";
 interface ExcepitonsProps {
   loading: boolean;
   setLoading: (loading: boolean) => void;
-  error: string;
+  error: string[];
   setError: (error: string) => void;
   clearError: () => void;
 }
 export const useExceptionsStore = create<ExcepitonsProps>((set) => ({
   loading: false,
   setLoading: (loading: boolean) => set({ loading }),
-  error: "",
-  setError: (error: string) => set({ error }),
-  clearError: () => set({ error: "" }),
+  error: [],
+  setError: (error: string) => set({ error: [error] }),
+  clearError: () => set({ error: [] }),
 }));
 
 interface WidgetProps {

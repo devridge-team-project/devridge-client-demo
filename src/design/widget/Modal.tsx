@@ -1,6 +1,12 @@
 import { useWidgetStore } from "shared/store";
 
-export default function ModalDesign({ children }: { children: React.ReactNode }) {
+export default function ModalDesign({
+  children,
+  clearError,
+}: {
+  children: React.ReactNode;
+  clearError?: () => void;
+}) {
   const { closeModal } = useWidgetStore();
   return (
     <div className="absolute left-0 top-0 flex h-screen w-screen items-center justify-center">
@@ -8,7 +14,10 @@ export default function ModalDesign({ children }: { children: React.ReactNode })
         <div>{children}</div>
         <button
           className="absolute bottom-4 right-4 rounded-xl border-2 px-2  py-1  text-xl font-bold"
-          onClick={closeModal}
+          onClick={() => {
+            closeModal();
+            clearError?.();
+          }}
         >
           닫기
         </button>

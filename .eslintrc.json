@@ -23,6 +23,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "eslint-plugin-tailwindcss"],
   "rules": {
+    "import/order":"off",
     "react/prop-types": "off",
     "object-shorthand": "off",
     "import/newline-after-import":"off",
