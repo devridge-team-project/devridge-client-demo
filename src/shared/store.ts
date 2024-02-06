@@ -40,3 +40,16 @@ export const useTempStore = create<TempProps>((set) => ({
   text: "",
   setText: (text: string) => set({ text }),
 }));
+
+interface WidgetsProps {
+  widgets: string[];
+  setWidget: (event: string) => void;
+  removeWidget: (event: string) => void;
+}
+
+export const useWidgetsStore = create<WidgetsProps>((set) => ({
+  widgets: [],
+  setWidget: (event: string) => set((state) => ({ widgets: [...state.widgets, event] })),
+  removeWidget: (event: string) =>
+    set((state) => ({ widgets: state.widgets.filter((widget) => widget !== event) })),
+}));

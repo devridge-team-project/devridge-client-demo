@@ -9,6 +9,9 @@ module.exports = {
       fontSize: {
         "1xl": "0.875rem",
       },
+      inset: {
+        300: "75rem",
+      },
       spacing: {
         6: "1.5rem",
         7: "1.75rem",
@@ -24,6 +27,10 @@ module.exports = {
         96: "24rem",
         128: "32rem",
         152: "38rem",
+        300: "75rem",
+        400: "100rem",
+        500: "125rem",
+        800: "200rem",
       },
       width: {
         "3/10": "30%",
@@ -43,6 +50,10 @@ module.exports = {
         "charcoal-grey": "#242424",
         "near-black": "#0C0E0F",
         "medium-grey": "#AFAFAF",
+      },
+      transitionDuration: {
+        500: "500ms",
+        1000: "1000ms",
       },
       backgroundImage: {
         "image-bubble": "url('/public/images/home/bubble.png')",
