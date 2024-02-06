@@ -21,6 +21,7 @@ module.exports = {
         78: "19.5rem",
         80: "20rem",
         84: "21rem",
+        96: "24rem",
         128: "32rem",
         152: "38rem",
       },
@@ -42,6 +43,9 @@ module.exports = {
         "charcoal-grey": "#242424",
         "near-black": "#0C0E0F",
         "medium-grey": "#AFAFAF",
+      },
+      backgroundImage: {
+        "image-bubble": "url('/public/images/home/bubble.png')",
       },
     },
   },

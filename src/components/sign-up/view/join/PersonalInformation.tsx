@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import SignUpLayout from "design/layout/sign-up/SignUpLayout";
+import SignUpLayout from "design/layout/SignUpLayout";
 import Input from "design/widget/Input";
 import { redirect } from "react-router-dom";
 import { useSignUpStore } from "shared/sign-up/store";

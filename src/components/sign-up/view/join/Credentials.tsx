@@ -1,5 +1,5 @@
 import { useSignUpStore } from "shared/sign-up/store";
-import SignUpLayout from "design/layout/sign-up/SignUpLayout";
+import SignUpLayout from "design/layout/SignUpLayout";
 import Input from "design/widget/Input";
 import usePasswordConfirm from "hook/sign-up/usePasswordConfirm";
 import { useWidgetStore } from "shared/store";

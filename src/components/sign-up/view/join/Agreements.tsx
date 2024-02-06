@@ -1,7 +1,7 @@
 import { agreements as agreementsScripts } from "asset/sign-up/agreements";
 import { between, col, row } from "style/display";
 import { useExceptionsStore, useWidgetStore } from "shared/store";
-import SignUpLayout from "design/layout/sign-up/SignUpLayout";
+import SignUpLayout from "design/layout/SignUpLayout";
 import { useSignUpStore } from "shared/sign-up/store";
 import Agreement from "./agreements/Agreement";
 import { AgreementsException } from "components/sign-up/controller/Exceptions";

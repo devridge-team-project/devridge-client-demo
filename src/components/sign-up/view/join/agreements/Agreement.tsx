@@ -1,5 +1,5 @@
 import { useState } from "react";
-import LineBreak from "design/LineBreak";
+import LineBreak from "design/text/LineBreak";
 import { between, row } from "style/display";
 import { useSignUpStore } from "shared/sign-up/store";
 

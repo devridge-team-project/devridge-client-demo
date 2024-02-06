@@ -1,4 +1,3 @@
-import Template from "design/Template";
 import { center, col, row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "shared/auth/store";
@@ -7,112 +6,59 @@ import { authTest, logout } from "api/sign-in/loginService";
 import { userInfo } from "api/myInfo/myInfoService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
-import Button from "../../common/button";
 import Modals from "../controller/Modals";
+import Header from "design/layout/Header";
+import Footer from "design/layout/Footer";
+import Widgets from "../controller/Widgets";
+import { Button } from "design";
 
 export default function Home() {
   const navigate = useNavigate();
   const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
-  const {
-    nickname,
-    setNickname,
-    profileImageUrl,
-    setProfileImageUrl,
-    occupation,
-    setOccupation,
-    setSkillIds,
-  } = useSignUpStore();
-  console.log(accessToken, signInType);
 
-  const getUserInfo = async () => {
-    const { status, data } = await userInfo();
-    if (status === 200) {
-      const { id, nickname, imageUrl, introduction, skillIds, occupation } = data;
-      setNickname(nickname);
-      setProfileImageUrl(imageUrl);
-      setOccupation(occupation);
-      setSkillIds(skillIds);
-    }
-  };
+  // const getUserInfo = async () => {
+  //   const { status, data } = await userInfo();
+  //   if (status === 200) {
+  //     const { id, nickname, imageUrl, introduction, skillIds, occupation } = data;
+  //     setNickname(nickname);
+  //     setProfileImageUrl(imageUrl);
+  //     setOccupation(occupation);
+  //     setSkillIds(skillIds);
+  //   }
+  // };
 
-  const onAuthTestHandler = async () => {
-    const status = await authTest();
-    if (status === 200) {
-      console.log("인증 잘됨");
-    } else if (status === 403) {
-      console.log("리프레쉬토큰 만료");
-    }
-  };
+  // const onAuthTestHandler = async () => {
+  //   const status = await authTest();
+  //   if (status === 200) {
+  //     console.log("인증 잘됨");
+  //   } else if (status === 403) {
+  //     console.log("리프레쉬토큰 만료");
+  //   }
+  // };
 
-  const onLogoutHandler = async () => {
-    const status = await logout();
-    if (status) {
-      alert("로그아웃 됐습니다.");
-      setAccessToken(null);
-      setSignInType("");
-    }
-  };
-  useEffect(() => {
-    onAuthTestHandler();
-    getUserInfo();
-  }, []);
+  // const onLogoutHandler = async () => {
+  //   const status = await logout();
+  //   if (status) {
+  //     alert("로그아웃 됐습니다.");
+  //     setAccessToken(null);
+  //     setSignInType("");
+  //   }
+  // };
+  // useEffect(() => {
+  //   onAuthTestHandler();
+  //   getUserInfo();
+  // }, []);
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
-      {getCookie("accessToken") && (
-        <>
-          <img
-            src={profileImageUrl}
-            className="h-25 w-25 rounded-full bg-gray-200 "
-            alt="profileImage"
-          />
-          <div className="mt-7 text-2xl font-bold">{nickname}</div>
-          <div className="mt-3 text-1xl font-bold text-blue-600 ">{occupation}</div>
-        </>
-      )}
-      {getCookie("accessToken") && (
-        <div className={`mt-7.5 w-80 ${row(2)}`}>
-          <img src="/images/mypage.png" alt="mypage" />
-          <Link to="/mypage">마이페이지</Link>
-        </div>
-      )}
-      <div className={`mt-7.5 w-80 ${row(2)}`}>
-        <img src="/images/q&a.png" alt="q&a" />
-        <Link to="/qna">Q&A</Link>
+    <Widgets>
+      <div className="w-full bg-image-bubble h-96 bg-cover">
+        개발 고민? 플로우에서 물어봐! 개발 관련 질문부터 팀빌딩까지
       </div>
-      <div className={`mt-7.5 w-80 ${row(2)}`}>
-        <img src="/images/study&project.png" alt="study&project" />
-        <Link to="/project">스터디 및 프로젝트</Link>
+      <div>모든 개발자를 위한 지식 공유 플랫폼 플로우!</div>
+      <div>
+        <div>스터디 및 사이드 프로젝트 팀원을 구하고 싶을 때</div>
       </div>
-      <div className={` mt-7.5 w-80 ${row(2)}`}>
-        <img src="/images/notice.png" alt="notice" />
-        <Link to="/notify">공지사항</Link>
-      </div>
-      {getCookie("accessToken") ? (
-        <div className={`mt-7.5 w-80 ${row(2)}`}>
-          <img src="/images/logout.png" alt="logout" />
-          <Link to="/" onClick={onLogoutHandler}>
-            로그아웃
-          </Link>
-        </div>
-      ) : (
-        <>
-          <Button
-            className="mt-12.5 block h-14 w-80  bg-black text-white"
-            onClick={() => navigate("/sign-in")}
-            type="button"
-          >
-            로그인 하러가기
-          </Button>
-          <Button
-            className="mt-5 block h-14 w-80 border border-solid border-black bg-white text-black"
-            onClick={() => navigate("/sign-up")}
-            type="button"
-          >
-            회원가입
-          </Button>
-        </>
-      )}
-      <Modals />
-    </div>
+      <Button title="ㅎㅇ" onClick={() => {}} />
+      <Footer />
+    </Widgets>
   );
 }
