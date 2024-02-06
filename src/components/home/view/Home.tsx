@@ -3,7 +3,8 @@ import { center, col, row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "shared/auth/store";
 import { useSignUpStore } from "shared/sign-up/store";
-import { authTest, logout, userInfo } from "api/sign-in/loginService";
+import { authTest, logout } from "api/sign-in/loginService";
+import { userInfo } from "api/myInfo/myInfoService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
 import Button from "../../common/button";
@@ -12,8 +13,15 @@ import Modals from "../controller/Modals";
 export default function Home() {
   const navigate = useNavigate();
   const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
-  const { nickname, setNickname, profileImageUrl, setProfileImageUrl, occupation, setOccupation } =
-    useSignUpStore();
+  const {
+    nickname,
+    setNickname,
+    profileImageUrl,
+    setProfileImageUrl,
+    occupation,
+    setOccupation,
+    setSkillIds,
+  } = useSignUpStore();
   console.log(accessToken, signInType);
 
   const getUserInfo = async () => {
@@ -23,6 +31,7 @@ export default function Home() {
       setNickname(nickname);
       setProfileImageUrl(imageUrl);
       setOccupation(occupation);
+      setSkillIds(skillIds);
     }
   };
 

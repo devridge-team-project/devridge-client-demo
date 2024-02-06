@@ -21,6 +21,7 @@ interface SignUpProps {
   profileImageUrl: string;
   occupation: string;
   selectedSkills: number[];
+  skillIds: number[];
 
   setEmail: (email: string) => void;
   setPassword: (password: string) => void;
@@ -30,6 +31,7 @@ interface SignUpProps {
   setProfileImageUrl: (profileImage: string) => void;
   setOccupation: (occupation: string) => void;
   setSelectedSkills: (skillId: number) => void;
+  setSkillIds: (skillIds: number[]) => void;
 }
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
@@ -65,6 +67,7 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
   profileImageUrl: "",
   occupation: "",
   selectedSkills: [],
+  skillIds: [],
 
   setEmail: (email) => set({ email }),
   setPassword: (password) => set({ password }),
@@ -80,4 +83,5 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
         : [...state.selectedSkills, skill];
       return { ...state, selectedSkills: newSkills };
     }),
+  setSkillIds: (skillIds) => set({ skillIds }),
 }));
