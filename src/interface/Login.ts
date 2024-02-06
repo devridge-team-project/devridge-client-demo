@@ -14,3 +14,12 @@ export interface LoginResponse {
 export interface PasswordRequest {
   password: string;
 }
+
+export interface EmailRequest {
+  email: string;
+}
+
+export interface CodeRequest {
+  email: string;
+  code: string;
+}

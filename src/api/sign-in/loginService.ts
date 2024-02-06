@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { setCookie, removeCookie } from "util/cookies";
-import { LoginResponse, LoginRequest, PasswordRequest } from "../../interface/Login";
+import { LoginRequest, PasswordRequest, EmailRequest, CodeRequest } from "../../interface/Login";
 import { axiosJsonInstance } from "../axios";
 
 export const login = async (user: LoginRequest) => {
@@ -59,25 +59,43 @@ export const authTest = async () => {
   }
 };
 
-export const userInfo = async () => {
-  try {
-    const { status, data } = await axiosJsonInstance.get("/users/details");
-    console.log(data);
-    return { status, data };
-  } catch (error) {
-    if (error instanceof AxiosError && error.response?.status) {
-      const { status } = error.response;
-      return { status, data: null };
-    }
-    return { status: 500, data: null };
-  }
-};
-
 export const deleteAccount = async (password: PasswordRequest) => {
   console.log(password);
   try {
     const { status, data } = await axiosJsonInstance.delete("/users", { data: password });
     removeCookie("accessToken");
+    console.log(status);
+    return status;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response?.status) {
+      const { status } = error.response;
+      return status;
+    }
+    return 500;
+  }
+};
+
+export const emailAuth = async (email: EmailRequest) => {
+  console.log(email);
+  try {
+    const { status } = await axiosJsonInstance.post("/email-verifications", email);
+    console.log(status);
+    return status;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response?.status) {
+      const { status } = error.response;
+      return status;
+    }
+    return 500;
+  }
+};
+
+export const codeCheck = async ({ email, code }: CodeRequest) => {
+  console.log(email, code);
+  try {
+    const { status } = await axiosJsonInstance.get(
+      `/email-verifications?email=${email}&code=${code}`,
+    );
     console.log(status);
     return status;
   } catch (error) {
