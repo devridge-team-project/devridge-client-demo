@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { center, col, row } from "style/display";
-import { changePassword } from "api/sign-in/myInfoService";
+import { changePassword } from "api/myInfo/myInfoService";
 import Input from "../../common/input";
 import Button from "../../common/button";
 
