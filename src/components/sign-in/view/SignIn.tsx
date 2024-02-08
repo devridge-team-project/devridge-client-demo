@@ -68,10 +68,10 @@ export default function SignIn() {
 
       <div className={`mt-10 ${center.colO(0)}`}>다른 계정으로 로그인하기</div>
       <div className={`mx-8 mt-2 ${row(5)}`}>
-        {contents.map(({ image, title, bgColor, textColor }) => (
-          <div className={`bg-${bgColor} ${textColor}`} key={title}>
+        {contents.map(({ href, image, title, bgColor, textColor }) => (
+          <Link to={href} className={`bg-${bgColor} ${textColor}`} key={title}>
             <img src={`/images/icons/${image}.png`} alt="sign-in" className="h-12 w-12" />
-          </div>
+          </Link>
         ))}
       </div>
       <div className={`mx-8 mt-5 ${row(2)}`}>
