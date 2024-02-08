@@ -1,6 +1,6 @@
 import { Home, Join, Layout, Qna, SignIn, SignUp, Success } from "components";
 import { Route, Routes } from "react-router-dom";
-
+import Communities from "components/communities/view/Communities";
 import HelpPwPage from "components/help-pw/HelpPwPage";
 import EmailAuthPage from "components/help-pw/EmailAuthPage";
 import MyAccountPage from "components/myAccount/myAccountPage";
@@ -29,6 +29,7 @@ export default function Router() {
           <Route path="join" element={<Join />} />
           <Route path="success" element={<Success />} />
         </Route>
+        <Route path="communities" element={<Communities />} />
         <Route path="qna" element={<Qna />} />
       </Route>
     </Routes>
