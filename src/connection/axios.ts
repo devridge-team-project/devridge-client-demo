@@ -43,4 +43,6 @@ const httpRequest = {
   },
 };
 
+export const axiosJsonInstance = axios("application/json");
+export const axiosFormInstance = axios("multipart/form-data");
 export default httpRequest;

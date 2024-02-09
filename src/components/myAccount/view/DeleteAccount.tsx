@@ -1,7 +1,7 @@
 import { center, col, row } from "style/display";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useState } from "react";
-import { deleteAccount } from "api/sign-in/loginService";
+import { deleteAccount } from "connection/api/loginService";
 import { useNavigate } from "react-router-dom";
 import Input from "components/common/input";
 import Button from "../../common/button";

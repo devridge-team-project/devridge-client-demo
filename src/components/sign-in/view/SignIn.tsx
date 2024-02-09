@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { center, col, row } from "style/display";
 import { contents } from "asset/sign-up/platform";
-import { login } from "api/sign-in/loginService";
+import { login } from "connection/api/loginService";
 import { useAuthStore } from "shared/auth/store";
 
 import Input from "../../common/input";

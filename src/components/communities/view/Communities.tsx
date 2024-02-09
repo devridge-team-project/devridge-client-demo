@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { col, center } from "style/display";
 import Card from "components/common/card";
-import { CommunityAll } from "api/community/communityService";
+import { CommunityAll } from "connection/api/communityService";
 export default function Communities() {
   const [data, setData] = useState([]);
   const getData = async () => {

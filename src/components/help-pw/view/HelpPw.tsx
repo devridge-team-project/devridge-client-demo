@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { center, col, row } from "style/display";
-import { emailAuth } from "api/sign-in/loginService";
+import { emailAuth } from "connection/api/loginService";
 import { useNavigate } from "react-router-dom";
 import Input from "../../common/input";
 import Button from "../../common/button";

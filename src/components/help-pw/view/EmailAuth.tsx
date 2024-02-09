@@ -1,7 +1,7 @@
 import { center, col, row } from "style/display";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { codeCheck } from "api/sign-in/loginService";
+import { codeCheck } from "connection/api/loginService";
 import Input from "components/common/input";
 import Button from "../../common/button";
 

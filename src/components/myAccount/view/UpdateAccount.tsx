@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { center, col, row } from "style/display";
 import { useSignUpStore } from "shared/sign-up/store";
-import { skillInfos } from "api/myInfo/myInfoService";
+import { skillInfos } from "connection/api/myInfoService";
 import Input from "../../common/input";
 import Button from "../../common/button";
 
