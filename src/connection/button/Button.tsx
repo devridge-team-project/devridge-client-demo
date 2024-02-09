@@ -18,15 +18,17 @@ export default function Button({
   title,
   onClick,
   options,
+  freeze,
 }: {
   title: string;
   onClick: () => unknown | (() => Promise<unknown>);
   options?: { size?: Size; color?: string };
+  freeze?: boolean;
 }) {
   const { size, color } = options ?? {};
   const positions = center.colO(0);
   const sizes = widthSize[size ?? "small"];
-  const styles = `${colorSet[color ?? "black"]} font-bold text-xl`;
+  const styles = `${colorSet[color ?? "black"]} font-bold text-xl  ${freeze ? "cursor-default" : ""}`;
   return (
     <button onClick={onClick} className={cn(positions, sizes, styles)}>
       {title}

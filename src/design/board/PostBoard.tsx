@@ -10,7 +10,7 @@ export default function PostBoard() {
 
   const { mutate } = useMutation({
     mutationKey: ["postQna"],
-    mutationFn: () => qna.post({ title, content, imageUrl: null }),
+    mutationFn: () => qna.post({ title, content }),
   });
 
   return (

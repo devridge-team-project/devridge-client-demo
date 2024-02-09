@@ -6,11 +6,12 @@ import { cn } from "util/classNames";
 
 export default function SideMenu() {
   const { widgets, removeWidget, clearWidget } = useWidgetsStore();
+  const isOpen = widgets.includes("sideMenu");
 
   const positions = "fixed top-0 right-0 z-50";
   const animations = "duration-500";
   const moves = () => {
-    if (widgets.includes("sideMenu")) return "w-full opacity-100";
+    if (isOpen) return "w-full opacity-100";
     return "w-0 opacity-0";
   };
   const navigate = useNavigation();
@@ -26,30 +27,28 @@ export default function SideMenu() {
         <div className="flex flex-col gap-12">
           <div className={col(7)}>
             {menus.map(({ name, href, icon }) => (
-              <button
+              <div
                 key={href}
-                onClick={() => navigate(href, clearWidget)}
-                className="flex items-center gap-4"
+                onClick={() => isOpen && navigate(href, clearWidget)}
+                className={`flex items-center gap-4 ${isOpen ? "cursor-pointer" : "cursor-default"}`}
               >
                 <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
                 <div className="text-2xl">{name}</div>
-              </button>
+              </div>
             ))}
           </div>
           <div className={col(2)}>
             <Button
               title="로그인 하러가기"
-              onClick={() => {
-                navigate("/sign-in", clearWidget);
-              }}
+              onClick={() => isOpen && navigate("/sign-in", clearWidget)}
               options={{ size: "large" }}
+              freeze={!isOpen}
             />
             <Button
               title="회원가입"
-              onClick={() => {
-                navigate("/sign-up", clearWidget);
-              }}
+              onClick={() => isOpen && navigate("/sign-up", clearWidget)}
               options={{ size: "large", color: "white" }}
+              freeze={!isOpen}
             />
           </div>
         </div>

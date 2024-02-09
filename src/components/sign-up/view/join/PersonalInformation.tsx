@@ -12,7 +12,6 @@ export default function PersonalInformation() {
   const [introduction, setIntroduction] = useState<string>("");
   const [occupationId, setOccupationId] = useState<number>(4);
 
-  const { setModal } = useWidgetStore();
   const { email, password, selectedSkills, profileImageUrl, provider } = useSignUpStore();
   const navigate = useNavigation();
 

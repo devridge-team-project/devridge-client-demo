@@ -3,7 +3,7 @@ import { qna } from "connection";
 import { col, center } from "style/display";
 import QuestionCard from "./qna/QuestionCard";
 import useNavigation from "hook/useNavigation";
-import FloatButton from "design/button/FloatButton";
+import FloatButton from "connection/button/FloatButton";
 export default function Qna() {
   const { data: topQnaData, isLoading, error } = useQuery({ queryKey: ["qna"], queryFn: qna.get });
   const navigate = useNavigation();

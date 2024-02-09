@@ -1,6 +1,6 @@
 import { between, col, center } from "style/display";
 import LineBreak from "design/text/LineBreak";
-import { Button } from "design/button";
+import { Button } from "connection/button";
 
 export default function SignUpLayout({
   titles,

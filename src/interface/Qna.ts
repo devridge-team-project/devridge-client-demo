@@ -37,5 +37,5 @@ export interface QnaById {
 export interface QnaPost {
   title: string;
   content: string;
-  imageUrl: string[] | null;
+  // imageUrl: string[] | undefined;
 }
