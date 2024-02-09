@@ -45,6 +45,7 @@ interface WidgetsProps {
   widgets: string[];
   setWidget: (event: string) => void;
   removeWidget: (event: string) => void;
+  clearWidget: () => void;
 }
 
 export const useWidgetsStore = create<WidgetsProps>((set) => ({
@@ -52,4 +53,5 @@ export const useWidgetsStore = create<WidgetsProps>((set) => ({
   setWidget: (event: string) => set((state) => ({ widgets: [...state.widgets, event] })),
   removeWidget: (event: string) =>
     set((state) => ({ widgets: state.widgets.filter((widget) => widget !== event) })),
+  clearWidget: () => set({ widgets: [] }),
 }));

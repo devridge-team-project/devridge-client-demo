@@ -5,15 +5,14 @@ export default function Header() {
   const { setWidget } = useWidgetsStore();
   const positions = "flex justify-end items-center";
   const displays = "fixed top-0 left-0";
-  const sizes = "w-full h-24";
+  const sizes = "w-full h-20";
   const paddings = "pr-6";
   const styles = "bg-white";
   return (
-    <button
-      onClick={() => setWidget("sideMenu")}
-      className={cn(sizes, displays, styles, positions, paddings)}
-    >
-      <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="size-7" />
-    </button>
+    <div className={cn(sizes, displays, styles, positions, paddings)}>
+      <button onClick={() => setWidget("sideMenu")}>
+        <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="size-7" />
+      </button>
+    </div>
   );
 }

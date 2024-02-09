@@ -17,6 +17,7 @@ module.exports = {
         7: "1.75rem",
         7.5: "1.875rem",
         12.5: "3.125rem",
+        15: "3.75rem",
         25: "6.25rem",
         30: "7.5rem",
         50: "12.5rem",
@@ -54,6 +55,9 @@ module.exports = {
       transitionDuration: {
         500: "500ms",
         1000: "1000ms",
+      },
+      transitionDelay: {
+        500: "500ms",
       },
       backgroundImage: {
         "image-bubble": "url('/public/images/home/bubble.png')",

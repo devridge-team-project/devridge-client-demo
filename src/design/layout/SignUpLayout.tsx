@@ -1,5 +1,6 @@
 import { between, col, center } from "style/display";
 import LineBreak from "design/text/LineBreak";
+import Button from "design/button";
 
 export default function SignUpLayout({
   titles,
@@ -25,13 +26,15 @@ export default function SignUpLayout({
         </div>
         {children}
         {buttons?.map(([title, onClick]) => (
-          <button
-            onClick={onClick}
-            className={`${center.colO(0)} h-12 w-full rounded-md bg-black text-white`}
+          <Button
             key={title}
-          >
-            {title}
-          </button>
+            title={title}
+            onClick={onClick}
+            options={{
+              size: "large",
+              color: "black",
+            }}
+          />
         ))}
       </div>
     </div>

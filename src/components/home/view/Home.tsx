@@ -10,7 +10,7 @@ import Modals from "../controller/Modals";
 import Header from "design/layout/Header";
 import Footer from "design/layout/Footer";
 import Widgets from "../controller/Widgets";
-import { Button } from "design";
+import LandingQna from "./home/LandingQna";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -49,16 +49,22 @@ export default function Home() {
   //   getUserInfo();
   // }, []);
   return (
-    <Widgets>
-      <div className="w-full bg-image-bubble h-96 bg-cover">
-        개발 고민? 플로우에서 물어봐! 개발 관련 질문부터 팀빌딩까지
-      </div>
-      <div>모든 개발자를 위한 지식 공유 플랫폼 플로우!</div>
-      <div>
-        <div>스터디 및 사이드 프로젝트 팀원을 구하고 싶을 때</div>
-      </div>
-      <Button title="ㅎㅇ" onClick={() => {}} />
-      <Footer />
-    </Widgets>
+    <div className="pt-20">
+      <Widgets>
+        <div className="w-full h-96 bg-image-bubble bg-cover text-black">
+          <div className="pt-14 pl-6 flex flex-col gap-3">
+            <div className="text-2xl font-bold">
+              <div>개발 고민?</div>
+              <div className="flex">
+                <div className="text-blue-500">플로우</div>에서 물어봐!
+              </div>
+            </div>
+            <div>개발 관련 질문부터 팀빌딩까지</div>
+          </div>
+        </div>
+        {/* <LandingQna /> */}
+        {/* <Footer /> */}
+      </Widgets>
+    </div>
   );
 }

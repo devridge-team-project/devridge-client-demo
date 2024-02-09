@@ -1,32 +1,55 @@
+import { Button } from "design";
+import useNavigation from "hook/useNavigation";
 import { Link } from "react-router-dom";
 import { useWidgetsStore } from "shared/store";
+import { col } from "style";
 import { cn } from "util/classNames";
 
 export default function SideMenu() {
-  const { widgets, removeWidget } = useWidgetsStore();
+  const { widgets, removeWidget, clearWidget } = useWidgetsStore();
 
-  const positions = "absolute top-0";
-  const animations = "duration-1000";
+  const positions = "fixed top-0 right-0 z-50";
+  const animations = "duration-500";
   const moves = () => {
-    if (widgets.includes("sideMenu")) return "left-0";
-    return "left-800";
+    if (widgets.includes("sideMenu")) return "w-full opacity-100";
+    return "w-0 opacity-0";
   };
-  const styles = "min-h-screen w-full bg-white";
-
+  const navigate = useNavigation();
   return (
-    <div className={cn(positions, animations, styles, moves())}>
-      <div className="w-full h-full relative">
+    <div className={cn(positions, animations, moves())}>
+      <div className="min-h-screen bg-white relative flex items-center justify-center">
         <img
           onClick={() => removeWidget("sideMenu")}
           src="/images/icons/close.svg"
           alt="close"
-          className="absolute top-4 right-4 size-7"
+          className="absolute top-4 right-4 size-7 cursor-pointer"
         />
-        {menus.map(({ name, href, icon }) => (
-          <Link key={href} to={href}>
-            {name}
-          </Link>
-        ))}
+        <div className="flex flex-col gap-12">
+          <div className={col(7)}>
+            {menus.map(({ name, href, icon }) => (
+              <Link key={href} to={href} className="flex items-center gap-4">
+                <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
+                <div className="text-2xl">{name}</div>
+              </Link>
+            ))}
+          </div>
+          <div className={col(2)}>
+            <Button
+              title="로그인 하러가기"
+              onClick={() => {
+                navigate("/sign-in", clearWidget);
+              }}
+              options={{ size: "large" }}
+            />
+            <Button
+              title="회원가입"
+              onClick={() => {
+                navigate("/sign-up", clearWidget);
+              }}
+              options={{ size: "large", color: "white" }}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
