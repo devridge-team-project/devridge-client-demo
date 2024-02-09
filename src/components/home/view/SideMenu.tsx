@@ -1,6 +1,5 @@
 import { Button } from "design";
 import useNavigation from "hook/useNavigation";
-import { Link } from "react-router-dom";
 import { useWidgetsStore } from "shared/store";
 import { col } from "style";
 import { cn } from "util/classNames";

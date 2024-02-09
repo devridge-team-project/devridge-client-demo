@@ -22,7 +22,7 @@ export interface QnaComments {
   createdAt: string;
 }
 
-export interface QnaDetail {
+export interface QnaById {
   member: Member;
   title: string;
   content: string;

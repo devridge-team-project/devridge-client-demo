@@ -1,4 +1,4 @@
-import SignUpLayout from "design/layout/SignUpLayout";
+import SignUpLayout from "design/template/SignUpLayout";
 import { useState } from "react";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";

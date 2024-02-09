@@ -4,7 +4,7 @@ import Modals from "../controller/Modals";
 
 export default function Join() {
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
+    <div className={`absolute top-0 w-full min-h-screen ${center.colO(0)}`}>
       <JoinViews />
       <Modals />
     </div>

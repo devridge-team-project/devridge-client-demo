@@ -7,8 +7,8 @@ import { userInfo } from "api/myInfo/myInfoService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
 import Modals from "../controller/Modals";
-import Header from "design/layout/Header";
-import Footer from "design/layout/Footer";
+import Header from "design/template/Header";
+import Footer from "design/template/Footer";
 import Widgets from "../controller/Widgets";
 import LandingQna from "./home/LandingQna";
 
@@ -49,22 +49,20 @@ export default function Home() {
   //   getUserInfo();
   // }, []);
   return (
-    <div className="pt-20">
-      <Widgets>
-        <div className="w-full h-96 bg-image-bubble bg-cover text-black">
-          <div className="pt-14 pl-6 flex flex-col gap-3">
-            <div className="text-2xl font-bold">
-              <div>개발 고민?</div>
-              <div className="flex">
-                <div className="text-blue-500">플로우</div>에서 물어봐!
-              </div>
+    <Widgets>
+      <div className="w-full h-96 bg-image-bubble bg-cover text-black">
+        <div className="pt-14 pl-6 flex flex-col gap-3">
+          <div className="text-2xl font-bold">
+            <div>개발 고민?</div>
+            <div className="flex">
+              <div className="text-blue-500">플로우</div>에서 물어봐!
             </div>
-            <div>개발 관련 질문부터 팀빌딩까지</div>
           </div>
+          <div>개발 관련 질문부터 팀빌딩까지</div>
         </div>
-        {/* <LandingQna /> */}
-        {/* <Footer /> */}
-      </Widgets>
-    </div>
+      </div>
+      {/* <LandingQna /> */}
+      {/* <Footer /> */}
+    </Widgets>
   );
 }

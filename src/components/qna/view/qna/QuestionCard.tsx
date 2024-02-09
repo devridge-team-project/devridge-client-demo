@@ -1,20 +1,22 @@
 import { Card } from "design";
 
-export default function QnaCard({
-  index,
+export default function QuestionCard({
+  onClick,
   title,
+  index,
   commentCount,
   likes,
   views,
 }: {
-  index: number;
+  onClick: () => void;
   title: string;
+  index: number;
   commentCount: number;
   likes: number;
   views: number;
 }) {
   return (
-    <Card>
+    <Card onClick={onClick}>
       <div className="flex items-center gap-2 font-bold">
         <div className="w-6 h-6 rounded-md flex justify-center items-center bg-black text-white">
           {index + 1}

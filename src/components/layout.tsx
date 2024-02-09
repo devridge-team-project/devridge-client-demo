@@ -1,4 +1,4 @@
-import Header from "design/layout/Header";
+import Header from "design/template/Header";
 import { Outlet } from "react-router-dom";
 import SideMenu from "./home/view/SideMenu";
 

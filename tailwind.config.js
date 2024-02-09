@@ -18,6 +18,7 @@ module.exports = {
         7.5: "1.875rem",
         12.5: "3.125rem",
         15: "3.75rem",
+        20: "5rem",
         25: "6.25rem",
         30: "7.5rem",
         50: "12.5rem",
@@ -25,9 +26,11 @@ module.exports = {
         78: "19.5rem",
         80: "20rem",
         84: "21rem",
+        92: "23rem",
         96: "24rem",
         128: "32rem",
         152: "38rem",
+        160: "40rem",
         300: "75rem",
         400: "100rem",
         500: "125rem",
@@ -40,6 +43,8 @@ module.exports = {
       minWidth: {
         72: "18rem",
         80: "20rem",
+        120: "30rem",
+        160: "40rem",
       },
       minHeight: {
         60: "15rem",

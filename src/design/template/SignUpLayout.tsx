@@ -1,6 +1,6 @@
 import { between, col, center } from "style/display";
 import LineBreak from "design/text/LineBreak";
-import Button from "design/button";
+import { Button } from "design/button";
 
 export default function SignUpLayout({
   titles,
@@ -14,7 +14,7 @@ export default function SignUpLayout({
   buttons?: [string, () => unknown | (() => Promise<unknown>)][];
 }) {
   return (
-    <div className={`${between.col} h-152 w-80`}>
+    <div className="h-152 w-80">
       <div className={`${col(5)} w-full`}>
         <div className="text-4xl font-bold leading-tight">
           {titles.map((title) => (

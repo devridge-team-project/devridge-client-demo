@@ -1,4 +1,4 @@
-import SignUpLayout from "design/layout/SignUpLayout";
+import SignUpLayout from "design/template/SignUpLayout";
 import { useWidgetStore } from "shared/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSignUpStore } from "shared/sign-up/store";

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 export default function SignUp() {
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
+    <div className={`absolute top-0 w-full min-h-screen ${center.colO(0)}`}>
       <div className={`${col(12, 80)}`}>
         <div className="text-3xl font-bold">회원가입 방식</div>
         <div className={col(2)}>
