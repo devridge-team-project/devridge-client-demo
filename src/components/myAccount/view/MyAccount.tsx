@@ -6,11 +6,11 @@ export default function MyAccount() {
     useSignUpStore();
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <img
+      {/* <img
         src={profileImageUrl}
         className="h-25 w-25 rounded-full bg-gray-200 "
         alt="profileImage"
-      />
+      /> */}
       <div className="mt-7 text-2xl font-bold">{nickname}</div>
       <div className="mt-3 text-1xl font-bold text-blue-600 ">{occupation}</div>
       <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>

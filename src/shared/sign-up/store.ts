@@ -18,7 +18,7 @@ interface SignUpProps {
   passwordConfirm: string;
   provider: string;
   nickname: string;
-  profileImageUrl: string;
+  profileImageUrl: string | null;
   occupation: string;
   selectedSkills: number[];
   skillIds: number[];

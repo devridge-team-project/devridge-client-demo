@@ -21,7 +21,7 @@ export default function SideMenu() {
           onClick={() => removeWidget("sideMenu")}
           src="/images/icons/close.svg"
           alt="close"
-          className="absolute top-4 right-4 size-7 cursor-pointer"
+          className="absolute top-7 right-6 size-7 cursor-pointer"
         />
         <div className="flex flex-col gap-12">
           <div className={col(7)}>

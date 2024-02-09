@@ -8,7 +8,7 @@ export default function SignUpLayout({
   children,
   buttons,
 }: {
-  titles: string[];
+  titles?: string[];
   subTitles?: string[];
   children: React.ReactNode;
   buttons?: [string, () => unknown | (() => Promise<unknown>)][];
@@ -17,9 +17,7 @@ export default function SignUpLayout({
     <div className="h-152 w-80">
       <div className={`${col(5)} w-full`}>
         <div className="text-4xl font-bold leading-tight">
-          {titles.map((title) => (
-            <LineBreak contents={[title]} key={title} />
-          ))}
+          {titles?.map((title) => <LineBreak contents={[title]} key={title} />)}
         </div>
         <div className="text-gray-400  ">
           {subTitles?.map((subTitle) => <LineBreak contents={[subTitle]} key={subTitle} />)}

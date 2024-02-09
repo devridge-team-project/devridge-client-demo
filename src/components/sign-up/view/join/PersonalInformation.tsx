@@ -3,45 +3,46 @@ import SignUpLayout from "design/template/SignUpLayout";
 import Input from "design/input/Input";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";
+import { user } from "connection/api/user";
+import useNavigation from "hook/useNavigation";
+import { useState } from "react";
 
 export default function PersonalInformation() {
+  const [nickname, setNickname] = useState<string>("");
+  const [introduction, setIntroduction] = useState<string>("");
+  const [occupationId, setOccupationId] = useState<number>(4);
+
   const { setModal } = useWidgetStore();
-  const { email, password, selectedSkills, profileImageUrl, provider, nickname, setNickname } =
-    useSignUpStore();
-  const postUser = async () => {
-    const response = await fetch("/api/user", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+  const { email, password, selectedSkills, profileImageUrl, provider } = useSignUpStore();
+  const navigate = useNavigation();
+
+  const { mutate, error, isError, isSuccess } = useMutation({
+    mutationKey: ["user"],
+    mutationFn: () =>
+      user.post({
         email,
-        password,
-        selectedSkills,
-        profileImageUrl,
-        provider,
+        password: "asdfasdf1234",
+        provider: "normal",
         nickname,
+        introduction: "안녕하세요개발자입니다",
+        profileImageUrl: null,
+        skillIds: selectedSkills,
+        occupationId,
       }),
-    });
-    const data = await response.json();
-    return data;
-  };
-  const { mutate } = useMutation({ mutationKey: ["user"], mutationFn: postUser });
+  });
+  if (isError) {
+    console.log("email", email, "password", password, "provider", provider, "nickname", nickname);
+    console.log(error);
+  }
+  if (isSuccess) navigate("/sign-up/success");
 
   return (
     <SignUpLayout titles={["개인정보 입력"]} buttons={[["확인", mutate]]}>
-      <div className="h-48 w-full ">
-        <div className="text-lg font-bold">TEST</div>
-        <div>{email}</div>
-        <div>{password}</div>
-        <span>{selectedSkills.map((skill) => skill)}</span>
-        <div>{profileImageUrl}</div>
-        <div>{provider}</div>
-        <div>{nickname}</div>
-      </div>
       <div className="flex flex-col items-center justify-center gap-4">
         <div className="h-25 w-25 rounded-full bg-gray-400 " />
         <Input title="닉네임" onChange={[nickname, setNickname]} />
+        <Input title="자기소개" onChange={[introduction, setIntroduction]} />
+        {/* <Input title="직군선택" onChange={[occupationId, setOccupationId]} /> */}
       </div>
     </SignUpLayout>
   );

@@ -1,6 +1,6 @@
 import Header from "design/template/Header";
 import { Outlet } from "react-router-dom";
-import SideMenu from "./home/view/SideMenu";
+import SideMenu from "../design/template/SideMenu";
 
 export default function Layout() {
   return (

@@ -34,11 +34,11 @@ export default function UpdateAccount() {
   return (
     <div className={`min-h-screen ${center.colO(0)} `}>
       <div className={`w-80 text-1xl font-bold ${row(2)}`}>회원정보 수정</div>
-      <img
+      {/* <img
         src={profileImageUrl}
         className="mt-7.5 h-25 w-25 rounded-full bg-gray-200 "
         alt="profileImage"
-      />
+      /> */}
       <div className="mt-7 text-2xl font-bold">{nickname}</div>
       <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <Input

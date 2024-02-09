@@ -10,7 +10,9 @@ import Modals from "../controller/Modals";
 import Header from "design/template/Header";
 import Footer from "design/template/Footer";
 import Widgets from "../controller/Widgets";
-import LandingQna from "./home/LandingQna";
+import Qna from "./home/Qna";
+import Promotions from "./home/Promotions";
+import Team from "./home/Team";
 
 export default function Home() {
   const navigate = useNavigate();
@@ -50,19 +52,10 @@ export default function Home() {
   // }, []);
   return (
     <Widgets>
-      <div className="w-full h-96 bg-image-bubble bg-cover text-black">
-        <div className="pt-14 pl-6 flex flex-col gap-3">
-          <div className="text-2xl font-bold">
-            <div>개발 고민?</div>
-            <div className="flex">
-              <div className="text-blue-500">플로우</div>에서 물어봐!
-            </div>
-          </div>
-          <div>개발 관련 질문부터 팀빌딩까지</div>
-        </div>
-      </div>
-      {/* <LandingQna /> */}
-      {/* <Footer /> */}
+      <Promotions />
+      <Qna />
+      <Team />
+      <Footer />
     </Widgets>
   );
 }
