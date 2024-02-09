@@ -20,7 +20,7 @@ export default function PersonalInformation() {
     mutationFn: () =>
       user.post({
         email,
-        password: "asdfasdf1234",
+        password,
         provider: "normal",
         nickname,
         introduction: "안녕하세요개발자입니다",

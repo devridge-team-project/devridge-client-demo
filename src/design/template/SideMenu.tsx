@@ -15,6 +15,10 @@ export default function SideMenu() {
     return "w-0 opacity-0";
   };
   const navigate = useNavigation();
+
+  const menuStyles = [isOpen ? "cursor-pointer" : "cursor-default", "flex items-center gap-4"].join(
+    " ",
+  );
   return (
     <div className={cn(positions, animations, moves())}>
       <div className="min-h-screen bg-white relative flex items-center justify-center">
@@ -30,7 +34,7 @@ export default function SideMenu() {
               <div
                 key={href}
                 onClick={() => isOpen && navigate(href, clearWidget)}
-                className={`flex items-center gap-4 ${isOpen ? "cursor-pointer" : "cursor-default"}`}
+                className={menuStyles}
               >
                 <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
                 <div className="text-2xl">{name}</div>

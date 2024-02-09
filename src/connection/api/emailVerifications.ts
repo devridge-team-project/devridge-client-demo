@@ -1,7 +1,7 @@
 import httpRequest from "../axios";
 
 function getEmailVerifications(email: string, code: number | undefined) {
-  return httpRequest.get("/api/email-verifications", { params: { email: email, code: code } });
+  return httpRequest.get("/api/email-verifications", { params: { email, code } });
 }
 
 async function postEmailVerifications(email: string) {

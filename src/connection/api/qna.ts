@@ -1,10 +1,9 @@
 import { Qna, QnaById, QnaPost } from "interface/Qna";
 import httpRequest from "../axios";
 
-function getQna() {
-  return httpRequest.get<Qna[]>("/api/qna?sortOption=views");
+function getQna(sortOption: "views" | "latest") {
+  return httpRequest.get<Qna[]>("/api/qna", { params: { sortOption } });
 }
-
 function getQnaById(id: number) {
   return httpRequest.get<QnaById>(`/api/qna/${id}`);
 }
