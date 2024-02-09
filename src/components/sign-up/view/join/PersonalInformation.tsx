@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import SignUpLayout from "design/template/SignUpLayout";
-import Input from "design/widget/Input";
+import Input from "design/input/Input";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";
 

@@ -1,5 +1,5 @@
 import { useWidgetStore } from "shared/store";
-import ModalDesign from "design/widget/Modal";
+import ModalDesign from "design/modal/Modal";
 
 export default function Modals() {
   const { nowModal } = useWidgetStore();

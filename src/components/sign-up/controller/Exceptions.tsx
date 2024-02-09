@@ -1,5 +1,5 @@
 import { useExceptionsStore } from "shared/store";
-import ModalDesign from "design/widget/Modal";
+import ModalDesign from "design/modal/Modal";
 export function AgreementsException({ children }: { children: React.ReactNode }) {
   const { error, clearError } = useExceptionsStore();
 

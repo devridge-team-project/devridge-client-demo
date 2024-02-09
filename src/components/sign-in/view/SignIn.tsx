@@ -37,7 +37,7 @@ export default function SignIn() {
     setInfo({ email: "", password: "" });
   };
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
+    <div className={`absolute top-0 w-full min-h-screen ${center.colO(0)}`}>
       <form className={`${col(2, 80)} `} onSubmit={onSubmitHandler}>
         <div className="text-2xl font-bold text-blue-600">로그인</div>
         <Input

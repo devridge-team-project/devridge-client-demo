@@ -12,5 +12,9 @@ export default function Board({
   const sizes = "w-9/10 max-w-160";
   const paddings = "pt-12";
 
-  return <div className={cn(displays, sizes, paddings)}>{children}</div>;
+  return (
+    <div className="flex justify-center w-full">
+      <div className={cn(displays, sizes, paddings)}>{children}</div>
+    </div>
+  );
 }

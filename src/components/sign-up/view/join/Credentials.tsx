@@ -1,6 +1,6 @@
 import { useSignUpStore } from "shared/sign-up/store";
 import SignUpLayout from "design/template/SignUpLayout";
-import Input from "design/widget/Input";
+import Input from "design/input/Input";
 import usePasswordConfirm from "hook/sign-up/usePasswordConfirm";
 import { useWidgetStore } from "shared/store";
 import { useMutation } from "@tanstack/react-query";

@@ -30,7 +30,12 @@ export default function Qna() {
           </div>
         </div>
       </div>
-      <FloatButton image={"/images/icons/writing-white.svg"} onClick={() => {}} />
+      <FloatButton
+        image="/images/icons/writing-white.svg"
+        onClick={() => {
+          navigate("/qna/post");
+        }}
+      />
     </>
   );
 }

@@ -1,11 +1,12 @@
+import { Size } from "interface/Size";
 import { center } from "style/display";
 import { cn } from "util/classNames";
-type Size = "small" | "medium" | "large";
 
 const widthSize: Record<Size, string> = {
   small: "w-50 h-12 rounded-full",
   medium: "w-72 h-12 rounded-full",
   large: "w-80 h-15 rounded-md",
+  full: "w-full h-15 rounded-md",
 };
 
 const colorSet: Record<string, string> = {

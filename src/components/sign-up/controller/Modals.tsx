@@ -1,4 +1,4 @@
-import { Alert } from "design/widget/Modal";
+import { Alert } from "design/modal/Modal";
 import { useWidgetStore } from "shared/store";
 
 export default function Modals() {
