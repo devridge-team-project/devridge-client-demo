@@ -28,6 +28,7 @@ export default function Button({
   const { size, color } = options ?? {};
   const positions = center.colO(0);
   const sizes = widthSize[size ?? "small"];
+
   const styles = [
     colorSet[color ?? "black"],
     freeze ? "cursor-default" : "",

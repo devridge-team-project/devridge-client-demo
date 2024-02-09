@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { col, center } from "style/display";
+import { col, center, row } from "style/display";
+import { useNavigate } from "react-router-dom";
 import Card from "components/common/card";
 import { CommunityAll } from "connection/api/communityService";
 export default function Communities() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const getData = async () => {
     const { status, data } = await CommunityAll();
@@ -23,6 +25,7 @@ export default function Communities() {
             return (
               <Card
                 key={id}
+                onClick={() => navigate(`${id}`)}
                 title={title}
                 views={views}
                 likeCount={likeCount}
@@ -30,6 +33,11 @@ export default function Communities() {
               />
             );
           })}
+          <div className={`flex justify-end ${row(2)}`}>
+            <a href="communities/post">
+              <img src="images/write.png" alt="write" />
+            </a>
+          </div>
         </div>
       </div>
     </div>

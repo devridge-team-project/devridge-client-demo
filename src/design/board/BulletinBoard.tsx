@@ -16,10 +16,10 @@ export default function BulletinBoard({
 }: {
   id: number;
   type: string;
-  title: string;
-  createdAt: string;
-  content: string;
-  comments: QnaComments[];
+  title?: string;
+  createdAt?: string;
+  content?: string;
+  comments?: QnaComments[];
   refresh?: () => void;
 }) {
   const [commentContent, setCommentContent] = useState<string>("");
@@ -42,8 +42,8 @@ export default function BulletinBoard({
       </div>
       <div className="text-xl">{content}</div>
       <div className="flex flex-col gap-4">
-        <div className="text-2xl font-bold">댓글 {`(${comments.length})`}</div>
-        {comments.map(({ member: { nickname, profileImageUrl, introduction }, content }) => (
+        <div className="text-2xl font-bold">댓글 {`(${comments?.length})`}</div>
+        {comments?.map(({ member: { nickname, profileImageUrl, introduction }, content }) => (
           <Comment
             nickname={nickname}
             profileImageUrl={profileImageUrl}
