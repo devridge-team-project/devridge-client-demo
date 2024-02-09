@@ -3,16 +3,25 @@ import SignUpLayout from "design/layout/SignUpLayout";
 import Input from "design/widget/Input";
 import usePasswordConfirm from "hook/sign-up/usePasswordConfirm";
 import { useWidgetStore } from "shared/store";
+import { useMutation } from "@tanstack/react-query";
+import { emailVerifications } from "connection";
 
 export default function Credentials() {
   const { email, password, passwordConfirm, setEmail, setPassword, setPasswordConfirm } =
     useSignUpStore();
   const { setView } = useWidgetStore();
-
   const { confirm } = usePasswordConfirm();
 
+  const { mutate, isError, isSuccess } = useMutation({
+    mutationKey: ["credentials"],
+    mutationFn: () => emailVerifications.post(email),
+  });
+
+  if (isError) alert("이메일 전송에 실패했습니다.");
+  if (isSuccess) setView("authentication");
+
   return (
-    <SignUpLayout titles={["회원가입"]} buttons={[["인증하기", () => setView("authentication")]]}>
+    <SignUpLayout titles={["회원가입"]} buttons={[["인증하기", mutate]]}>
       <div>
         <div>이메일</div>
         <Input onChange={[email, setEmail]} placeholder="이메일을 입력해주세요." />

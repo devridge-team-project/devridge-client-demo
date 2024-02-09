@@ -27,10 +27,14 @@ export default function SideMenu() {
         <div className="flex flex-col gap-12">
           <div className={col(7)}>
             {menus.map(({ name, href, icon }) => (
-              <Link key={href} to={href} className="flex items-center gap-4">
+              <button
+                key={href}
+                onClick={() => navigate(href, clearWidget)}
+                className="flex items-center gap-4"
+              >
                 <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
                 <div className="text-2xl">{name}</div>
-              </Link>
+              </button>
             ))}
           </div>
           <div className={col(2)}>
@@ -68,7 +72,7 @@ const menus = [
   },
   {
     name: "공지사항",
-    href: "notice",
+    href: "/notice",
     icon: "notice.svg",
   },
 ];

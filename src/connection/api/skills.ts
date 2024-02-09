@@ -1,4 +1,4 @@
-import httpRequest from "../http";
+import httpRequest from "../axios";
 export interface Skill {
   id: number;
   skillName: string;

@@ -1,6 +1,6 @@
-import { Dispatch } from "react";
+import { Dispatch, SetStateAction } from "react";
 
-export default function Input<T extends string | number>({
+export default function Input<T extends string | number | undefined>({
   title,
   onChange,
   placeholder,
