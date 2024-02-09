@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { codeCheck } from "connection/api/loginService";
 import Input from "components/common/input";
-import Button from "../../common/button";
+import { Button } from "design";
 
 export default function EmailAuth() {
   const navigate = useNavigate();
@@ -36,13 +36,7 @@ export default function EmailAuth() {
         placeholder="인증번호를 입력해주세요"
         onChange={onChange}
       />
-      <Button
-        className="mt-12.5 block h-14 w-80  bg-black text-white"
-        type="button"
-        onClick={onAuthCode}
-      >
-        인증하기
-      </Button>
+      <Button title="인증하기" onClick={onAuthCode} />
     </div>
   );
 }

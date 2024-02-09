@@ -9,12 +9,20 @@ function getQnaById(id: number) {
   return httpRequest.get<QnaById>(`/api/qna/${id}`);
 }
 
-function postQna(data: QnaPost) {
-  return httpRequest.post("/api/qna", data);
+function postQna(data: QnaPost, config: object) {
+  return httpRequest.post("/api/qna", data, config);
+}
+
+function postComment(id: number, data: object) {
+  return httpRequest.post(`/api/qna/${id}/comments`, data);
 }
 
 export const qna = {
   get: getQna,
   getById: getQnaById,
   post: postQna,
+};
+
+export const comment = {
+  post: postComment,
 };

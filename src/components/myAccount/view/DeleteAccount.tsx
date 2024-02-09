@@ -4,7 +4,6 @@ import { useState } from "react";
 import { deleteAccount } from "connection/api/loginService";
 import { useNavigate } from "react-router-dom";
 import Input from "components/common/input";
-import Button from "../../common/button";
 
 export default function DeleteAccount() {
   const { nickname } = useSignUpStore();
@@ -35,13 +34,13 @@ export default function DeleteAccount() {
         placeholder="비밀번호를 입력해주세요"
         onChange={onChange}
       />
-      <Button
+      <button
         className="mt-12.5 block h-14 w-80  bg-black text-white"
         type="button"
         onClick={onDeleteAccount}
       >
         탈퇴하기
-      </Button>
+      </button>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { Home, Join, Layout, SignIn, SignUp, Success } from "components";
+import { Home, Join, Layout, SignIn, SignUp, Success } from "components/sign-up";
 import { Route, Routes } from "react-router-dom";
 import Communities from "components/communities/view/Communities";
 import HelpPwPage from "components/help-pw/HelpPwPage";
@@ -8,7 +8,7 @@ import DeleteAccountPage from "components/myAccount/deleteAccountPage";
 import UpdateAccountPage from "components/myAccount/updateAccountPage";
 import ChangePasswordPage from "components/myAccount/changePasswordPage";
 import QuestionPage from "components/myAccount/questionPage";
-import { Qna, QnaById, QnaPost } from "components/qna";
+import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 
 export default function Router() {
   return (
@@ -35,6 +35,7 @@ export default function Router() {
           <Route index element={<Qna />} />
           <Route path=":id" element={<QnaById />} />
           <Route path="post" element={<QnaPost />} />
+          <Route path="success" element={<QnaSuccess />} />
         </Route>
       </Route>
     </Routes>

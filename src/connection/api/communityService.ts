@@ -5,7 +5,7 @@ import { axiosJsonInstance } from "../axios";
 
 export const CommunityAll = async () => {
   try {
-    const { status, data } = await axiosJsonInstance.get("community");
+    const { status, data } = await axiosJsonInstance.get("/api/community");
     console.log(status);
     console.log(status, data);
     return { status, data };

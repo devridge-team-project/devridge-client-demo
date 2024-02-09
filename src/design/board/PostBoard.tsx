@@ -3,15 +3,29 @@ import Board from "./Board";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { qna } from "connection";
+import { getCookie } from "util/cookies";
+import useNavigation from "hook/useNavigation";
 
 export default function PostBoard() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const accessToken = getCookie("accessToken");
 
-  const { mutate } = useMutation({
+  const navigatior = useNavigation();
+
+  const { mutate, isSuccess } = useMutation({
     mutationKey: ["postQna"],
-    mutationFn: () => qna.post({ title, content }),
+    mutationFn: () =>
+      qna.post(
+        { title, content },
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        },
+      ),
   });
+  if (isSuccess) navigatior("/qna/success");
 
   return (
     <Board options={{ gapY: 8 }}>

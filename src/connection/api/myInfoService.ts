@@ -6,7 +6,7 @@ import { axiosJsonInstance } from "../axios";
 export const changePassword = async (password: PasswordRequest) => {
   console.log(password);
   try {
-    const { status, data } = await axiosJsonInstance.patch("/users/password", password);
+    const { status, data } = await axiosJsonInstance.patch("/api/users/password", password);
     console.log(status);
     return status;
   } catch (error) {
@@ -20,7 +20,7 @@ export const changePassword = async (password: PasswordRequest) => {
 
 export const userInfo = async () => {
   try {
-    const { status, data } = await axiosJsonInstance.get("/users/details");
+    const { status, data } = await axiosJsonInstance.get("/api/users/details");
     console.log(data);
     return { status, data };
   } catch (error) {
@@ -34,7 +34,7 @@ export const userInfo = async () => {
 
 export const skillInfos = async () => {
   try {
-    const { status, data } = await axiosJsonInstance.get("/skills");
+    const { status, data } = await axiosJsonInstance.get("/api/skills");
     console.log(data);
     return { status, data };
   } catch (error) {

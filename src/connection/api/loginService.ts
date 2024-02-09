@@ -5,7 +5,7 @@ import { axiosJsonInstance } from "../axios";
 
 export const login = async (user: LoginRequest) => {
   try {
-    const { data, headers } = await axiosJsonInstance.post("/login", user);
+    const { data, headers } = await axiosJsonInstance.post("/api/login", user);
     console.log(data);
     const { accessToken } = data;
 
@@ -26,7 +26,7 @@ export const login = async (user: LoginRequest) => {
 
 export const logout = async () => {
   try {
-    const { status } = await axiosJsonInstance.post("/logout");
+    const { status } = await axiosJsonInstance.post("/api/logout");
     removeCookie("accessToken");
     return status;
   } catch (error) {
@@ -40,9 +40,9 @@ export const logout = async () => {
 
 export const authTest = async () => {
   try {
-    const res = await axiosJsonInstance.get("/users/test");
+    const res = await axiosJsonInstance.get("/api/users/test");
     console.log(res);
-    const { status, data } = await axiosJsonInstance.get("/users/test");
+    const { status, data } = await axiosJsonInstance.get("/api/users/test");
     console.log(status, data);
     const {
       body: { accessToken },
@@ -62,7 +62,7 @@ export const authTest = async () => {
 export const deleteAccount = async (password: PasswordRequest) => {
   console.log(password);
   try {
-    const { status, data } = await axiosJsonInstance.delete("/users", { data: password });
+    const { status, data } = await axiosJsonInstance.delete("/api/users", { data: password });
     removeCookie("accessToken");
     console.log(status);
     return status;
@@ -78,7 +78,7 @@ export const deleteAccount = async (password: PasswordRequest) => {
 export const emailAuth = async (email: EmailRequest) => {
   console.log(email);
   try {
-    const { status } = await axiosJsonInstance.post("/email-verifications", email);
+    const { status } = await axiosJsonInstance.post("/api/email-verifications", email);
     console.log(status);
     return status;
   } catch (error) {
@@ -94,7 +94,7 @@ export const codeCheck = async ({ email, code }: CodeRequest) => {
   console.log(email, code);
   try {
     const { status } = await axiosJsonInstance.get(
-      `/email-verifications?email=${email}&code=${code}`,
+      `/api/email-verifications?email=${email}&code=${code}`,
     );
     console.log(status);
     return status;

@@ -4,7 +4,8 @@ import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";
 import { col } from "style/display";
 import { useQuery } from "@tanstack/react-query";
-import { Skill, skills } from "connection";
+import { skills } from "connection";
+import { Skill } from "interface/Skill";
 
 export default function Skills() {
   const [keyword, setKeyword] = useState("");

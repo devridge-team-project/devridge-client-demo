@@ -3,7 +3,6 @@ import { center, col, row } from "style/display";
 import { useSignUpStore } from "shared/sign-up/store";
 import { skillInfos } from "connection/api/myInfoService";
 import Input from "../../common/input";
-import Button from "../../common/button";
 
 export default function UpdateAccount() {
   const [skills, setSkills] = useState<string[]>([]);
@@ -60,9 +59,9 @@ export default function UpdateAccount() {
             </button>
           ))}
         </div>
-        <Button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
+        <button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
           저장하기
-        </Button>
+        </button>
       </form>
     </div>
   );

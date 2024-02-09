@@ -36,9 +36,9 @@ const httpRequest = {
       .get<Response>(url, config)
       .then((res) => res.data);
   },
-  post: function <Request = any, Response = unknown>(url: string, data?: Request) {
+  post: function <Request = any, Response = unknown>(url: string, data?: Request, config?: object) {
     return axios("application/json")
-      .post<Response>(url, data)
+      .post<Response>(url, data, config)
       .then((res) => res.data);
   },
 };

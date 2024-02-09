@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { center, col, row } from "style/display";
 import Input from "../../common/input";
-import Button from "../../common/button";
 
 export default function ChangePassword() {
   const navigate = useNavigate();
@@ -40,9 +39,9 @@ export default function ChangePassword() {
           onChange={onChange}
         />
 
-        <Button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
+        <button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
           문의하기
-        </Button>
+        </button>
       </form>
     </div>
   );

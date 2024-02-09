@@ -1,10 +1,10 @@
 import { cn } from "util/classNames";
 
 export default function FloatButton({
-  image,
+  icon,
   onClick,
 }: {
-  image: string;
+  icon: string;
   onClick: () => unknown | (() => Promise<unknown>);
 }) {
   const positions = "fixed bottom-8 right-8";
@@ -13,7 +13,7 @@ export default function FloatButton({
   const styles = "bg-black text-white rounded-full cursor-pointer";
   return (
     <div className={cn(positions, displays, sizes, styles)} onClick={onClick}>
-      <img src={image} alt="float button" />
+      <img src={icon} alt="float button" />
     </div>
   );
 }

@@ -3,7 +3,6 @@ import { center, col, row } from "style/display";
 import { emailAuth } from "connection/api/loginService";
 import { useNavigate } from "react-router-dom";
 import Input from "../../common/input";
-import Button from "../../common/button";
 
 export default function HelpPw() {
   const [email, setEmail] = useState("");
@@ -31,9 +30,9 @@ export default function HelpPw() {
           placeholder="이메일을 입력해주세요"
           onChange={onChange}
         />
-        <Button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
+        <button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
           비밀번호 재설정 이메일 인증번호 받기
-        </Button>
+        </button>
       </form>
     </div>
   );

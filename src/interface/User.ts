@@ -1,10 +1,10 @@
-export interface UserProps {
-  id: number;
-  name: string;
+export interface SignUpRequest {
   email: string;
-  phone: string;
-  birthday: [number, number, number];
-  zipCode: string;
-  addr: [string, string];
-  createdAt: Date;
+  password: string;
+  provider: string;
+  nickname: string;
+  introduction: string;
+  profileImageUrl: string | null;
+  skillIds: number[];
+  occupationId: number;
 }

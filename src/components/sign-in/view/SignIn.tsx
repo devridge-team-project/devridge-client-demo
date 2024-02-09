@@ -6,7 +6,6 @@ import { login } from "connection/api/loginService";
 import { useAuthStore } from "shared/auth/store";
 
 import Input from "../../common/input";
-import Button from "../../common/button";
 
 export default function SignIn() {
   const [info, setInfo] = useState({ email: "", password: "" });
@@ -56,9 +55,9 @@ export default function SignIn() {
           placeholder="비밀번호를 입력해주세요"
           onChange={onChange}
         />
-        <Button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
+        <button className="mt-5 h-14 w-80  bg-black text-white" type="submit">
           로그인
-        </Button>
+        </button>
         <div className="mt-2 flex justify-end ">
           <Link to="/help-pw" className=" block  text-xs text-gray-500 ">
             비밀번호 찾기
