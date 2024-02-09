@@ -1,4 +1,4 @@
-import { Qna, QnaById } from "interface/Qna";
+import { Qna, QnaById, QnaPost } from "interface/Qna";
 import httpRequest from "../axios";
 
 function getQna() {
@@ -9,7 +9,12 @@ function getQnaById(id: number) {
   return httpRequest.get<QnaById>(`/api/qna/${id}`);
 }
 
+function postQna(data: QnaPost) {
+  return httpRequest.post("/api/qna", data);
+}
+
 export const qna = {
   get: getQna,
   getById: getQnaById,
+  post: postQna,
 };

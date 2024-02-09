@@ -33,3 +33,9 @@ export interface QnaById {
   commentCount: number;
   comments: QnaComments[];
 }
+
+export interface QnaPost {
+  title: string;
+  content: string;
+  imageUrl: string[] | null;
+}
