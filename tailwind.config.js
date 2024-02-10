@@ -7,6 +7,7 @@ module.exports = {
     },
     extend: {
       fontSize: {
+        xxs: "0.625rem",
         "1xl": "0.875rem",
       },
       inset: {
@@ -16,6 +17,8 @@ module.exports = {
         6: "1.5rem",
         7: "1.75rem",
         7.5: "1.875rem",
+        8: "2rem",
+        9: "2.25rem",
         12.5: "3.125rem",
         14: "3.5rem",
         15: "3.75rem",
@@ -23,6 +26,7 @@ module.exports = {
         23: "5.75rem",
         25: "6.25rem",
         30: "7.5rem",
+        34: "8.5rem",
         44: "11rem",
         50: "12.5rem",
         70: "17.5rem",
@@ -122,5 +126,5 @@ module.exports = {
       pattern: /p-.*/,
     },
   ],
-  plugins: [],
+  plugins: [require("tailwind-scrollbar-hide")],
 };

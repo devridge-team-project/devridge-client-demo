@@ -3,9 +3,12 @@ import BulletinBoard from "design/board/BulletinBoard";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { comment, qna } from "connection";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import useSignIn from "hook/useSignIn";
 
 export default function QnaById() {
+  useSignIn();
+
   const { id } = useParams();
   const [commentContent, setCommentContent] = useState<string>("");
 

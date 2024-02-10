@@ -2,10 +2,17 @@ import { Size } from "interface/Size";
 import { cn } from "util/classNames";
 
 const widthSize: Record<Size, string> = {
-  small: "w-50 h-12",
-  medium: "w-120 h-24",
-  large: "w-80 h-15",
-  full: "w-full h-15",
+  small: "w-40",
+  medium: "w-120",
+  large: "w-80",
+  full: "w-full",
+};
+
+const heightSize: Record<Size, string> = {
+  small: "h-12",
+  medium: "h-24",
+  large: "h-40",
+  full: "h-full",
 };
 
 export default function Card({
@@ -15,17 +22,28 @@ export default function Card({
 }: {
   onClick?: () => unknown | (() => Promise<unknown>);
   options?: {
-    size?: Size;
+    round?: "md" | "lg" | "xl";
+    width?: Size;
+    height?: Size;
   };
   children: React.ReactNode;
 }) {
-  const { size } = options ?? {};
+  const { width, height, round } = options ?? {};
   const displays = "flex flex-col justify-between";
   const paddings = "p-2";
-  const styles = `${onClick ? "cursor-pointer" : ""} border-2 shadow-md rounded-lg`;
+  const styles = `${onClick ? "cursor-pointer" : ""} border-2 shadow-md rounded-${round ?? "md"}`;
 
   return (
-    <div onClick={onClick} className={cn(displays, widthSize[size ?? "medium"], paddings, styles)}>
+    <div
+      onClick={onClick}
+      className={cn(
+        displays,
+        widthSize[width ?? "medium"],
+        heightSize[height ?? "medium"],
+        paddings,
+        styles,
+      )}
+    >
       {children}
     </div>
   );

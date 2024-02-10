@@ -2,7 +2,7 @@ export interface Member {
   id: number;
   nickname: string;
   profileImageUrl: string | null;
-  introduction: string | null;
+  introduction: string;
 }
 
 export interface Qna {

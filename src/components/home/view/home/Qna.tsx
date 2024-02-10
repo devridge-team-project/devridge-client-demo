@@ -1,12 +1,53 @@
+import { useEffect, useState } from "react";
+import { qna } from "connection";
 import { Button } from "design";
+import { QnaById } from "interface/Qna";
+import ReviewCard from "design/card/ReviewCard";
+import useNavigation from "hook/useNavigation";
+
+interface QnaByIdWithId extends QnaById {
+  id: number;
+}
+
 export default function Qna() {
+  const [qnas, setQnas] = useState<QnaByIdWithId[]>([]);
+  const navigate = useNavigation();
+  useEffect(() => {
+    (async () => {
+      try {
+        const topQnas = (await qna.get("latest")).slice(0, 4);
+        const qnaPromises = topQnas.map(({ id }) =>
+          qna.getById(id).then((data) => ({ ...data, id })),
+        );
+        const qnaData = await Promise.all(qnaPromises);
+        setQnas(qnaData);
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, []);
+
   return (
-    <div className="w-full flex flex-col justify-center items-center">
-      <div>모든 개발자를 위한 지식 공유 플랫폼 플로우!</div>
-      <div>
-        <div>스터디 및 사이드 프로젝트 팀원을 구하고 싶을 때</div>
+    <div className="w-full flex flex-col justify-center items-center pt-8 py-13 gap-8">
+      <div className="flex flex-col items-center text-2xl font-bold">
+        <div>모든 개발자를 위한</div>
+        <div>지식 공유 플랫폼 플로우!</div>
       </div>
-      <Button title="질문하러 가기" onClick={() => {}} />
+      <Button title="질문하러 가기" onClick={() => navigate("/qna")} />
+      <div className="grid grid-cols-2 gap-x-5 ">
+        {qnas.map(
+          ({ member: { nickname, introduction }, id, createdAt, title, content }, index) => (
+            <ReviewCard
+              key={createdAt}
+              index={index}
+              name={nickname}
+              introduction={introduction}
+              review={{ title, content }}
+              onClick={() => navigate(`/qna/${id}`)}
+            />
+          ),
+        )}
+      </div>
     </div>
   );
 }

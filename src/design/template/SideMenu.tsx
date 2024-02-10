@@ -1,11 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import { navigations } from "asset/navigation";
+import { profiles } from "asset/test/profiles";
 import { users } from "connection";
 import { Button } from "design";
 import useNavigation from "hook/useNavigation";
 import { useWidgetsStore } from "shared/store";
 import { col } from "style";
 import { cn } from "util/classNames";
+import randomItem from "util/randomItem";
 
 export default function SideMenu() {
   const { widgets, removeWidget, clearWidget } = useWidgetsStore();
@@ -42,7 +44,11 @@ export default function SideMenu() {
         <div className="flex flex-col gap-12">
           {userDetails && (
             <div className="w-80 h-70 border-2 border-blue-500 rounded-xl flex flex-col items-center justify-center gap-2">
-              <img src="/images/girl.png" alt="profile" className="size-25 rounded-full border " />
+              <img
+                src={`/images/test/${randomItem(profiles)}.png`}
+                alt="profile"
+                className="size-25 rounded-full border overflow-hidden object-cover"
+              />
               <div className="text-2xl font-bold pt-4">{nickname}</div>
               <div className="font-bold px-4 h-8 flex text-sm justify-center items-center rounded-md bg-blue-500/30 text-blue-500">
                 {occupation}
