@@ -28,10 +28,12 @@ export default function Qna() {
   }, []);
 
   return (
-    <div className="w-full flex flex-col justify-center items-center pt-8 py-13 gap-8">
+    <div className="w-full flex flex-col items-center pt-8 h-160 gap-8">
       <div className="flex flex-col items-center text-2xl font-bold">
         <div>모든 개발자를 위한</div>
-        <div>지식 공유 플랫폼 플로우!</div>
+        <div className="flex gap-2">
+          <div className="text-blue-500">지식 공유 플랫폼</div>DEVRIDGE!
+        </div>
       </div>
       <Button title="질문하러 가기" onClick={() => navigate("/qna")} />
       <div className="grid grid-cols-2 gap-x-5 ">
