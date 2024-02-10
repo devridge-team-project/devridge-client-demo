@@ -43,8 +43,9 @@ export default function BulletinBoard({
       <div className="text-xl">{content}</div>
       <div className="flex flex-col gap-4">
         <div className="text-2xl font-bold">댓글 {`(${comments?.length})`}</div>
-        {comments?.map(({ member: { nickname, profileImageUrl, introduction }, content }) => (
+        {comments?.map(({ member: { id, nickname, profileImageUrl, introduction }, content }) => (
           <Comment
+            key={id}
             nickname={nickname}
             profileImageUrl={profileImageUrl}
             introduction={introduction}

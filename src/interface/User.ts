@@ -8,3 +8,12 @@ export interface SignUpRequest {
   skillIds: number[];
   occupationId: number;
 }
+
+export interface UserDetails {
+  id: number;
+  nickname: string;
+  imageUrl: string | null;
+  introduction: string;
+  skillsIds: number[];
+  occupation: string;
+}

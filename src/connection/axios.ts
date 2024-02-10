@@ -25,19 +25,19 @@ const axios = (ContentType: string) => {
 };
 
 const httpRequest = {
-  get: function <Response = unknown>(url: string, config?: object) {
+  get: function <Response = unknown>(url: string, data?: object) {
     return axios("application/json")
-      .get<Response>(url, config)
+      .get<Response>(url, data)
       .then((res) => res.data);
   },
-  getFormData: function <Response = unknown>(url: string, config?: object) {
+  getFormData: function <Response = unknown>(url: string, data?: object) {
     return axios("form-data")
-      .get<Response>(url, config)
+      .get<Response>(url, data)
       .then((res) => res.data);
   },
-  post: function <Request = any, Response = unknown>(url: string, data?: Request, config?: object) {
+  post: function <Request = any, Response = unknown>(url: string, data?: Request) {
     return axios("application/json")
-      .post<Response>(url, data, config)
+      .post<Response>(url, data)
       .then((res) => res.data);
   },
 };

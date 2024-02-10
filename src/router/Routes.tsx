@@ -10,6 +10,7 @@ import ChangePasswordPage from "components/myAccount/changePasswordPage";
 import QuestionPage from "components/myAccount/questionPage";
 import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 import { Team } from "components/team";
+import SignOut from "components/sign-out";
 
 export default function Router() {
   return (
@@ -46,6 +47,7 @@ export default function Router() {
           <Route index element={<Team />} />
         </Route>
       </Route>
+      <Route path="sign-out" element={<SignOut />} />
       <Route path="*" element={<div>Not Found</div>} />
     </Routes>
   );

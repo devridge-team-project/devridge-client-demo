@@ -9,21 +9,12 @@ import useNavigation from "hook/useNavigation";
 export default function PostBoard() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
-  const accessToken = getCookie("accessToken");
 
   const navigatior = useNavigation();
 
   const { mutate, isSuccess } = useMutation({
     mutationKey: ["postQna"],
-    mutationFn: () =>
-      qna.post(
-        { title, content },
-        {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      ),
+    mutationFn: () => qna.post({ title, content }),
   });
   if (isSuccess) navigatior("/qna/success");
 

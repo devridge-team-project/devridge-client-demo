@@ -4,7 +4,6 @@ import { center, col, row } from "style/display";
 import { contents } from "asset/sign-up/platform";
 import { login } from "connection/api/loginService";
 import { useAuthStore } from "shared/auth/store";
-
 import Input from "../../common/input";
 
 export default function SignIn() {
@@ -19,8 +18,6 @@ export default function SignIn() {
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
     const { status, accessToken } = await login({ email, password });
-    console.log(status);
-    console.log(accessToken);
 
     if (status === 200) {
       setAccessToken(accessToken);
@@ -64,20 +61,21 @@ export default function SignIn() {
           </Link>
         </div>
       </form>
-
-      <div className={`mt-10 ${center.colO(0)}`}>다른 계정으로 로그인하기</div>
-      <div className={`mx-8 mt-2 ${row(5)}`}>
-        {contents.map(({ href, image, title, bgColor, textColor }) => (
-          <Link to={href} className={`bg-${bgColor} ${textColor}`} key={title}>
-            <img src={`/images/icons/${image}.png`} alt="sign-in" className="h-12 w-12" />
-          </Link>
-        ))}
-      </div>
-      <div className={`mx-8 mt-5 ${row(2)}`}>
-        <div>아직 계정이 없으신가요?</div>
-        <a href="./sign-up" className="text-blue-600">
-          가입하러 가기
-        </a>
+      <div className="flex flex-col items-center gap-4 text-sm text-gray-500 font-bold">
+        <div>다른 계정으로 로그인하기</div>
+        <div className={`mx-8 mt-2 ${row(5)}`}>
+          {contents.map(({ href, image, title, bgColor, textColor }) => (
+            <Link to={href} className={`bg-${bgColor} ${textColor}`} key={title}>
+              <img src={`/images/icons/${image}.png`} alt="sign-in" className="h-12 w-12" />
+            </Link>
+          ))}
+        </div>
+        <div className="flex justify-center items-center gap-4">
+          <div>아직 계정이 없으신가요?</div>
+          <button onClick={() => navigate("sign-up")} className="text-blue-500">
+            가입하러 가기{">"}
+          </button>
+        </div>
       </div>
     </div>
   );

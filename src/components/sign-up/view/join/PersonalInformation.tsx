@@ -3,7 +3,7 @@ import SignUpLayout from "design/template/SignUpLayout";
 import Input from "design/input/Input";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useWidgetStore } from "shared/store";
-import { user } from "connection/api/user";
+import { users } from "connection/api/users";
 import useNavigation from "hook/useNavigation";
 import { useState } from "react";
 
@@ -18,7 +18,7 @@ export default function PersonalInformation() {
   const { mutate, error, isError, isSuccess } = useMutation({
     mutationKey: ["user"],
     mutationFn: () =>
-      user.post({
+      users.post({
         email,
         password,
         provider: "normal",

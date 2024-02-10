@@ -16,7 +16,6 @@ import Team from "./home/Team";
 
 export default function Home() {
   const navigate = useNavigate();
-  const { accessToken, setAccessToken, signInType, setSignInType } = useAuthStore();
 
   // const getUserInfo = async () => {
   //   const { status, data } = await userInfo();
