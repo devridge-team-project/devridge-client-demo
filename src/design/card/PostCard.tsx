@@ -1,6 +1,6 @@
 import { Card } from "design";
 
-export default function QuestionCard({
+export default function PostCard({
   onClick,
   title,
   index,
@@ -10,18 +10,20 @@ export default function QuestionCard({
 }: {
   onClick: () => void;
   title: string;
-  index: number;
+  index?: number;
   commentCount: number;
   likes: number;
   views: number;
 }) {
   return (
     <Card onClick={onClick}>
-      <div className="flex items-center gap-2 font-bold">
-        <div className="w-6 h-6 rounded-md flex justify-center items-center bg-black text-white">
-          {index + 1}
-        </div>
-        <div>{title}</div>
+      <div className="flex items-center font-bold text-xl">
+        {index && (
+          <div className="w-7 h-7 rounded-md flex justify-center items-center bg-black text-white ">
+            {index + 1}
+          </div>
+        )}
+        <div className="pl-2">{title}</div>
       </div>
       <div className="flex justify-end gap-4 text-xs text-gray-300">
         <div>답변수 {commentCount}</div>

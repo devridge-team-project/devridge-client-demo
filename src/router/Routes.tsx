@@ -9,6 +9,7 @@ import UpdateAccountPage from "components/myAccount/updateAccountPage";
 import ChangePasswordPage from "components/myAccount/changePasswordPage";
 import QuestionPage from "components/myAccount/questionPage";
 import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
+import { Team } from "components/team";
 
 export default function Router() {
   return (
@@ -41,7 +42,11 @@ export default function Router() {
           <Route path="post" element={<QnaPost />} />
           <Route path="success" element={<QnaSuccess />} />
         </Route>
+        <Route path="team">
+          <Route index element={<Team />} />
+        </Route>
       </Route>
+      <Route path="*" element={<div>Not Found</div>} />
     </Routes>
   );
 }

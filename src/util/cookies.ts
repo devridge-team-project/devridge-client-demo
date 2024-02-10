@@ -1,28 +1,31 @@
 import { Cookies } from "react-cookie";
 import { Cookie, CookieSetOptions } from "universal-cookie";
 
+type CookieValue = string | object | number;
 const cookies = new Cookies();
 
-export const getCookie = (name: string): Cookie => {
+export const getCookie = <T = CookieValue>(name: string): T | undefined => {
   try {
-    return cookies.get(name);
+    const cookie = cookies.get(name);
+    return cookie as T;
   } catch (error) {
-    console.error(error);
+    console.error("Error getting cookie:", error);
+    return undefined;
   }
 };
 
-export const setCookie = (name: string, value: Cookie, option?: CookieSetOptions) => {
+export const setCookie = (name: string, value: CookieValue, options?: CookieSetOptions): void => {
   try {
-    cookies.set(name, value, { ...option });
+    cookies.set(name, value, options);
   } catch (error) {
-    console.error(error);
+    console.error("Error setting cookie:", error);
   }
 };
 
-export const removeCookie = (name: string, option?: CookieSetOptions) => {
+export const removeCookie = (name: string, options?: CookieSetOptions): void => {
   try {
-    cookies.remove(name, { ...option });
+    cookies.remove(name, options);
   } catch (error) {
-    console.error(error);
+    console.error("Error remove cookie:", error);
   }
 };

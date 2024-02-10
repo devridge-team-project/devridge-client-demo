@@ -1,3 +1,4 @@
+import { navigations } from "asset/navigation";
 import { Button } from "design";
 import useNavigation from "hook/useNavigation";
 import { useWidgetsStore } from "shared/store";
@@ -7,6 +8,7 @@ import { cn } from "util/classNames";
 export default function SideMenu() {
   const { widgets, removeWidget, clearWidget } = useWidgetsStore();
   const isOpen = widgets.includes("sideMenu");
+  const navigate = useNavigation();
 
   const positions = "fixed top-0 right-0 z-50";
   const animations = "duration-500";
@@ -14,11 +16,12 @@ export default function SideMenu() {
     if (isOpen) return "w-full opacity-100";
     return "w-0 opacity-0";
   };
-  const navigate = useNavigation();
 
-  const menuStyles = [isOpen ? "cursor-pointer" : "cursor-default", "flex items-center gap-4"].join(
-    " ",
-  );
+  const navigationStyles = [
+    isOpen ? "cursor-pointer" : "cursor-default",
+    "flex items-center gap-4",
+  ].join(" ");
+
   return (
     <div className={cn(positions, animations, moves())}>
       <div className="min-h-screen bg-white relative flex items-center justify-center">
@@ -30,11 +33,11 @@ export default function SideMenu() {
         />
         <div className="flex flex-col gap-12">
           <div className={col(7)}>
-            {menus.map(({ name, href, icon }) => (
+            {navigations.map(({ name, href, icon }) => (
               <div
                 key={href}
                 onClick={() => isOpen && navigate(href, clearWidget)}
-                className={menuStyles}
+                className={navigationStyles}
               >
                 <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
                 <div className="text-2xl">{name}</div>
@@ -60,21 +63,3 @@ export default function SideMenu() {
     </div>
   );
 }
-
-const menus = [
-  {
-    name: "Q&A",
-    href: "/qna",
-    icon: "circle-and-square.svg",
-  },
-  {
-    name: "커뮤니티",
-    href: "/community",
-    icon: "writing.svg",
-  },
-  {
-    name: "공지사항",
-    href: "/notice",
-    icon: "notice.svg",
-  },
-];
