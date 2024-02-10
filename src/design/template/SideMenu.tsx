@@ -39,7 +39,7 @@ export default function SideMenu() {
           onClick={() => removeWidget("sideMenu")}
           src="/images/icons/close.svg"
           alt="close"
-          className="absolute top-7 right-6 size-7 cursor-pointer"
+          className="absolute top-7 right-6 w-7 h-7 cursor-pointer"
         />
         <div className="flex flex-col gap-12">
           {userDetails && (
@@ -64,7 +64,7 @@ export default function SideMenu() {
                   onClick={() => isOpen && navigate(href, clearWidget)}
                   className={navigationStyles}
                 >
-                  <img src={`/images/icons/${icon}`} alt={icon} className="size-6" />
+                  <img src={`/images/icons/${icon}`} alt={icon} className="w-6 h-6" />
                   <div className="text-2xl">{name}</div>
                 </div>
               ))}

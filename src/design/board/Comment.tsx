@@ -22,7 +22,7 @@ export default function Comment({
             className="rounded-full w-16 h-16 overflow-hidden object-contain"
           />
         ) : (
-          <div className="rounded-full bg-black size-16" />
+          <div className="rounded-full bg-black w-16 h-16" />
         )}
         <div>
           <div className="text-lg font-bold">{nickname}</div>

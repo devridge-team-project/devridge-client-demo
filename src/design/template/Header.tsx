@@ -21,7 +21,7 @@ export default function Header() {
           DEVRIDGE
         </div>
         <button onClick={() => setWidget("sideMenu")}>
-          <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="size-7" />
+          <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="w-7 h-7" />
         </button>
       </div>
       <div className={cn(sizes)} />
