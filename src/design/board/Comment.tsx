@@ -1,3 +1,6 @@
+import { profiles } from "asset/test/profiles";
+import randomItem from "util/randomItem";
+
 export default function Comment({
   nickname,
   profileImageUrl,
@@ -13,7 +16,11 @@ export default function Comment({
     <div className="rounded-xl border-2 p-4 flex flex-col gap-4 min-h-80">
       <div className="flex items-center border-b pb-8 gap-4">
         {profileImageUrl ? (
-          <img src={profileImageUrl} alt="profile" className="rounded-full size-16 " />
+          <img
+            src={`/images/test/${randomItem(profiles)}.png`}
+            alt="profile"
+            className="rounded-full w-16 h-16 overflow-hidden object-contain"
+          />
         ) : (
           <div className="rounded-full bg-black size-16" />
         )}

@@ -47,7 +47,7 @@ export default function SideMenu() {
               <img
                 src={`/images/test/${randomItem(profiles)}.png`}
                 alt="profile"
-                className="size-25 rounded-full border overflow-hidden object-cover"
+                className="w-25 h-25 rounded-full border overflow-hidden object-cover"
               />
               <div className="text-2xl font-bold pt-4">{nickname}</div>
               <div className="font-bold px-4 h-8 flex text-sm justify-center items-center rounded-md bg-blue-500/30 text-blue-500">
