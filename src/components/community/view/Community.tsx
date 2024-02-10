@@ -3,7 +3,7 @@ import { col, center, row } from "style/display";
 import { useNavigate } from "react-router-dom";
 import Card from "components/common/card";
 import { CommunityAll } from "connection/api/communityService";
-export default function Communities() {
+export default function Community() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const getData = async () => {

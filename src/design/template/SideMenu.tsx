@@ -68,8 +68,8 @@ const menus = [
     icon: "circle-and-square.svg",
   },
   {
-    name: "스터디 및 프로젝트",
-    href: "/study",
+    name: "커뮤니티",
+    href: "/community",
     icon: "writing.svg",
   },
   {

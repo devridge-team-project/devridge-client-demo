@@ -1,8 +1,6 @@
 import { Home, Join, Layout, SignIn, SignUp, Success } from "components/sign-up";
 import { Route, Routes } from "react-router-dom";
-import Communities from "components/communities/view/Communities";
-import CommunityPost from "components/communities/view/CommunityPost";
-import CommunityById from "components/communities/view/CommunityById";
+import { Community, CommunityById, CommunityPost } from "components/community";
 import HelpPwPage from "components/help-pw/HelpPwPage";
 import EmailAuthPage from "components/help-pw/EmailAuthPage";
 import MyAccountPage from "components/myAccount/myAccountPage";
@@ -32,8 +30,8 @@ export default function Router() {
           <Route path="join" element={<Join />} />
           <Route path="success" element={<Success />} />
         </Route>
-        <Route path="communities">
-          <Route index element={<Communities />} />
+        <Route path="community">
+          <Route index element={<Community />} />
           <Route path=":id" element={<CommunityById />} />
           <Route path="post" element={<CommunityPost />} />
         </Route>

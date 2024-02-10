@@ -1,5 +1,4 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
-
 import { getCookie } from "util/cookies";
 
 const { REACT_APP_SERVER_URL: origin } = process.env;
