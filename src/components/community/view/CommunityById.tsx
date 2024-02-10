@@ -18,7 +18,7 @@ export default function CommunityById() {
   console.log(data);
   return (
     <div>
-      <BulletinBoard id={Number(id)} type="community" {...data} />
+      <BulletinBoard type="community" {...data} />
     </div>
   );
 }
