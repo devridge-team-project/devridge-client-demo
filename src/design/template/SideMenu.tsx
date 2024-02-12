@@ -12,7 +12,7 @@ import randomItem from "util/randomItem";
 
 export default function SideMenu() {
   const { widgets, removeWidget, clearWidget } = useWidgetsStore();
-  const { setNickname, setOccupation } = useSignUpStore();
+  const { nickname, setNickname, occupation, setOccupation } = useSignUpStore();
   const isOpen = widgets.includes("sideMenu");
   const navigate = useNavigation();
   const { data: userDetails } = useQuery({
@@ -20,9 +20,11 @@ export default function SideMenu() {
     queryFn: () => users.getDetails(),
   });
 
-  const { nickname, occupation } = userDetails ?? {};
-  setNickname(nickname);
-  setOccupation(occupation);
+  if (userDetails) {
+    const { nickname, occupation } = userDetails;
+    setNickname(nickname);
+    setOccupation(occupation);
+  }
   const positions = "fixed top-0 right-0 z-50";
   const animations = "duration-500";
   const moves = () => {
