@@ -15,7 +15,7 @@ export default function Community() {
   useEffect(() => {
     getData();
   }, []);
-  console.log(data);
+
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
       <div className="text-3xl font-bold">커뮤니티</div>
@@ -34,7 +34,7 @@ export default function Community() {
             );
           })}
           <div className={`flex justify-end ${row(2)}`}>
-            <a href="communities/post">
+            <a href="community/post">
               <img src="images/write.png" alt="write" />
             </a>
           </div>

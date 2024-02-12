@@ -14,3 +14,9 @@ export interface CommunityComments {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface CommunityPost {
+  title: string;
+  content: string;
+  hashtags: string[];
+}
