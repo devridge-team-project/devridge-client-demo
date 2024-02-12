@@ -16,12 +16,14 @@ const colorSet: Record<string, string> = {
 
 export default function Button({
   title,
+  type,
   onClick,
   options,
   freeze,
 }: {
   title: string;
-  onClick: () => unknown | (() => Promise<unknown>);
+  type?: string;
+  onClick?: () => unknown | (() => Promise<unknown>);
   options?: { size?: Size; color?: string };
   freeze?: boolean;
 }) {
