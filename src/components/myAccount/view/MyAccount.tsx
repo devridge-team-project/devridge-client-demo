@@ -1,9 +1,28 @@
 import { center, col, row } from "style/display";
 import { Link } from "react-router-dom";
+import { userInfo } from "connection/api/myInfoService";
 import { useSignUpStore } from "shared/sign-up/store";
+import { useEffect, useState } from "react";
 export default function MyAccount() {
-  const { nickname, setNickname, profileImageUrl, setProfileImageUrl, occupation, setOccupation } =
-    useSignUpStore();
+  const [users, setUsers] = useState({ nickname: "", occupation: "" });
+  const { setNickname, setOccupation, setSkillIds } = useSignUpStore();
+  const { nickname, occupation } = users;
+
+  const getUserInfo = async () => {
+    const { status, data } = await userInfo();
+    if (status === 200) {
+      const { nickname, occupation, skillIds } = data;
+      setNickname(nickname);
+      setOccupation(occupation);
+      setSkillIds(skillIds);
+      setUsers({ ...users, nickname, occupation });
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
       {/* <img
