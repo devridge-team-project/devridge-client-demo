@@ -13,7 +13,7 @@ export interface Qna {
   commentCount: number;
 }
 
-export interface QnaComments {
+export interface QnaComment {
   id: number;
   member: Member;
   content: string;
@@ -31,7 +31,6 @@ export interface QnaById {
   dislikes: number;
   createdAt: string;
   commentCount: number;
-  comments: QnaComments[];
 }
 
 export interface QnaPost {

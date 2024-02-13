@@ -18,26 +18,32 @@ export default function QnaById() {
   });
 
   const {
-    data: qnaData,
+    data: post,
     isLoading: loading,
     isError,
   } = useQuery({
-    queryKey: [mutate, isPost],
+    queryKey: ["post", mutate, isPost],
     queryFn: () => qna.getById(parseInt(id ?? "0", 10)),
   });
 
-  if (!qnaData) return <div>데이터가 없습니다.</div>;
+  const { data: comments } = useQuery({
+    queryKey: [],
+    queryFn: () => comment.get(parseInt(id ?? "0", 10)),
+  });
+
+  if (!post || !comments) return <div>데이터가 없습니다.</div>;
   if (loading) return <div>로딩중...</div>;
   if (isError) return <div>에러가 발생했습니다.</div>;
 
   return (
     <BulletinBoard
       type="Q&A"
+      comments={comments}
       postComment={{
         submit: mutate as () => Promise<unknown>,
         setCommentContent: setCommentContent,
       }}
-      {...qnaData}
+      {...post}
     />
   );
 }

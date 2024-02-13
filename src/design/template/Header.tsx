@@ -7,7 +7,7 @@ export default function Header() {
   const navigate = useNavigation();
 
   const positions = "flex justify-between items-center";
-  const displays = "fixed top-0 left-0 z-50";
+  const displays = "fixed top-0 left-0 z-40";
   const sizes = "w-full h-20";
   const paddings = "px-6";
   const styles = "bg-white";

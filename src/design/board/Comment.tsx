@@ -19,7 +19,7 @@ export default function Comment({
           <img
             src={`/images/test/${randomItem(profiles)}.png`}
             alt="profile"
-            className="rounded-full w-16 h-16 overflow-hidden object-contain"
+            className="rounded-full w-16 h-16 overflow-hidden object-cover"
           />
         ) : (
           <div className="rounded-full bg-black w-16 h-16" />

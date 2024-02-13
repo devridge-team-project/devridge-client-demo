@@ -7,7 +7,7 @@ export default function FloatButton({
   icon: string;
   onClick: () => unknown | (() => Promise<unknown>);
 }) {
-  const positions = "fixed bottom-8 right-8";
+  const positions = "fixed bottom-8 right-8 z-50";
   const displays = "flex justify-center items-center";
   const sizes = "w-24 h-24";
   const styles = "bg-black text-white rounded-full cursor-pointer";

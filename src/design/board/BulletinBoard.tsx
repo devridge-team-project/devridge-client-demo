@@ -1,4 +1,4 @@
-import { QnaComments } from "interface/Qna";
+import { QnaComment } from "interface/Qna";
 import { CommunityComments } from "interface/Community";
 import Board from "./Board";
 import { Dispatch, useState } from "react";
@@ -13,13 +13,15 @@ export default function BulletinBoard({
   createdAt,
   content,
   comments,
+  commentCount,
   postComment,
 }: {
   type: string;
   title?: string;
   createdAt?: string;
   content?: string;
-  comments?: QnaComments[] | CommunityComments[];
+  commentCount?: number;
+  comments?: QnaComment[] | CommunityComments[];
   postComment?: {
     submit: () => Promise<unknown>;
     setCommentContent: Dispatch<string>;
@@ -36,16 +38,18 @@ export default function BulletinBoard({
       </div>
       <div className="text-xl">{content}</div>
       <div className="flex flex-col gap-4">
-        <div className="text-2xl font-bold">댓글 {`(${comments?.length})`}</div>
-        {comments?.map(({ member: { id, nickname, profileImageUrl, introduction }, content }) => (
-          <Comment
-            key={id}
-            nickname={nickname}
-            profileImageUrl={profileImageUrl}
-            introduction={introduction}
-            content={content}
-          />
-        ))}
+        <div className="text-2xl font-bold">댓글 {`(${commentCount})`}</div>
+        {comments?.map(
+          ({ member: { id, nickname, profileImageUrl, introduction }, createdAt, content }) => (
+            <Comment
+              key={id + createdAt + content}
+              nickname={nickname}
+              profileImageUrl={profileImageUrl}
+              introduction={introduction}
+              content={content}
+            />
+          ),
+        )}
       </div>
       {postComment && <PostComment {...postComment} />}
     </Board>
