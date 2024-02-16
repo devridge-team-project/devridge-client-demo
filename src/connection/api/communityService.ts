@@ -1,5 +1,5 @@
 import axios, { AxiosError } from "axios";
-import { CommunityPost } from "interface/Community";
+import { CommunityPost, Content } from "interface/Community";
 import { axiosJsonInstance } from "../axios";
 import httpRequest from "../axios";
 
@@ -49,6 +49,28 @@ export const CommunityDetailComments = async (id: number) => {
     return { status: 500, data: null };
   }
 };
+
+export const postComments = (id: number, content: Content) => {
+  return httpRequest.post(`api/community/${id}/comments`, content);
+};
+
+/* export const CommunityDetailCommentsWrite = async (id: number, content: Content) => {
+  try {
+    const { status, data } = await axiosJsonInstance.post(`api/community/${id}/comments`, {
+      content,
+    });
+
+    console.log(status);
+    console.log(status, data);
+    return status;
+  } catch (error) {
+    if (error instanceof AxiosError && error.response?.status) {
+      const { status } = error.response;
+      return status;
+    }
+    return { status: 500, data: null };
+  }
+}; */
 
 export const CommunityWrite = async ({ title, content, hashtags = [] }: CommunityPost) => {
   try {
