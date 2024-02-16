@@ -20,3 +20,7 @@ export interface CommunityPost {
   content: string;
   hashtags: string[];
 }
+
+export interface Content {
+  content: string;
+}
