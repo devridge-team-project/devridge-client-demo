@@ -5,7 +5,7 @@ const { REACT_APP_SERVER_URL: origin } = process.env;
 
 const axios = (ContentType: string) => {
   const config: AxiosRequestConfig = {
-    baseURL: "/",
+    baseURL: origin,
     headers: {
       "Content-type": ContentType,
     },
