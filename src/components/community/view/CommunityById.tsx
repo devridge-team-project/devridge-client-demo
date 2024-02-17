@@ -1,47 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import {
-  CommunityDetail,
-  CommunityDetailComments,
-  postComments,
-} from "connection/api/communityService";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import { getCommunityById, comment } from "connection/api/community";
 import BulletinBoard from "design/board/BulletinBoard";
 
 export default function CommunityById() {
   const { id } = useParams();
   const [data, setData] = useState([]);
-  const [comments, setComments] = useState([]);
   const [commentContent, setCommentContent] = useState<string>("");
-
-  const { mutate, isSuccess } = useMutation({
-    mutationFn: () => postComments(Number(id), { content: commentContent }),
+  const { data: communityDetail, isLoading: isLoadingViews } = useQuery({
+    queryKey: [`Community${id}`],
+    queryFn: () => getCommunityById(Number(id)),
   });
-  // console.log(mutate);
-  const getData = async () => {
-    const { status, data } = await CommunityDetail(Number(id));
-    if (status === 200) {
-      setData(data);
-    }
-  };
-  const getComments = async () => {
-    const { status, data } = await CommunityDetailComments(Number(id));
-    if (status === 200) {
-      setComments(data);
-    }
-  };
-  useEffect(() => {
-    getData();
-    getComments();
-  }, []);
-  // console.log(data);
-  // console.log(comments);
-  // console.log({ ...data, comments });
+  const { mutate, isSuccess } = useMutation({
+    mutationFn: () => comment.post(Number(id), { content: commentContent }),
+  });
+
+  const { data: comments, isLoading: isLoadingViews1 } = useQuery({
+    queryKey: [`Comments${id}`],
+    queryFn: () => comment.get(Number(id)),
+  });
+
   return (
     <div>
       <BulletinBoard
         type="community"
-        {...{ ...data, commentCount: comments.length, comments }}
+        {...{ ...communityDetail, commentCount: comments?.length, comments }}
         postComment={{ submit: mutate as () => Promise<unknown>, setCommentContent }}
       />
     </div>
