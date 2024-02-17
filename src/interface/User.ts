@@ -14,6 +14,6 @@ export interface UserDetails {
   nickname: string;
   imageUrl: string | null;
   introduction: string;
-  skillsIds: number[];
+  skillIds: number[];
   occupation: string;
 }
