@@ -3,11 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import { Community, CommunityById, CommunityPost } from "components/community";
 import HelpPwPage from "components/help-pw/HelpPwPage";
 import EmailAuthPage from "components/help-pw/EmailAuthPage";
-import MyAccountPage from "components/myAccount/myAccountPage";
-import DeleteAccountPage from "components/myAccount/deleteAccountPage";
-import UpdateAccountPage from "components/myAccount/updateAccountPage";
-import ChangePasswordPage from "components/myAccount/changePasswordPage";
-import QuestionPage from "components/myAccount/questionPage";
+import {
+  MyAccount,
+  DeleteAccount,
+  UpdateAccount,
+  ChangePassword,
+  Question,
+} from "components/myAccount";
 import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 import { Team } from "components/team";
 import SignOut from "components/sign-out";
@@ -22,11 +24,13 @@ export default function Router() {
           <Route index element={<HelpPwPage />} />
           <Route path="email-auth" element={<EmailAuthPage />} />
         </Route>
-        <Route path="mypage" element={<MyAccountPage />} />
-        <Route path="delete-account" element={<DeleteAccountPage />} />
-        <Route path="update-account" element={<UpdateAccountPage />} />
-        <Route path="change-pw" element={<ChangePasswordPage />} />
-        <Route path="ask" element={<QuestionPage />} />
+        <Route path="mypage">
+          <Route index element={<MyAccount />} />
+          <Route path="delete-account" element={<DeleteAccount />} />
+          <Route path="update-account" element={<UpdateAccount />} />
+          <Route path="change-pw" element={<ChangePassword />} />
+          <Route path="ask" element={<Question />} />
+        </Route>
         <Route path="sign-up">
           <Route index element={<SignUp />} />
           <Route path="join" element={<Join />} />
