@@ -9,6 +9,7 @@ const axios = (ContentType: string) => {
     headers: {
       "Content-type": ContentType,
     },
+    withCredentials: true,
   };
   const instance = Axios.create(config);
   instance.interceptors.request.use(
@@ -38,6 +39,11 @@ const httpRequest = {
   post: function <Request = any, Response = unknown>(url: string, data?: Request) {
     return axios("application/json")
       .post<Response>(url, data)
+      .then((res) => res.data);
+  },
+  patch: function <Request = any, Response = unknown>(url: string, data?: Request) {
+    return axios("application/json")
+      .patch<Response>(url, data)
       .then((res) => res.data);
   },
 };
