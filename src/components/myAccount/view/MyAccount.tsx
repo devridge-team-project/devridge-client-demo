@@ -1,27 +1,25 @@
 import { center, col, row } from "style/display";
 import { Link } from "react-router-dom";
-import { userInfo } from "connection/api/myInfoService";
+import { users } from "connection/api/users";
 import { useSignUpStore } from "shared/sign-up/store";
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
 export default function MyAccount() {
-  const [users, setUsers] = useState({ nickname: "", occupation: "" });
-  const { setNickname, setOccupation, setSkillIds } = useSignUpStore();
-  const { nickname, occupation } = users;
+  const { nickname, setNickname, occupation, setOccupation, skillIds, setSkillIds } =
+    useSignUpStore();
 
-  const getUserInfo = async () => {
-    const { status, data } = await userInfo();
-    if (status === 200) {
-      const { nickname, occupation, skillIds } = data;
+  const { data: user, isLoading: loading } = useQuery({
+    queryKey: ["MyAccount"],
+    queryFn: () => users.getDetails(),
+  });
+  useEffect(() => {
+    if (user) {
+      const { nickname, occupation, skillIds } = user;
       setNickname(nickname);
       setOccupation(occupation);
       setSkillIds(skillIds);
-      setUsers({ ...users, nickname, occupation });
     }
-  };
-
-  useEffect(() => {
-    getUserInfo();
-  }, []);
+  }, [user]);
 
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
@@ -33,17 +31,17 @@ export default function MyAccount() {
       <div className="mt-7 text-2xl font-bold">{nickname}</div>
       <div className="mt-3 text-1xl font-bold text-blue-600 ">{occupation}</div>
       <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="/update-account">회원정보 수정</Link>
+        <Link to="update-account">회원정보 수정</Link>
       </div>
       <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
         {" "}
-        <Link to="/change-pw">비밀번호 변경</Link>
+        <Link to="change-pw">비밀번호 변경</Link>
       </div>
       <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="/delete-account">회원탈퇴</Link>
+        <Link to="delete-account">회원탈퇴</Link>
       </div>
       <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="/ask">문의사항</Link>
+        <Link to="ask">문의사항</Link>
       </div>
     </div>
   );
