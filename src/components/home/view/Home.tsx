@@ -2,8 +2,6 @@ import { center, col, row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthStore } from "shared/auth/store";
 import { useSignUpStore } from "shared/sign-up/store";
-import { authTest, logout } from "connection/api/loginService";
-import { userInfo } from "connection/api/myInfoService";
 import { getCookie } from "util/cookies";
 import { useEffect } from "react";
 import Modals from "../controller/Modals";
