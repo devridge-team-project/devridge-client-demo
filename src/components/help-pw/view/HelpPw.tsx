@@ -1,6 +1,6 @@
 import { FormEvent, useState } from "react";
 import { center, col, row } from "style/display";
-import { emailAuth } from "connection/api/loginService";
+import { emailVerifications } from "connection/api/emailVerifications";
 import { useNavigate } from "react-router-dom";
 import Input from "../../common/input";
 
@@ -13,7 +13,7 @@ export default function HelpPw() {
   };
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const status = await emailAuth({ email });
+    const status = await emailVerifications.post(email);
     if (status === 200) {
       navigate("/help-pw/email-auth", { state: { email } });
     }

@@ -1,7 +1,7 @@
 import { center, col, row } from "style/display";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { codeCheck } from "connection/api/loginService";
+import { emailVerifications } from "connection/api/emailVerifications";
 import Input from "components/common/input";
 import { Button } from "design";
 
@@ -11,13 +11,13 @@ export default function EmailAuth() {
   const {
     state: { email },
   } = location;
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState<string>("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setCode(value);
   };
   const onAuthCode = async () => {
-    const status = await codeCheck({ email, code });
+    const status = await emailVerifications.get(email, Number(code));
     if (status === 200) {
       alert("이메일 인증 되었습니다.");
       navigate("/");
