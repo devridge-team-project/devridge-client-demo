@@ -4,6 +4,23 @@ export interface Member {
   profileImageUrl: string | null;
   introduction: string;
 }
+export interface Community {
+  id: number;
+  title: string;
+  views: number;
+  likeCount: number;
+  commentCount: number;
+}
+
+export interface CommunityById {
+  id: number;
+  member: Member;
+  content: string;
+  likes: number;
+  dislikes: number;
+  createdAt: string;
+  updatedAt: string;
+}
 
 export interface CommunityComments {
   id: number;
