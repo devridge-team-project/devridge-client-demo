@@ -9,13 +9,17 @@ const axios = (ContentType: string) => {
     headers: {
       "Content-type": ContentType,
     },
-    withCredentials: true,
+    // withCredentials: true,
   };
   const instance = Axios.create(config);
+  instance.defaults.withCredentials = true;
   instance.interceptors.request.use(
     (request) => {
       const token = getCookie("accessToken");
-      if (token) request.headers["Authorization"] = `Bearer ${token}`;
+      if (token) {
+        request.headers["Authorization"] = `Bearer ${token}`;
+      }
+
       return request;
     },
     (error: AxiosError) => {
