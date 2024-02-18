@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import { setCookie, removeCookie } from "util/cookies";
-import { LoginRequest, PasswordRequest, EmailRequest, CodeRequest } from "../../interface/Login";
+import { LoginRequest } from "../../interface/Login";
 import { axiosJsonInstance } from "../axios";
 
 export const login = async (user: LoginRequest) => {
@@ -11,7 +11,7 @@ export const login = async (user: LoginRequest) => {
     const { accessToken } = data;
 
     console.log(accessToken);
-    const expiration = new Date(Date.now() + 12 * 60 * 60 * 1000);
+    const expiration = new Date(Date.now() + 120 * 60 * 1000);
     setCookie("accessToken", accessToken, { expires: expiration });
 
     return { status: 200, accessToken };
@@ -39,10 +39,10 @@ export const logout = async () => {
   }
 };
 
-export const deleteAccount = async (password: PasswordRequest) => {
+export const deleteAccount = async (password: string) => {
   console.log(password);
   try {
-    const { status, data } = await axiosJsonInstance.delete("api/users", { data: password });
+    const { status, data } = await axiosJsonInstance.delete("api/users", { data: { password } });
     removeCookie("accessToken");
     console.log(status);
     return status;
