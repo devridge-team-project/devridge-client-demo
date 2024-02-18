@@ -1,8 +1,7 @@
 import { Home, Join, Layout, SignIn, SignUp, Success } from "components/sign-up";
 import { Route, Routes } from "react-router-dom";
 import { Community, CommunityById, CommunityPost } from "components/community";
-import HelpPwPage from "components/help-pw/HelpPwPage";
-import EmailAuthPage from "components/help-pw/EmailAuthPage";
+import { HelpPw, EmailAuth, ResetPw } from "components/help-pw";
 import {
   MyAccount,
   DeleteAccount,
@@ -21,8 +20,9 @@ export default function Router() {
         <Route index element={<Home />} />
         <Route path="sign-in" element={<SignIn />} />
         <Route path="help-pw">
-          <Route index element={<HelpPwPage />} />
-          <Route path="email-auth" element={<EmailAuthPage />} />
+          <Route index element={<HelpPw />} />
+          <Route path="email-auth" element={<EmailAuth />} />
+          <Route path="reset-pw" element={<ResetPw />} />
         </Route>
         <Route path="mypage">
           <Route index element={<MyAccount />} />

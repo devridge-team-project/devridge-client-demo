@@ -16,7 +16,7 @@ export default function DeleteAccount() {
     setPassword(value);
   };
   const { mutate, isSuccess } = useMutation({
-    mutationFn: () => deleteAccount({ password }),
+    mutationFn: () => deleteAccount(password),
   });
   if (isSuccess) {
     alert("회원 탈퇴 되었습니다.");
@@ -25,17 +25,19 @@ export default function DeleteAccount() {
 
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
-      <div>회원탈퇴</div>
-      <div>{nickname}님 정말 탈퇴하시겠습니까?</div>
-      <Input
-        className="mt-2.5 block h-14 w-80 border"
-        type="password"
-        name="password"
-        value={password}
-        placeholder="비밀번호를 입력해주세요"
-        onChange={onChange}
-      />
-      <Button title="탈퇴하기" onClick={mutate} />
+      <div className={`${col(2, 80)}`}>
+        <div>회원탈퇴</div>
+        <div>{nickname}님 정말 탈퇴하시겠습니까?</div>
+        <Input
+          className="mt-2.5 block h-14 w-80 border"
+          type="password"
+          name="password"
+          value={password}
+          placeholder="비밀번호를 입력해주세요"
+          onChange={onChange}
+        />
+        <Button title="탈퇴하기" onClick={mutate} options={{ size: "full" }} />
+      </div>
     </div>
   );
 }
