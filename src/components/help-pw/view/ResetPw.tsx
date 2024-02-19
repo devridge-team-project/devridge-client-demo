@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { center, col, row } from "style/display";
 import { useMutation } from "@tanstack/react-query";
 import { resetPassword } from "connection/api/password";
+import Loading from "design/loading/Loading";
 import { Button } from "design";
 import Input from "../../common/input";
 
@@ -10,10 +11,10 @@ export default function ResetPw() {
   const navigate = useNavigate();
   const location = useLocation();
   const {
-    state: { email },
+    state: { email, token: tempJwt },
   } = location;
   const { mutate, isSuccess } = useMutation({
-    mutationFn: () => resetPassword(password, email),
+    mutationFn: () => resetPassword(password, email, tempJwt),
   });
   if (isSuccess) {
     alert("비밀번호가 재설정되었습니다.");
