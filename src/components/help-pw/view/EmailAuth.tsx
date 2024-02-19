@@ -1,10 +1,14 @@
 import { center, col, row } from "style/display";
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { emailVerifications } from "connection/api/emailVerifications";
+import { codeVerifications } from "connection/api/emailVerifications";
 import Input from "components/common/input";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
+
+interface Token {
+  token: string;
+}
 
 export default function EmailAuth() {
   const navigate = useNavigate();
@@ -13,12 +17,13 @@ export default function EmailAuth() {
     state: { email },
   } = location;
   const [code, setCode] = useState<string>("");
-  const { mutate, isSuccess } = useMutation({
-    mutationFn: () => emailVerifications.get(email, Number(code)),
+  const { mutate, data, isSuccess } = useMutation({
+    mutationFn: () => codeVerifications.post(email, Number(code)),
   });
   if (isSuccess) {
+    const { token } = data as Token;
     alert("이메일 인증 되었습니다.");
-    navigate("/help-pw/reset-pw", { state: { email } });
+    navigate("/help-pw/reset-pw", { state: { email, token } });
   }
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;

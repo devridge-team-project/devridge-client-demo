@@ -4,6 +4,7 @@ import { emailVerifications } from "connection/api/emailVerifications";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
+import Loading from "design/loading/Loading";
 import Input from "../../common/input";
 
 export default function HelpPw() {
