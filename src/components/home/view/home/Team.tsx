@@ -9,12 +9,12 @@ export default function Team() {
       </div>
       <Button title="팀원 구하기" onClick={() => {}} />
       <div className="flex flex-col gap-4">
-        <div className="flex gap-4">
+        <div className="flex gap-4 infinite-slider-left-right">
           {teammates.map((teammate) => (
             <TeammateCard key={teammate.occupation + teammate.skills} {...teammate} />
           ))}
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 infinite-slider-right-left">
           {teammates.map((teammate) => (
             <TeammateCard key={teammate.occupation + teammate.skills} {...teammate} />
           ))}

@@ -37,7 +37,7 @@ export default function ReviewCard({
             </div>
           </div>
           <div className="flex flex-col w-34 items-start">
-            <div className="text-sm font-bold truncate">{title}</div>
+            <div className="text-sm font-bold truncate w-full text-start">{title}</div>
             <div className="text-xxs h-16 overflow-hidden line-clamp-4">{content}</div>
           </div>
         </div>

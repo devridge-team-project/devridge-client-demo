@@ -6,3 +6,31 @@
   font-family: "Pretendard-Medium";
   src: url("/public/fonts/Pretendard-Medium.otf") format("opentype");
 }
+
+@keyframes slideLeftRight {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(10%); 
+  }
+}
+
+.infinite-slider-left-right {
+  display: flex;
+  animation: slideLeftRight 40s ease-in-out infinite;
+}
+
+@keyframes slideRightLeft {
+  0%, 100% {
+    transform: translateX(0%);
+  }
+  50% {
+    transform: translateX(-10%); 
+  }
+}
+
+.infinite-slider-right-left {
+  display: flex;
+  animation: slideRightLeft 40s ease-in-out infinite;
+}
