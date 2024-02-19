@@ -10,8 +10,8 @@ const widthSize: Record<Size, string> = {
 
 const heightSize: Record<Size, string> = {
   small: "h-12",
-  medium: "h-24",
-  large: "h-40",
+  medium: "h-40",
+  large: "h-55",
   full: "h-full",
 };
 
