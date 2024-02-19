@@ -20,7 +20,7 @@ export default function PostCard({
       <div className="flex items-center font-bold text-xl">
         {index && (
           <div className="w-7 h-7 rounded-md flex justify-center items-center bg-black text-white ">
-            {index + 1}
+            {index}
           </div>
         )}
         <div className="pl-2">{title}</div>

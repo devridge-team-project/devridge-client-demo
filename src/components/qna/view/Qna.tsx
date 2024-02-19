@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { qna } from "connection";
 import { col, center } from "style/display";
-import QuestionCard from "../../../design/card/PostCard";
+import PostCard from "../../../design/card/PostCard";
 import useNavigation from "hook/useNavigation";
 import FloatButton from "design/button/FloatButton";
 export default function Qna() {
@@ -23,7 +23,7 @@ export default function Qna() {
         <div className={col(2)}>
           <div className="text-xl font-bold">오늘의 조회수 TOP 5</div>
           {viewsQnaData?.map(({ id, title, commentCount, likes, views }, index) => (
-            <QuestionCard
+            <PostCard
               key={id}
               index={index + 1}
               onClick={() => navigate(`/qna/${id}`)}
@@ -37,7 +37,7 @@ export default function Qna() {
         <div className={col(2)}>
           <div className="text-xl font-bold">최근 Q&A</div>
           {latestQnaData?.map(({ id, title, commentCount, likes, views }) => (
-            <QuestionCard
+            <PostCard
               key={id}
               onClick={() => navigate(`/qna/${id}`)}
               title={title}

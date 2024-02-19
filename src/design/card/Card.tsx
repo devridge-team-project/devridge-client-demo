@@ -9,7 +9,7 @@ const widthSize: Record<Size, string> = {
 };
 
 const heightSize: Record<Size, string> = {
-  small: "h-12",
+  small: "h-20",
   medium: "h-40",
   large: "h-55",
   full: "h-full",
@@ -39,7 +39,7 @@ export default function Card({
       className={cn(
         displays,
         widthSize[width ?? "medium"],
-        heightSize[height ?? "medium"],
+        heightSize[height ?? "small"],
         paddings,
         styles,
       )}
