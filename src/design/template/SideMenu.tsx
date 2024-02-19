@@ -20,11 +20,11 @@ export default function SideMenu() {
   });
   const { nickname, occupation } = userDetails ?? {};
 
-  const positions = "fixed top-0 right-0 z-50";
+  const positions = "fixed top-0 right-0";
   const animations = "duration-500";
   const moves = () => {
-    if (isOpen) return "w-full opacity-100";
-    return "w-0 opacity-0";
+    if (isOpen) return "w-full opacity-100  z-50";
+    return "w-0 opacity-0 ";
   };
 
   const navigationStyles = [
