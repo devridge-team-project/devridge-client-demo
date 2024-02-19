@@ -2,7 +2,7 @@ import SignUpLayout from "design/template/SignUpLayout";
 import { useWidgetStore } from "shared/store";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useSignUpStore } from "shared/sign-up/store";
-import { emailVerifications } from "connection/api/emailVerifications";
+import { codeVerifications } from "connection/api/emailVerifications";
 import { Input } from "design";
 import { useState } from "react";
 
@@ -13,7 +13,7 @@ export default function Authentication() {
 
   const { mutate, isSuccess, isError } = useMutation({
     mutationKey: ["authentication"],
-    mutationFn: () => emailVerifications.get(email, code),
+    mutationFn: () => codeVerifications.post(email, code),
   });
   if (isError) alert("인증에 실패했습니다.");
   if (isSuccess) setView("skills");
