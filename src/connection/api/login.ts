@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import { setCookie, removeCookie } from "util/cookies";
 import { LoginRequest } from "../../interface/Login";
 import { axiosJsonInstance } from "../axios";
+import httpRequest from "../axios";
 
 export const login = async (user: LoginRequest) => {
   try {
@@ -11,7 +12,7 @@ export const login = async (user: LoginRequest) => {
     const { accessToken } = data;
 
     console.log(accessToken);
-    const expiration = new Date(Date.now() + 120 * 60 * 1000);
+    const expiration = new Date(Date.now() + 15 * 60 * 1000);
     setCookie("accessToken", accessToken, { expires: expiration });
 
     return { status: 200, accessToken };
@@ -53,4 +54,8 @@ export const deleteAccount = async (password: string) => {
     }
     return 500;
   }
+};
+
+export const refresh = () => {
+  return httpRequest.get<string>("api/auth/accessToken");
 };

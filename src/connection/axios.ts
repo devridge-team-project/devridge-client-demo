@@ -1,6 +1,5 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { getCookie } from "util/cookies";
-
+import { getCookie, setCookie } from "util/cookies";
 const { REACT_APP_SERVER_URL: origin } = process.env;
 
 const axios = (ContentType: string) => {
@@ -9,12 +8,11 @@ const axios = (ContentType: string) => {
     headers: {
       "Content-type": ContentType,
     },
-    // withCredentials: true,
   };
   const instance = Axios.create(config);
   instance.defaults.withCredentials = true;
   instance.interceptors.request.use(
-    (request) => {
+    async (request) => {
       const token = getCookie("accessToken");
       if (token) {
         request.headers["Authorization"] = `Bearer ${token}`;
@@ -40,7 +38,7 @@ const httpRequest = {
       .get<Response>(url, data)
       .then((res) => res.data);
   },
-  post: function <Request = any, Response = unknown>(url: string, data?: Request) {
+  post: function <Request = any, Response = unknown>(url: string, data?: Request | object) {
     return axios("application/json")
       .post<Response>(url, data)
       .then((res) => res.data);
