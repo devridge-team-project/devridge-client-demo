@@ -3,8 +3,8 @@ import { cn } from "util/classNames";
 
 const widthSize: Record<Size, string> = {
   small: "w-40",
-  medium: "w-120",
-  large: "w-80",
+  medium: "w-80",
+  large: "w-120",
   full: "w-full",
 };
 

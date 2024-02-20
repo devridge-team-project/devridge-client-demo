@@ -14,12 +14,9 @@ export default function Header() {
   return (
     <>
       <div className={cn(sizes, displays, styles, positions, paddings)}>
-        <div
-          onClick={() => navigate("/", clearWidget)}
-          className="text-2xl font-bold cursor-pointer"
-        >
-          DEVRIDGE
-        </div>
+        <button onClick={() => navigate("/", clearWidget)}>
+          <img src="/images/icons/devridge-logo.svg" alt="DEVRIDGE" className="w-28 h-5" />
+        </button>
         <button onClick={() => setWidget("sideMenu")}>
           <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="w-7 h-7" />
         </button>
