@@ -17,18 +17,19 @@ export default function PostCard({
 }) {
   return (
     <Card onClick={onClick}>
-      <div className="flex items-center font-bold text-xl">
+      <div className="flex items-center h-full gap-4">
         {index && (
-          <div className="w-7 h-7 rounded-md flex justify-center items-center bg-black text-white ">
+          <div className="w-6 h-6 rounded-md flex justify-center items-center bg-black text-white text-lg font-bold ">
             {index}
           </div>
         )}
-        <div className="pl-2">{title}</div>
-      </div>
-      <div className="flex justify-end gap-4 text-xs text-gray-300">
-        <div>답변수 {commentCount}</div>
-        <div>추천수 {likes}</div>
-        <div>조회수 {views}</div>
+        <div className="flex flex-col items-start">
+          <div className="text-base font-bold">{title}</div>
+          <div className="flex justify-end gap-4 text-xs text-gray-300">
+            <div>답변수 {commentCount}</div>
+            <div>조회수 {views}</div>
+          </div>
+        </div>
       </div>
     </Card>
   );
