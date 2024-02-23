@@ -8,7 +8,8 @@ module.exports = {
     extend: {
       fontSize: {
         xxs: "0.625rem",
-        "1xl": "0.875rem",
+        xm: "0.875rem",
+        "1xl": "1rem",
       },
       inset: {
         300: "75rem",
@@ -69,6 +70,8 @@ module.exports = {
         "charcoal-grey": "#242424",
         "near-black": "#0C0E0F",
         "medium-grey": "#AFAFAF",
+        "blue-grey": "#4F26F4",
+        "white-purple": "rgba(79, 38, 244, 0.25)",
       },
       transitionDuration: {
         500: "500ms",
