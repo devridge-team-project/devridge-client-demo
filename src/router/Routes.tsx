@@ -1,6 +1,6 @@
 import { Home, Join, Layout, SignIn, SignUp, Success } from "components/sign-up";
 import { Route, Routes } from "react-router-dom";
-import { Community, CommunityById, CommunityPost } from "components/community";
+import { Community, CommunityById, CommunityPost, Project, Study } from "components/community";
 import { HelpPw, EmailAuth, ResetPw } from "components/help-pw";
 import {
   MyAccount,
@@ -39,6 +39,8 @@ export default function Router() {
         <Route path="community">
           <Route index element={<Community />} />
           <Route path=":id" element={<CommunityById />} />
+          <Route path="project" element={<Project />} />
+          <Route path="study" element={<Study />} />
           <Route path="post" element={<CommunityPost />} />
         </Route>
         <Route path="qna">
