@@ -23,7 +23,7 @@ export default function UpdateAccount() {
 
   return (
     <div className={`min-h-screen ${center.colO(0)} `}>
-      <div className={`w-80 text-1xl font-bold ${row(2)}`}>회원정보 수정</div>
+      <div className={`w-80 text-1xl text-blue-grey font-bold ${row(2)}`}>회원정보 수정</div>
       {/* <img
         src={profileImageUrl}
         className="mt-7.5 h-25 w-25 rounded-full bg-gray-200 "

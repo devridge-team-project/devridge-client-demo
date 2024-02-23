@@ -1,5 +1,5 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { getCookie, setCookie } from "util/cookies";
+import { getCookie } from "util/cookies";
 const { REACT_APP_SERVER_URL: origin } = process.env;
 
 const axios = (ContentType: string) => {
@@ -12,7 +12,7 @@ const axios = (ContentType: string) => {
   const instance = Axios.create(config);
   instance.defaults.withCredentials = true;
   instance.interceptors.request.use(
-    async (request) => {
+    (request) => {
       const token = getCookie("accessToken");
       if (token) {
         request.headers["Authorization"] = `Bearer ${token}`;

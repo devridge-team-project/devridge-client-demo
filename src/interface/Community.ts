@@ -41,3 +41,10 @@ export interface CommunityPost {
 export interface Content {
   content: string;
 }
+
+export interface Project {
+  title: string;
+  content: string;
+  category: string;
+  images: string[];
+}
