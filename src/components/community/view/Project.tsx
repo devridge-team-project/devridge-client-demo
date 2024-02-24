@@ -19,7 +19,7 @@ export default function Project() {
       <div>
         {Project?.map(({ title, content, category }) => {
           return (
-            <div className="h-40 border-b-2">
+            <div className="h-[86px] border-b-2">
               <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3 mt-5">
                 {category}
               </div>

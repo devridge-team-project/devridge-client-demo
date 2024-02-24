@@ -11,20 +11,20 @@ export default function Community() {
     queryKey: ["Community"],
     queryFn: () => getCommunity(),
   });
-
+  console.log(datas);
   return (
     <CommunityLayout tag="issue">
       <div className={col(2)}>
         {datas?.map(({ id, title, views, likeCount, commentCount }) => {
           return (
-            <Card
-              key={id}
-              onClick={() => navigate(`${id}`)}
-              title={title}
-              views={views}
-              likeCount={likeCount}
-              commentCount={commentCount}
-            />
+            <Link to={`${id}`} className="h-40 border-b-2">
+              <div className="text-1xl font-bold">{title}</div>
+              <div className="text-xxs">게시판 내용 api 추가해주세요.</div>
+              <div className="text-[8px] text-gray-400 flex justify-end">
+                <div className="mr-2.5">조회수: {views}</div>
+                <div>추천: {likeCount}</div>
+              </div>
+            </Link>
           );
         })}
         <div className={`flex justify-end ${row(2)}`}>
