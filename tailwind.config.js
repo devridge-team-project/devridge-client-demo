@@ -73,6 +73,9 @@ module.exports = {
         "blue-grey": "#4F26F4",
         "white-purple": "rgba(79, 38, 244, 0.25)",
       },
+      opacity: {
+        35: "0.35",
+      },
       transitionDuration: {
         500: "500ms",
         1000: "1000ms",
