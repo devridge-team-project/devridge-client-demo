@@ -1,8 +1,10 @@
 import { Skill } from "interface/Skill";
 import httpRequest from "../axios";
 
+const api = httpRequest.server;
+
 function getSkills() {
-  return httpRequest.get<Skill[]>("/api/skills");
+  return api.get<Skill[]>("/api/skills");
 }
 
 export const skills = {

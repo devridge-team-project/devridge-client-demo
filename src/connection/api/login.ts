@@ -56,6 +56,8 @@ export const deleteAccount = async (password: string) => {
   }
 };
 
+const api = httpRequest.server;
+
 export const refresh = () => {
-  return httpRequest.get<string>("api/auth/accessToken");
+  return api.get<string>("api/auth/accessToken");
 };

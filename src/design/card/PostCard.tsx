@@ -24,7 +24,7 @@ export default function PostCard({
           </div>
         )}
         <div className="flex flex-col items-start">
-          <div className="text-base font-bold">{title}</div>
+          <div className="text-base font-bold ">{title}</div>
           <div className="flex justify-end gap-4 text-xs text-gray-300">
             <div>답변수 {commentCount}</div>
             <div>조회수 {views}</div>

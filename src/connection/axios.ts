@@ -2,9 +2,17 @@ import Axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getCookie } from "util/cookies";
 const { REACT_APP_SERVER_URL: origin } = process.env;
 
-const axios = (ContentType: string) => {
+const apiConfig = {
+  server: process.env.REACT_APP_SERVER_URL,
+  naver: process.env.REACT_APP_NAVER_ORIGIN,
+  kakao: process.env.REACT_APP_KAKAO_ORIGIN,
+  gitHub: process.env.REACT_APP_GITHUB_ORIGIN,
+  google: process.env.REACT_APP_GOOGLE_ORIGIN,
+};
+
+const axios = (ContentType: string, baseURL: string) => {
   const config: AxiosRequestConfig = {
-    baseURL: origin,
+    baseURL: baseURL || "/api",
     headers: {
       "Content-type": ContentType,
     },
@@ -27,29 +35,34 @@ const axios = (ContentType: string) => {
   return instance;
 };
 
-const httpRequest = {
-  get: function <Response = unknown>(url: string, data?: object) {
-    return axios("application/json")
-      .get<Response>(url, data)
-      .then((res) => res.data);
-  },
-  getFormData: function <Response = unknown>(url: string, data?: object) {
-    return axios("form-data")
-      .get<Response>(url, data)
-      .then((res) => res.data);
-  },
-  post: function <Request = any, Response = unknown>(url: string, data?: Request | object) {
-    return axios("application/json")
-      .post<Response>(url, data)
-      .then((res) => res.data);
-  },
-  patch: function <Request = any, Response = unknown>(url: string, data?: Request) {
-    return axios("application/json")
-      .patch<Response>(url, data)
-      .then((res) => res.data);
-  },
+const http = (baseURL?: string) => {
+  const axiosJson = axios("application/json", baseURL ?? "/api");
+  const axiosForm = axios("form-data", baseURL ?? "/api");
+  return {
+    get: function <Response = unknown>(url: string, data?: object) {
+      return axiosJson.get<Response>(url, data).then((res) => res.data);
+    },
+    post: function <Request = any, Response = unknown>(url: string, data?: Request | object) {
+      return axiosJson.post<Response>(url, data).then((res) => res.data);
+    },
+    put: function <Request = any, Response = unknown>(url: string, data?: Request) {
+      return axiosJson.put<Response>(url, data).then((res) => res.data);
+    },
+    patch: function <Request = any, Response = unknown>(url: string, data?: Request) {
+      return axiosJson.patch<Response>(url, data).then((res) => res.data);
+    },
+    delete: function <Response = unknown>(url: string, data?: object) {
+      return axiosJson.delete<Response>(url, data).then((res) => res.data);
+    },
+  };
 };
 
-export const axiosJsonInstance = axios("application/json");
-export const axiosFormInstance = axios("multipart/form-data");
+const httpRequest = {
+  server: http(),
+  naver: http(apiConfig.naver),
+  kakao: http("https://kauth.kakao.com"),
+};
+
+export const axiosJsonInstance = axios("application/json", apiConfig.server ?? "/api");
+export const axiosFormInstance = axios("multipart/form-data", apiConfig.server ?? "/api");
 export default httpRequest;

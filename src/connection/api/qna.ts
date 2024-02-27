@@ -1,24 +1,26 @@
 import httpRequest from "../axios";
 import { Qna, QnaById, QnaComment, QnaPost } from "interface/Qna";
 
+const api = httpRequest.server;
+
 function getQna(sortOption: "views" | "latest") {
-  return httpRequest.get<Qna[]>("/api/qna", { params: { sortOption } });
+  return api.get<Qna[]>("/api/qna", { params: { sortOption } });
 }
 
 function getQnaById(id: number) {
-  return httpRequest.get<QnaById>(`/api/qna/${id}`);
+  return api.get<QnaById>(`/api/qna/${id}`);
 }
 
 function postQna(data: QnaPost) {
-  return httpRequest.post("/api/qna", data);
+  return api.post("/api/qna", data);
 }
 
 function getComments(id: number) {
-  return httpRequest.get<QnaComment[]>(`/api/qna/${id}/comments`);
+  return api.get<QnaComment[]>(`/api/qna/${id}/comments`);
 }
 
 function postComments(id: number, data: object) {
-  return httpRequest.post(`/api/qna/${id}/comments`, data);
+  return api.post(`/api/qna/${id}/comments`, data);
 }
 
 export const qna = {

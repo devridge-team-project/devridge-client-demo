@@ -8,12 +8,14 @@ import {
 } from "interface/Community";
 import httpRequest from "../axios";
 
+const api = httpRequest.server;
+
 export const getCommunity = () => {
-  return httpRequest.get<Community[]>("api/community");
+  return api.get<Community[]>("api/community");
 };
 
 export const postCommunity = ({ title, content, hashtags = [] }: CommunityPost) => {
-  return httpRequest.post("api/community", {
+  return api.post("api/community", {
     title,
     content,
     hashtags,
@@ -21,19 +23,19 @@ export const postCommunity = ({ title, content, hashtags = [] }: CommunityPost) 
 };
 
 export const getCommunityById = (id: number) => {
-  return httpRequest.get<CommunityById>(`api/community/${id}`);
+  return api.get<CommunityById>(`api/community/${id}`);
 };
 
 export const getComments = (id: number) => {
-  return httpRequest.get<CommunityComments[]>(`api/community/${id}/comments`);
+  return api.get<CommunityComments[]>(`api/community/${id}/comments`);
 };
 
 export const postComments = (id: number, content: Content) => {
-  return httpRequest.post(`api/community/${id}/comments`, content);
+  return api.post(`api/community/${id}/comments`, content);
 };
 
 export const getProject = () => {
-  return httpRequest.get<Project[]>("api/community/projects");
+  return api.get<Project[]>("api/community/projects");
 };
 
 export const comment = {

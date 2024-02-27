@@ -1,11 +1,13 @@
 import httpRequest from "../axios";
 
+const api = httpRequest.server;
+
 function postCodeVerifications(email: string, code: number | undefined) {
-  return httpRequest.post(`/api/email-verifications/code?email=${email}&code=${code}`);
+  return api.post(`/api/email-verifications/code?email=${email}&code=${code}`);
 }
 
 async function postEmailVerifications(email: string) {
-  return httpRequest.post("/api/email-verifications", { email });
+  return api.post("/api/email-verifications", { email });
 }
 
 export const emailVerifications = {

@@ -1,12 +1,14 @@
 import { SignUpRequest, UserDetails } from "interface/User";
 import httpRequest from "../axios";
 
+const api = httpRequest.server;
+
 function getUserDetails() {
-  return httpRequest.get<UserDetails>("/api/users/details");
+  return api.get<UserDetails>("/api/users/details");
 }
 
 function postUsers(data: SignUpRequest) {
-  return httpRequest.post("/api/users", data);
+  return api.post("/api/users", data);
 }
 
 export const users = {
