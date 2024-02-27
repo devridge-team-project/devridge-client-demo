@@ -27,9 +27,8 @@ export const qna = {
   get: getQna,
   getById: getQnaById,
   post: postQna,
-};
-
-export const comment = {
-  get: getComments,
-  post: postComments,
+  comments: {
+    get: getComments,
+    post: postComments,
+  },
 };

@@ -38,12 +38,19 @@ const axios = (ContentType: string, baseURL: string) => {
 const http = (baseURL?: string) => {
   const axiosJson = axios("application/json", baseURL ?? "/api");
   const axiosForm = axios("form-data", baseURL ?? "/api");
+  const axiosMultipart = axios("multipart/form-data", baseURL ?? "/api");
   return {
     get: function <Response = unknown>(url: string, data?: object) {
       return axiosJson.get<Response>(url, data).then((res) => res.data);
     },
     post: function <Request = any, Response = unknown>(url: string, data?: Request | object) {
       return axiosJson.post<Response>(url, data).then((res) => res.data);
+    },
+    postMultipart: function <Request = any, Response = unknown>(
+      url: string,
+      data?: Request | object,
+    ) {
+      return axiosMultipart.post<Response>(url, data).then((res) => res.data);
     },
     put: function <Request = any, Response = unknown>(url: string, data?: Request) {
       return axiosJson.put<Response>(url, data).then((res) => res.data);
@@ -58,7 +65,7 @@ const http = (baseURL?: string) => {
 };
 
 const httpRequest = {
-  server: http(),
+  server: http(apiConfig.server),
   naver: http(apiConfig.naver),
   kakao: http("https://kauth.kakao.com"),
 };

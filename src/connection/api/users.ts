@@ -11,7 +11,11 @@ function postUsers(data: SignUpRequest) {
   return api.post("/api/users", data);
 }
 
+function postUsersV2(data: FormData) {
+  return api.postMultipart("/api/users", data);
+}
+
 export const users = {
   getDetails: getUserDetails,
-  post: postUsers,
+  post: postUsersV2,
 };

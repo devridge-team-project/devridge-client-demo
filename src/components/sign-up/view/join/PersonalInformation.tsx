@@ -11,23 +11,27 @@ export default function PersonalInformation() {
   const [nickname, setNickname] = useState<string>("");
   const [introduction, setIntroduction] = useState<string>("");
   const [occupationId, setOccupationId] = useState<number>(4);
-
   const { email, password, selectedSkills, profileImageUrl, provider } = useSignUpStore();
   const navigate = useNavigation();
 
+  const data = {
+    email: "test13512137@test.com",
+    password: "asdf1234",
+    provider: "normal",
+    nickname: "test1231412",
+    introduction: "안녕하세요개발자입니다",
+    skillIds: [1, 2, 3],
+    occupationId: 2,
+  };
+
+  const formData = new FormData();
+  const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
+  formData.append("image", profileImageUrl ?? "");
+  formData.append("member", blob);
+
   const { mutate, error, isError, isSuccess } = useMutation({
     mutationKey: ["user"],
-    mutationFn: () =>
-      users.post({
-        email,
-        password,
-        provider: "normal",
-        nickname,
-        introduction: "안녕하세요개발자입니다",
-        profileImageUrl: null,
-        skillIds: selectedSkills,
-        occupationId,
-      }),
+    mutationFn: () => users.post(formData),
   });
   if (isError) {
     console.log("email", email, "password", password, "provider", provider, "nickname", nickname);

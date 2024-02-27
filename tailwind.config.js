@@ -82,6 +82,7 @@ module.exports = {
       },
       backgroundImage: {
         "image-bubble": "url('/public/images/home/bubble.png')",
+        "image-developer-man": "url('/public/images/home/developer-man.png')",
       },
     },
   },
