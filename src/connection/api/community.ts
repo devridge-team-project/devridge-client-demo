@@ -5,6 +5,7 @@ import {
   Content,
   CommunityComments,
   Project,
+  ProjectPost,
 } from "interface/Community";
 import httpRequest from "../axios";
 
@@ -36,6 +37,24 @@ export const postComments = (id: number, content: Content) => {
 
 export const getProject = () => {
   return api.get<Project[]>("api/community/projects");
+};
+
+export const postProject = ({
+  title,
+  content,
+  role,
+  category,
+  onoff,
+  images = [],
+}: ProjectPost) => {
+  return api.post("api/community/projects", {
+    title,
+    content,
+    role,
+    category,
+    onoff,
+    images,
+  });
 };
 
 export const comment = {

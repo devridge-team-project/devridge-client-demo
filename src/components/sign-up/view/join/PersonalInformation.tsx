@@ -26,13 +26,20 @@ export default function PersonalInformation() {
 
   const formData = new FormData();
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
-  formData.append("image", profileImageUrl ?? "");
+  if (profileImageUrl) {
+    formData.append("image", profileImageUrl); // profileImageUrl이 string형식이 아닌 File형식 이어야 함.
+  } else {
+    const file = new File([""], "default.png");
+    formData.append("image", file);
+  }
+
   formData.append("member", blob);
 
   const { mutate, error, isError, isSuccess } = useMutation({
     mutationKey: ["user"],
     mutationFn: () => users.post(formData),
   });
+
   if (isError) {
     console.log("email", email, "password", password, "provider", provider, "nickname", nickname);
     console.log(error);
