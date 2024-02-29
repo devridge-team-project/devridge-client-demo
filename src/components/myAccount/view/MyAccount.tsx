@@ -1,20 +1,42 @@
 import { center, col, row } from "style/display";
 import { Link } from "react-router-dom";
+import { logout } from "connection/api/login";
 import { users } from "connection/api/users";
 import { useSignUpStore } from "shared/sign-up/store";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
+import useSignIn from "hook/useSignIn";
+import { Button } from "design";
 import { useEffect } from "react";
+import { removeCookie } from "util/cookies";
 export default function MyAccount() {
-  const { nickname, setNickname, occupation, setOccupation, skillIds, setSkillIds } =
-    useSignUpStore();
+  useSignIn();
+  const {
+    nickname,
+    setNickname,
+    occupation,
+    setOccupation,
+    profileImageUrl,
+    setProfileImageUrl,
+    setSkillIds,
+  } = useSignUpStore();
 
   const { data: user, isLoading: loading } = useQuery({
     queryKey: ["MyAccount"],
     queryFn: () => users.getDetails(),
   });
+  const { mutate, isSuccess } = useMutation({
+    mutationKey: ["logout"],
+    mutationFn: () => logout(),
+  });
+  if (isSuccess) {
+    removeCookie("accessToken");
+    alert("로그아웃 되었습니다. ");
+  }
+
   useEffect(() => {
     if (user) {
-      const { nickname, occupation, skillIds } = user;
+      const { nickname, occupation, skillIds, imageUrl } = user;
+      setProfileImageUrl(imageUrl ?? "");
       setNickname(nickname);
       setOccupation(occupation);
       setSkillIds(skillIds);
@@ -22,26 +44,37 @@ export default function MyAccount() {
   }, [user]);
 
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
-      {/* <img
-        src={profileImageUrl}
-        className="h-25 w-25 rounded-full bg-gray-200 "
-        alt="profileImage"
-      /> */}
-      <div className="mt-7 text-2xl font-bold">{nickname}</div>
-      <div className="mt-3 text-1xl font-bold text-blue-600 ">{occupation}</div>
-      <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="update-account">회원정보 수정</Link>
-      </div>
-      <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        {" "}
-        <Link to="change-pw">비밀번호 변경</Link>
-      </div>
-      <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="delete-account">회원탈퇴</Link>
-      </div>
-      <div className={`mt-7.5 w-80 font-bold ${row(2)}`}>
-        <Link to="ask">문의사항</Link>
+    <div className={`mt-[25px] ${center.colO(0)}`}>
+      <div className={`${col(2, 80)}`}>
+        <div className="flex">
+          <img
+            src={profileImageUrl}
+            className="h-25 w-25 rounded-full bg-gray-200 "
+            alt="profileImage"
+          />
+          <div className="ml-3.5">
+            <div className="text-2xl font-bold text-blue-grey">{nickname}</div>
+            <div className="text-1xl">{occupation}</div>
+          </div>
+        </div>
+
+        <Link to="update-account">
+          <div className={`mt-[38px] bg-gray-100 h-10 w-80 font-bold ${center.colO(0)}`}>
+            회원정보 수정
+          </div>
+        </Link>
+        <div className="font-bold mt-[70px]">계정</div>
+        <div className={`mt-5 w-80 ${row(2)}`}>
+          {" "}
+          <Link to="change-pw">비밀번호 변경</Link>
+        </div>
+        <div className={`mt-5 w-80 ${row(2)}`}>
+          <Link to="delete-account">회원탈퇴</Link>
+        </div>
+        <div className={`mt-5 mb-12.5 w-80 ${row(2)}`}>
+          <Link to="ask">문의사항</Link>
+        </div>
+        <Button title="로그아웃" onClick={mutate} options={{ size: "full" }} />
       </div>
     </div>
   );

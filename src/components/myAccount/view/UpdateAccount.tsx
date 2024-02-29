@@ -4,6 +4,7 @@ import { useSignUpStore } from "shared/sign-up/store";
 import { skills } from "connection/api/skills";
 import Input from "../../common/input";
 import { useQuery } from "@tanstack/react-query";
+
 export default function UpdateAccount() {
   const [skill, setSkill] = useState<string[]>([]);
   const { nickname, profileImageUrl, occupation, skillIds } = useSignUpStore();
@@ -24,12 +25,12 @@ export default function UpdateAccount() {
   return (
     <div className={`min-h-screen ${center.colO(0)} `}>
       <div className={`w-80 text-1xl text-blue-grey font-bold ${row(2)}`}>회원정보 수정</div>
-      {/* <img
+      <img
         src={profileImageUrl}
         className="mt-7.5 h-25 w-25 rounded-full bg-gray-200 "
         alt="profileImage"
-      /> */}
-      <div className="mt-7 text-2xl font-bold">{nickname}</div>
+      />
+      <div className="mt-7 text-2xl text-blue-grey font-bold">{nickname}</div>
       <form className={`${col(2, 80)}`} onSubmit={onSubmitHandler}>
         <Input
           className="mt-2.5 block h-14 w-80 border"

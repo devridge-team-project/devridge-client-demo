@@ -18,7 +18,7 @@ interface SignUpProps {
   passwordConfirm: string;
   provider: string;
   nickname: string;
-  profileImageUrl: string | null;
+  profileImageUrl: string | undefined;
   occupation: string;
   selectedSkills: number[];
   skillIds: number[];
@@ -28,7 +28,7 @@ interface SignUpProps {
   setPasswordConfirm: (passwordConfirm: string) => void;
   setProvider: (provider: string) => void;
   setNickname: (nickname: string) => void;
-  setProfileImageUrl: (profileImage: string) => void;
+  setProfileImageUrl: (profileImage: string | undefined) => void;
   setOccupation: (occupation: string) => void;
   setSelectedSkills: (skillId: number) => void;
   setSkillIds: (skillIds: number[]) => void;
