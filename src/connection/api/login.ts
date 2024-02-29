@@ -26,7 +26,7 @@ export const login = async (user: LoginRequest) => {
   }
 };
 
-export const logout = async () => {
+/* export const logout = async () => {
   try {
     const { status } = await axiosJsonInstance.post("api/logout");
     removeCookie("accessToken");
@@ -38,7 +38,7 @@ export const logout = async () => {
     }
     return 500;
   }
-};
+}; */
 
 export const deleteAccount = async (password: string) => {
   console.log(password);
@@ -57,6 +57,10 @@ export const deleteAccount = async (password: string) => {
 };
 
 const api = httpRequest.server;
+
+export const logout = () => {
+  return api.post("api/logout");
+};
 
 export const refresh = () => {
   return api.get<string>("api/auth/accessToken");
