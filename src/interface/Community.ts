@@ -4,12 +4,22 @@ export interface Member {
   profileImageUrl: string | null;
   introduction: string;
 }
+export interface Hashtag {
+  id: number;
+  word: string;
+  count: number;
+}
 export interface Community {
   id: number;
   title: string;
   views: number;
   likeCount: number;
-  commentCount: number;
+  comments: number;
+  member: Member;
+  createdAt: string;
+  updatedAt: string;
+  hashtags: Hashtag[];
+  scraps: number;
 }
 
 export interface CommunityById {
@@ -45,6 +55,15 @@ export interface Content {
 export interface Project {
   title: string;
   content: string;
+  category: string;
+  images: string[];
+}
+
+export interface ProjectPost {
+  title: string;
+  content: string;
+  role: string;
+  onoff: string;
   category: string;
   images: string[];
 }

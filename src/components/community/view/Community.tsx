@@ -15,7 +15,7 @@ export default function Community() {
   return (
     <CommunityLayout tag="issue">
       <div className={col(2)}>
-        {datas?.map(({ id, title, views, likeCount, commentCount }) => {
+        {datas?.map(({ id, title, views, likeCount, comments }) => {
           return (
             <Link to={`${id}`} className="h-40 border-b-2">
               <div className="text-1xl font-bold">{title}</div>
