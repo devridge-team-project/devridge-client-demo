@@ -29,7 +29,7 @@ export default function PersonalInformation() {
   if (profileImageUrl) {
     formData.append("image", profileImageUrl); // profileImageUrl이 string형식이 아닌 File형식 이어야 함.
   } else {
-    const file = new File([""], "default.png");
+    const file = new File([""], "/images/default.png");
     formData.append("image", file);
   }
 

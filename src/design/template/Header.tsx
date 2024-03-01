@@ -1,5 +1,5 @@
 import { useWidgetsStore } from "shared/store";
-import { cn } from "util/classNames";
+import cn from "util/classNames";
 import useNavigation from "hook/useNavigation";
 
 export default function Header() {

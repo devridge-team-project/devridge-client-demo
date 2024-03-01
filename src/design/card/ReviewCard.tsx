@@ -23,7 +23,7 @@ export default function ReviewCard({
 
   return (
     <button onClick={onClick} className={index % 2 === 1 ? "mt-5" : ""}>
-      <Card options={{ width: "small", height: "medium", round: "xl" }}>
+      <Card options={{ width: "sm", height: "md", round: "xl" }}>
         <div className="flex flex-col items-center justify-center gap-5">
           <div className="flex w-34 gap-2 items-center">
             <img

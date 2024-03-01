@@ -8,7 +8,7 @@ export default function TeammateCard({
   skills: [string, string][];
 }) {
   return (
-    <Card options={{ width: "small", height: "large" }}>
+    <Card options={{ width: "sm", height: "lg" }}>
       <div className="flex justify-center items-center">
         <img src="https://via.placeholder.com/150" alt="teammate" className="w-25 h-25 " />
       </div>

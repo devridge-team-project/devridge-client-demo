@@ -15,7 +15,7 @@ export default function QnaSuccess() {
         onClick={() => {
           navigator("/qna");
         }}
-        options={{ size: "large" }}
+        options={{ size: "lg" }}
       />
     </div>
   );

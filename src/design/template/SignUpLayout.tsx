@@ -29,7 +29,7 @@ export default function SignUpLayout({
             title={title}
             onClick={onClick}
             options={{
-              size: "large",
+              size: "lg",
               color: "black",
             }}
           />

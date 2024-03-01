@@ -6,7 +6,7 @@ import { Button } from "design";
 import useNavigation from "hook/useNavigation";
 import { useWidgetsStore } from "shared/store";
 import { col } from "style";
-import { cn } from "util/classNames";
+import cn from "util/classNames";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {
@@ -74,7 +74,7 @@ export default function SideMenu() {
               <Button
                 title="로그인 하러가기"
                 onClick={() => isOpen && navigate("/sign-in", clearWidget)}
-                options={{ size: "large" }}
+                options={{ size: "lg" }}
                 freeze={!isOpen}
               />
               <div className="flex justify-center items-center gap-4 text-sm font-bold">

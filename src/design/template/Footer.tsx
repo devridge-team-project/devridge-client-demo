@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
-    <div className="h-[250px] bg-black">
+    <div className="h-[250px] bg-black ">
       <div className="flex justify-center pt-40">
         <Link to="https://github.com/">
           <img src="/images/icons/github.png" alt="gitHub" className="w-7.5 h-7.5 mr-2.5" />

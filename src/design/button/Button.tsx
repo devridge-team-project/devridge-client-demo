@@ -1,44 +1,32 @@
-import { Size } from "interface/Size";
+import { ButtonProps, Size } from "interface";
 import { center } from "style/display";
-import { cn } from "util/classNames";
+import cn from "util/classNames";
 
-const widthSize: Record<Size, string> = {
-  small: "w-50 h-12 rounded-full",
-  medium: "w-72 h-12 rounded-full",
-  large: "w-80 h-15 rounded-md",
+const widthSize = {
+  sm: "w-50 h-12 rounded-full",
+  md: "w-72 h-12 rounded-full",
+  lg: "w-80 h-15 rounded-md",
   full: "w-full h-15 rounded-md",
-};
+} as Record<Size, string>;
 
-const colorSet: Record<string, string> = {
+const colorSet = {
   black: "bg-black border-2 border-black text-white",
   white: "bg-white border-2 border-black text-black",
-};
+} as Record<string, string>;
 
-export default function Button({
-  title,
-  type,
-  onClick,
-  options,
-  freeze,
-}: {
-  title: string;
-  type?: string;
-  onClick?: () => unknown | (() => Promise<unknown>);
-  options?: { size?: Size; color?: string };
-  freeze?: boolean;
-}) {
+export default function Button({ title, type, onClick, options, freeze }: ButtonProps) {
   const { size, color } = options ?? {};
-  const positions = center.colO(0);
-  const sizes = widthSize[size ?? "small"];
 
-  const styles = [
-    colorSet[color ?? "black"],
-    freeze ? "cursor-default" : "",
-    "font-bold text-xl",
-  ].join(" ");
+  const container = {
+    positions: center.colO(0),
+    sizes: widthSize[size ?? "sm"],
+    freeze: freeze ? "cursor-default" : "",
+    texts: "font-bold text-xl",
+    colors: colorSet[color ?? "black"],
+  };
 
   return (
-    <button onClick={onClick} className={cn(positions, sizes, styles)}>
+    <button onClick={onClick} className={cn(container)}>
       {title}
     </button>
   );
