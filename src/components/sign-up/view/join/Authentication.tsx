@@ -7,7 +7,8 @@ import { Input } from "design";
 import { useState } from "react";
 
 export default function Authentication() {
-  const { email } = useSignUpStore();
+  const { signUpData } = useSignUpStore();
+  const { email } = signUpData;
   const [code, setCode] = useState<number | undefined>();
   const { setView } = useWidgetStore();
 

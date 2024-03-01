@@ -10,15 +10,15 @@ import { useState } from "react";
 export default function PersonalInformation() {
   const [nickname, setNickname] = useState<string>("");
   const [introduction, setIntroduction] = useState<string>("");
-  const [occupationId, setOccupationId] = useState<number>(4);
-  const { email, password, selectedSkills, profileImageUrl, provider } = useSignUpStore();
+  const { signUpData } = useSignUpStore();
+  const { email, password, provider } = signUpData;
   const navigate = useNavigation();
 
   const data = {
-    email: "test13512137@test.com",
+    email: "test135125137@test.com",
     password: "asdf1234",
     provider: "normal",
-    nickname: "test1231412",
+    nickname: "test123125",
     introduction: "안녕하세요개발자입니다",
     skillIds: [1, 2, 3],
     occupationId: 2,
@@ -26,13 +26,11 @@ export default function PersonalInformation() {
 
   const formData = new FormData();
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
-  if (profileImageUrl) {
-    formData.append("image", profileImageUrl); // profileImageUrl이 string형식이 아닌 File형식 이어야 함.
-  } else {
-    const file = new File([""], "/images/default.png");
-    formData.append("image", file);
-  }
-
+  // if (profileImageUrl) {
+  //   formData.append("image", profileImageUrl);
+  //   const file = new File([""], "/images/test/default.png");
+  //   formData.append("image", file);
+  // }
   formData.append("member", blob);
 
   const { mutate, error, isError, isSuccess } = useMutation({

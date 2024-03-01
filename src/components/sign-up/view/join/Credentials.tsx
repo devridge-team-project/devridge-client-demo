@@ -7,8 +7,8 @@ import { useMutation } from "@tanstack/react-query";
 import { emailVerifications } from "connection";
 
 export default function Credentials() {
-  const { email, password, passwordConfirm, setEmail, setPassword, setPasswordConfirm } =
-    useSignUpStore();
+  const { signUpData, setSignUpData } = useSignUpStore();
+  const { email } = signUpData;
   const { setView } = useWidgetStore();
   const { confirm } = usePasswordConfirm();
 

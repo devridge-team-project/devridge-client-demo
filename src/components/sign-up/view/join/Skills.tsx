@@ -10,7 +10,6 @@ import { Skill } from "interface/Skill";
 export default function Skills() {
   const [keyword, setKeyword] = useState("");
   const { setView } = useWidgetStore();
-  const { selectedSkills, setSelectedSkills } = useSignUpStore();
 
   const { data: techs, isLoading } = useQuery({
     queryKey: ["techs"],

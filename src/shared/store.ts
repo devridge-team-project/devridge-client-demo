@@ -1,57 +1,65 @@
+import { WidgetEvent } from "interface/Widget";
 import { create } from "zustand";
 
-interface ExcepitonsProps {
-  loading: boolean;
-  setLoading: (loading: boolean) => void;
-  error: string[];
-  setError: (error: string) => void;
-  clearError: () => void;
-}
-export const useExceptionsStore = create<ExcepitonsProps>((set) => ({
-  loading: false,
-  setLoading: (loading: boolean) => set({ loading }),
-  error: [],
-  setError: (error: string) => set({ error: [error] }),
-  clearError: () => set({ error: [] }),
-}));
-
 interface WidgetProps {
-  nowModal: string;
-  setModal: (nowModal: string) => void;
-  closeModal: () => void;
-  nowView: string;
-  setView: (nowView: string) => void;
+  events: WidgetEvent[];
+  setView: (prop: string) => void;
+  removeView: (prop: string) => void;
+  setModal: (prop: string) => void;
+  removeModal: (prop: string) => void;
+  clearModal: () => void;
+
+  // order for widgets
+  order: [string, "asc" | "desc"];
+  setOrder: (prop: string) => void;
+
+  // Temporary data for widgets
+  tempData: Record<string, string | number>;
+  setTempData: (prop: Record<string, string | number>) => void;
+  clearTempData: () => void;
 }
 
 export const useWidgetStore = create<WidgetProps>((set) => ({
-  nowModal: "",
-  setModal: (nowModal: string) => set({ nowModal }),
-  closeModal: () => set({ nowModal: "" }),
-  nowView: "",
-  setView: (nowView: string) => set({ nowView }),
-}));
+  events: [],
+  setView: (prop) =>
+    set((state) => ({
+      events: [...state.events, { event: prop, type: "view" }],
+    })),
+  removeView: (prop) => {
+    set((state) => ({
+      events: state.events.filter(({ event }) => event !== prop),
+    }));
+  },
 
-interface TempProps {
-  text: string;
-  setText: (text: string) => void;
-}
+  order: ["", "asc"],
+  setOrder: (prop) => {
+    set((state) => {
+      if (state.order[0] !== prop) {
+        return {
+          order: [prop, "asc"],
+        };
+      }
+      return {
+        order: [prop, state.order[1] === "asc" ? "desc" : "asc"],
+      };
+    });
+  },
 
-export const useTempStore = create<TempProps>((set) => ({
-  text: "",
-  setText: (text: string) => set({ text }),
-}));
+  setModal: (prop) =>
+    set((state) => ({
+      events: [...state.events, { event: prop, type: "modal" }],
+    })),
+  removeModal: (prop) => {
+    set((state) => ({
+      events: state.events.filter(({ event }) => event !== prop),
+    }));
+  },
+  clearModal: () =>
+    set((state) => ({
+      events: state.events.filter(({ type }) => type !== "modal"),
+    })),
 
-interface WidgetsProps {
-  widgets: string[];
-  setWidget: (event: string) => void;
-  removeWidget: (event: string) => void;
-  clearWidget: () => void;
-}
-
-export const useWidgetsStore = create<WidgetsProps>((set) => ({
-  widgets: [],
-  setWidget: (event: string) => set((state) => ({ widgets: [...state.widgets, event] })),
-  removeWidget: (event: string) =>
-    set((state) => ({ widgets: state.widgets.filter((widget) => widget !== event) })),
-  clearWidget: () => set({ widgets: [] }),
+  tempData: {},
+  setTempData: (prop) => set((state) => ({ tempData: { ...state.tempData, ...prop } })),
+  clearTempData: () => set({ tempData: {} }),
 }));

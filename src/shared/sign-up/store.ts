@@ -1,5 +1,16 @@
 import { create } from "zustand";
 
+interface SignUpDataSetProps {
+  email: string;
+  password: string;
+  passwordConfirm: string;
+  provider: string;
+  nickname: string;
+  occupation: string;
+  selectedSkills: number[];
+  skillIds: number[];
+}
+
 interface SignUpProps {
   agreements: Record<string, boolean> & {
     all: boolean;
@@ -13,25 +24,8 @@ interface SignUpProps {
   setAgreement: (flag: string) => void;
   setAllAgreements: () => void;
 
-  email: string;
-  password: string;
-  passwordConfirm: string;
-  provider: string;
-  nickname: string;
-  profileImageUrl: string | undefined;
-  occupation: string;
-  selectedSkills: number[];
-  skillIds: number[];
-
-  setEmail: (email: string) => void;
-  setPassword: (password: string) => void;
-  setPasswordConfirm: (passwordConfirm: string) => void;
-  setProvider: (provider: string) => void;
-  setNickname: (nickname: string) => void;
-  setProfileImageUrl: (profileImage: string | undefined) => void;
-  setOccupation: (occupation: string) => void;
-  setSelectedSkills: (skillId: number) => void;
-  setSkillIds: (skillIds: number[]) => void;
+  signUpData: SignUpDataSetProps;
+  setSignUpData: (data: Partial<SignUpDataSetProps>) => void;
 }
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
@@ -59,29 +53,16 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
       return { ...state, agreements: obj };
     }),
 
-  email: "",
-  password: "",
-  passwordConfirm: "",
-  provider: "",
-  nickname: "",
-  profileImageUrl: "",
-  occupation: "",
-  selectedSkills: [],
-  skillIds: [],
+  signUpData: {
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    provider: "",
+    nickname: "",
+    occupation: "",
+    selectedSkills: [],
+    skillIds: [],
+  },
 
-  setEmail: (email) => set({ email }),
-  setPassword: (password) => set({ password }),
-  setPasswordConfirm: (passwordConfirm) => set({ passwordConfirm }),
-  setProvider: (provider) => set({ provider }),
-  setNickname: (nickname) => set({ nickname }),
-  setProfileImageUrl: (profileImageUrl) => set({ profileImageUrl }),
-  setOccupation: (occupation) => set({ occupation }),
-  setSelectedSkills: (skill) =>
-    set((state) => {
-      const newSkills = state.selectedSkills.includes(skill)
-        ? state.selectedSkills.filter((s) => s !== skill)
-        : [...state.selectedSkills, skill];
-      return { ...state, selectedSkills: newSkills };
-    }),
-  setSkillIds: (skillIds) => set({ skillIds }),
+  setSignUpData: (data) => set((state) => ({ ...state, ...data })),
 }));
