@@ -6,19 +6,14 @@ import { useSignUpStore } from "shared/sign-up/store";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import useSignIn from "hook/useSignIn";
 import { Button } from "design";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { removeCookie } from "util/cookies";
 export default function MyAccount() {
   useSignIn();
-  const {
-    nickname,
-    setNickname,
-    occupation,
-    setOccupation,
-    profileImageUrl,
-    setProfileImageUrl,
-    setSkillIds,
-  } = useSignUpStore();
+  const [nickname, setNickname] = useState<string>("");
+  const [occupation, setOccupation] = useState<string>("");
+  const [skillIds, setSkillIds] = useState<number[]>([]);
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
 
   const { data: user, isLoading: loading } = useQuery({
     queryKey: ["MyAccount"],

@@ -1,7 +1,7 @@
-import { useWidgetsStore } from "shared/store";
+import { useWidgetStore } from "shared/store";
 
 export default function Widgets({ children }: { children: React.ReactNode }) {
-  const { widgets } = useWidgetsStore();
+  const { events } = useWidgetStore();
 
   return <>{children}</>;
 }

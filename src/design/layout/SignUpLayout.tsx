@@ -1,28 +1,24 @@
 import { col, center } from "style/display";
-import LineBreak from "design/text/LineBreak";
+import LineBreaks from "design/text/LineBreaks";
 import { Button } from "design/button";
 
 export default function SignUpLayout({
   titles,
-  subTitles,
-  children,
   buttons,
 }: {
-  titles?: string[];
-  subTitles?: string[];
-  children: React.ReactNode;
+  titles: {
+    title: string[];
+    subtitle?: string[];
+  };
   buttons?: [string, () => unknown | (() => Promise<unknown>)][];
 }) {
+  const { title, subtitle } = titles;
+
   return (
     <div className="h-152 w-80">
       <div className={`${col(5)} w-full`}>
-        <div className="text-4xl font-bold leading-tight">
-          {titles?.map((title) => <LineBreak contents={[title]} key={title} />)}
-        </div>
-        <div className="text-gray-400  ">
-          {subTitles?.map((subTitle) => <LineBreak contents={[subTitle]} key={subTitle} />)}
-        </div>
-        {children}
+        <LineBreaks texts={title} className="text-4xl font-bold leading-tight" />
+        <LineBreaks texts={subtitle} className="text-gray-400" />
         {buttons?.map(([title, onClick]) => (
           <Button
             key={title}

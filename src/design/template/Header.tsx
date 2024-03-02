@@ -1,9 +1,9 @@
-import { useWidgetsStore } from "shared/store";
 import cn from "util/classNames";
 import useNavigation from "hook/useNavigation";
+import { useWidgetStore } from "shared/store";
 
 export default function Header() {
-  const { setWidget, clearWidget } = useWidgetsStore();
+  const { setView, clearView } = useWidgetStore();
   const navigate = useNavigation();
 
   const positions = "flex justify-between items-center";
@@ -14,10 +14,10 @@ export default function Header() {
   return (
     <>
       <div className={cn(sizes, displays, styles, positions, paddings)}>
-        <button onClick={() => navigate("/", clearWidget)}>
+        <button onClick={() => navigate("/", clearView)}>
           <img src="/images/icons/devridge-logo.svg" alt="DEVRIDGE" className="w-28 h-5" />
         </button>
-        <button onClick={() => setWidget("sideMenu")}>
+        <button onClick={() => setView("sideMenu")}>
           <img src="/images/icons/hamburger-bar.svg" alt="hamburger-bar" className="w-7 h-7" />
         </button>
       </div>

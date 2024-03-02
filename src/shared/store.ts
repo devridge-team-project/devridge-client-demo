@@ -5,6 +5,7 @@ interface WidgetProps {
   events: WidgetEvent[];
   setView: (prop: string) => void;
   removeView: (prop: string) => void;
+  clearView: () => void;
   setModal: (prop: string) => void;
   removeModal: (prop: string) => void;
   clearModal: () => void;
@@ -30,6 +31,10 @@ export const useWidgetStore = create<WidgetProps>((set) => ({
       events: state.events.filter(({ event }) => event !== prop),
     }));
   },
+  clearView: () =>
+    set((state) => ({
+      events: state.events.filter(({ type }) => type !== "view"),
+    })),
 
   order: ["", "asc"],
   setOrder: (prop) => {

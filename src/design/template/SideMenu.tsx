@@ -4,15 +4,14 @@ import { profiles } from "asset/test/profiles";
 import { users } from "connection";
 import { Button } from "design";
 import useNavigation from "hook/useNavigation";
-import { useWidgetsStore } from "shared/store";
+import { useWidgetStore } from "shared/store";
 import { col } from "style";
 import cn from "util/classNames";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {
-  const { widgets, removeWidget, clearWidget } = useWidgetsStore();
-
-  const isOpen = widgets.includes("sideMenu");
+  const { events, removeView, clearView } = useWidgetStore();
+  const isOpen = events.some(({ event }) => event === "sideMenu");
   const navigate = useNavigation();
   const { data: userDetails } = useQuery({
     queryKey: ["userDetails"],
@@ -36,7 +35,7 @@ export default function SideMenu() {
     <div className={cn(positions, animations, moves())}>
       <div className="min-h-screen bg-white relative flex items-center justify-center">
         <img
-          onClick={() => removeWidget("sideMenu")}
+          onClick={() => removeView("sideMenu")}
           src="/images/icons/close.svg"
           alt="close"
           className="absolute top-7 right-6 w-7 h-7 cursor-pointer"
@@ -61,7 +60,7 @@ export default function SideMenu() {
               .map(({ name, href, icon }) => (
                 <div
                   key={href}
-                  onClick={() => isOpen && navigate(href, clearWidget)}
+                  onClick={() => isOpen && navigate(href, clearView)}
                   className={navigationStyles}
                 >
                   <img src={`/images/icons/${icon}`} alt={icon} className="w-6 h-6" />
@@ -73,14 +72,14 @@ export default function SideMenu() {
             <div className={col(4)}>
               <Button
                 title="로그인 하러가기"
-                onClick={() => isOpen && navigate("/sign-in", clearWidget)}
+                onClick={() => isOpen && navigate("/sign-in", clearView)}
                 options={{ size: "lg" }}
                 freeze={!isOpen}
               />
               <div className="flex justify-center items-center gap-4 text-sm font-bold">
                 <div>아직 계정이 없으신가요?</div>
                 <button
-                  onClick={() => navigate("sign-up", clearWidget)}
+                  onClick={() => navigate("sign-up", clearView)}
                   className={!isOpen ? "cursor-default" : "" + " text-blue-500"}
                 >
                   가입하러 가기{">"}
