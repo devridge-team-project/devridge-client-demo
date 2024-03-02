@@ -1,6 +1,6 @@
 import { ButtonProps, Size } from "interface";
 import { center } from "style/display";
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 
 const widthSize = {
   sm: "w-50 h-12 rounded-full",

@@ -6,7 +6,7 @@ import { Button } from "design";
 import useNavigation from "hook/useNavigation";
 import { useWidgetStore } from "shared/store";
 import { col } from "style";
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {

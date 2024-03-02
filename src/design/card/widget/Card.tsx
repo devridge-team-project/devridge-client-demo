@@ -1,5 +1,5 @@
 import { Size } from "interface";
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 
 const widthSize = {
   sm: "w-40",

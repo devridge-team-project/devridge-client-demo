@@ -1,4 +1,4 @@
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 
 export default function Board({
   options,

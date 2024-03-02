@@ -1,4 +1,4 @@
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 import useNavigation from "hook/useNavigation";
 import { useWidgetStore } from "shared/store";
 

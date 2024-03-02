@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { qna } from "connection";
 import { Button } from "design";
 import { QnaById } from "interface/Qna";
-import ReviewCard from "design/card/ReviewCard";
+import ReviewCard from "design/card/template/ReviewCard";
 import useNavigation from "hook/useNavigation";
 
 interface QnaByIdWithId extends QnaById {

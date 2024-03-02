@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import cn from "util/classNames";
+import { cn } from "util/classNames";
 
 export default function TextArea<T extends string | number | undefined>({
   title,

@@ -1,6 +1,6 @@
 type ClassNames = string | { [key: string]: string | undefined | false };
 
-export default function classNames(...props: ClassNames[]) {
+function classNames(...props: ClassNames[]) {
   const classNames = props.reduce<string[]>((acc, cur) => {
     if (typeof cur === "string") {
       return [...acc, cur];
@@ -16,3 +16,5 @@ export default function classNames(...props: ClassNames[]) {
   }, []);
   return classNames.join(" ");
 }
+
+export { classNames as cn };
