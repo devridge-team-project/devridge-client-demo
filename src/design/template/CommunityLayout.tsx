@@ -10,7 +10,7 @@ export default function CommunityLayout({
 }) {
   return (
     <div className={` ${center.colO(0)}`}>
-      <div className={col(0, 80)}>
+      <div className="w-[390px]">
         <div className="text-1xl font-bold bg-blue-grey border-y-2 py-4 pl-9 text-white">
           커뮤니티
         </div>

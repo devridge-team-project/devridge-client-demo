@@ -33,7 +33,7 @@ export default function Community() {
   console.log(datas);
   return (
     <CommunityLayout tag="issue">
-      <div className={col(2)}>
+      <div className={`${col(0, 80)} mx-[35px]`}>
         {datas?.content?.map(
           ({
             id,
@@ -44,7 +44,7 @@ export default function Community() {
             comments,
           }) => {
             return (
-              <Link to={`${id}`} className="h-40 border-b-2">
+              <Link to={`${id}`} className="h-40">
                 <div className="flex">
                   <img
                     src={profileImageUrl}
