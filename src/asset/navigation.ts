@@ -27,6 +27,12 @@ export const navigations = [
   },
   {
     isSignIn: true,
+    name: "커피챗",
+    href: "/coffeechat",
+    icon: "coffeechat.svg",
+  },
+  {
+    isSignIn: true,
     name: "로그아웃",
     href: "/sign-out",
     icon: "exit.svg",
