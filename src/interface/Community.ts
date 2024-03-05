@@ -1,7 +1,7 @@
 export interface Member {
   id: number;
   nickname: string;
-  profileImageUrl: string | null;
+  profileImageUrl: string | undefined;
   introduction: string;
 }
 export interface Hashtag {
@@ -9,7 +9,8 @@ export interface Hashtag {
   word: string;
   count: number;
 }
-export interface Community {
+
+export interface Issue {
   id: number;
   title: string;
   views: number;
@@ -20,6 +21,28 @@ export interface Community {
   updatedAt: string;
   hashtags: Hashtag[];
   scraps: number;
+}
+export interface Sort {
+  sorted: boolean;
+  unsorted: boolean;
+  empty: boolean;
+}
+export interface Community {
+  content?: Issue[];
+  pageable: {
+    sort: Sort;
+    pageNumber: number;
+    pageSize: number;
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  size: number;
+  empty: boolean;
 }
 
 export interface CommunityById {
@@ -48,15 +71,40 @@ export interface CommunityPost {
   hashtags: string[];
 }
 
+export interface Issue1 {
+  id: number;
+  category: string;
+  title: string;
+  content: string;
+  view: number;
+  likes: number;
+  dislikes: number;
+  isRecruiting: boolean;
+  skills: string[];
+  meeting: string;
+}
+
 export interface Content {
   content: string;
 }
 
 export interface Project {
-  title: string;
-  content: string;
-  category: string;
-  images: string[];
+  content?: Issue1[];
+  pageable: {
+    sort: Sort;
+    pageNumber: number;
+    pageSize: number;
+    offset: number;
+    paged: boolean;
+    unpaged: boolean;
+  };
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  size: number;
+  empty: boolean;
 }
 
 export interface ProjectPost {
@@ -66,4 +114,27 @@ export interface ProjectPost {
   onoff: string;
   category: string;
   images: string[];
+}
+
+export interface Study {
+  studyId: number;
+  category: string;
+  title: string;
+  content: string;
+  likes: number;
+  dislikes: number;
+  views: number;
+  location: string | null;
+  totalPeople: number | null;
+  currentPeople: number | null;
+}
+
+export interface StudyPost {
+  title: string;
+  content: string;
+  category: string;
+  images: string[];
+  location: string;
+  totalPeople: number;
+  currentPeople: number;
 }

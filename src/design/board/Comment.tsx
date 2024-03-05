@@ -8,7 +8,7 @@ export default function Comment({
   content,
 }: {
   nickname: string;
-  profileImageUrl: string | null;
+  profileImageUrl: string | null | undefined;
   introduction: string | null;
   content: string;
 }) {

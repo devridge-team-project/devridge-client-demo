@@ -9,7 +9,7 @@ export default function CommunityLayout({
   tag: string;
 }) {
   return (
-    <div className={`min-h-screen ${center.colO(0)}`}>
+    <div className={` ${center.colO(0)}`}>
       <div className={col(0, 80)}>
         <div className="text-1xl font-bold bg-blue-grey border-y-2 py-4 pl-9 text-white">
           커뮤니티

@@ -53,7 +53,7 @@ export default function MyAccount() {
             alt="profileImage"
           />
           <div className="ml-3.5">
-            <div className="text-2xl font-bold text-blue-grey">{nickname}</div>
+            <div className="text-1xl font-bold text-blue-grey">{nickname}</div>
             <div className="text-1xl">{occupation}</div>
           </div>
         </div>

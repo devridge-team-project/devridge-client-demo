@@ -6,13 +6,15 @@ import {
   CommunityComments,
   Project,
   ProjectPost,
+  Study,
+  StudyPost,
 } from "interface/Community";
 import httpRequest from "../axios";
 
 const api = httpRequest.server;
 
 export const getCommunity = () => {
-  return api.get<Community[]>("api/community");
+  return api.get<Community>("api/community");
 };
 
 export const postCommunity = ({ title, content, hashtags = [] }: CommunityPost) => {
@@ -36,7 +38,7 @@ export const postComments = (id: number, content: Content) => {
 };
 
 export const getProject = () => {
-  return api.get<Project[]>("api/community/projects");
+  return api.get<Project>("api/community/projects");
 };
 
 export const postProject = ({
@@ -57,6 +59,29 @@ export const postProject = ({
   });
 };
 
+export const getStudy = () => {
+  return api.get<Study[]>("api/community/studies");
+};
+
+export const postStudy = ({
+  title,
+  content,
+  category,
+  images = [],
+  location,
+  totalPeople,
+  currentPeople,
+}: StudyPost) => {
+  return api.post("api/community/projects", {
+    title,
+    content,
+    category,
+    images,
+    location,
+    totalPeople,
+    currentPeople,
+  });
+};
 export const comment = {
   get: getComments,
   post: postComments,
