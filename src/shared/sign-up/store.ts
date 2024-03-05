@@ -19,7 +19,7 @@ interface SignUpProps {
     flag3: boolean;
     flag4: boolean;
     flag5: boolean;
-    flag6: boolean;
+    age: boolean;
   };
   setAgreement: (flag: string) => void;
   setAllAgreements: () => void;
@@ -36,7 +36,7 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
     flag3: false,
     flag4: false,
     flag5: false,
-    flag6: false,
+    age: false,
   },
   setAgreement: (flag) =>
     set((state) => {

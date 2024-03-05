@@ -1,31 +1,26 @@
 import { col, center } from "style/display";
-import LineBreaks from "design/text/LineBreaks";
-import { Button } from "design/button";
+import { Button, CheckBox, LineBreaks } from "design";
 import { useId } from "react";
 import { cn } from "util/classNames";
+import Exception from "../widget/Exception";
+import { SignUpLayoutProps } from "interface/Layout";
 
-export default function SignUpLayout({
-  titles,
-  buttons,
-}: {
-  titles: {
-    title: string[];
-    subtitle?: string[];
-  };
-  buttons?: [string, () => unknown | (() => Promise<unknown>)][];
-}) {
+export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: SignUpLayoutProps) {
   const { title, subtitle } = titles;
   const id = useId();
-
   const container = {
-    sizes: "h-152 w-80",
+    sizes: "w-80",
+    displays: "flex flex-col justify-center gap-5",
   };
 
   return (
-    <div className={cn(container)}>
-      <div className={`${col(5)} w-full`}>
+    <Exception exceptions={widgets?.exceptions}>
+      <div className={cn(container)}>
         <LineBreaks texts={title} className="text-4xl font-bold leading-tight" />
         <LineBreaks texts={subtitle} className="text-gray-400" />
+        {checkboxes?.map(({ flag, title, scripts }) => (
+          <CheckBox key={id} title={title} script={scripts} flag={flag} />
+        ))}
         {buttons?.map(([title, onClick]) => (
           <Button
             key={id}
@@ -38,6 +33,6 @@ export default function SignUpLayout({
           />
         ))}
       </div>
-    </div>
+    </Exception>
   );
 }
