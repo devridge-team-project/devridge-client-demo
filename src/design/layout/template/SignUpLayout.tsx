@@ -1,8 +1,6 @@
-import { col, center } from "style/display";
-import { Button, CheckBox, LineBreaks } from "design";
+import { Button, CheckBox, Components, LineBreaks } from "design";
 import { useId } from "react";
 import { cn } from "util/classNames";
-import Exception from "../widget/Exception";
 import { SignUpLayoutProps } from "interface/Layout";
 
 export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: SignUpLayoutProps) {
@@ -14,7 +12,7 @@ export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: S
   };
 
   return (
-    <Exception exceptions={widgets?.exceptions}>
+    <Components components={widgets?.components}>
       <div className={cn(container)}>
         <LineBreaks texts={title} className="text-4xl font-bold leading-tight" />
         <LineBreaks texts={subtitle} className="text-gray-400" />
@@ -33,6 +31,6 @@ export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: S
           />
         ))}
       </div>
-    </Exception>
+    </Components>
   );
 }

@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { ExceptionProps } from "interface";
 
-export default function Exception({ exceptions, children }: ExceptionProps) {
+export default function Exceptions({ exceptions, children }: ExceptionProps) {
   if (!exceptions) return <>{children}</>;
   const trueComponents = exceptions
     .filter(([exception]) => exception)
