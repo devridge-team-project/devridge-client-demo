@@ -1,11 +1,11 @@
-import { WidgetsProps } from "./Property";
+import { Button, WidgetsProps } from "./Property";
 
 export interface SignUpLayoutProps {
   titles: {
     title: string[];
     subtitle?: string[];
   };
-  buttons?: [string, () => unknown | (() => Promise<unknown>)][];
+  buttons?: Button[];
   checkboxes?: { flag: string; title: string; scripts?: string }[];
   widgets?: WidgetsProps;
 }
