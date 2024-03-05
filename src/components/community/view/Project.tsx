@@ -5,7 +5,9 @@ import { getProject } from "connection/api/community";
 import CommunityLayout from "design/template/CommunityLayout";
 export default function Project() {
   const navigate = useNavigate();
+
   const { data: Project } = useQuery({ queryKey: ["project"], queryFn: () => getProject() });
+  console.log(Project);
   return (
     <CommunityLayout tag="project">
       <div className="h-64 border-y-2">
@@ -23,13 +25,16 @@ export default function Project() {
         </button>
       </div>
       <div>
-        {Project?.map(({ title, content, category }) => {
+        {Project?.content?.map(({ title, content, category, isRecruiting }) => {
           return (
-            <div className="h-[86px] border-b-2">
-              <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3 mt-5">
+            <div className="h-[86px] border-b-2 pt-5">
+              <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3  text-center">
                 {category}
               </div>
-              <div className="text-1xl font-bold">{title}</div>
+              <div className="flex">
+                <div>{isRecruiting ? "모집 중 |" : "모집 완료 |"}</div>
+                <div className="text-1xl font-bold">{title}</div>
+              </div>
               <div className="text-xxs">{content}</div>
             </div>
           );
