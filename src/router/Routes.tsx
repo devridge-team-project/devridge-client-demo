@@ -7,6 +7,7 @@ import {
   Project,
   ProjectPost,
   Study,
+  StudyPost,
 } from "components/community";
 import { HelpPw, EmailAuth, ResetPw } from "components/help-pw";
 import {
@@ -50,7 +51,11 @@ export default function Router() {
             <Route index element={<Project />} />
             <Route path="post" element={<ProjectPost />} />
           </Route>
-          <Route path="study" element={<Study />} />
+          <Route path="study">
+            <Route index element={<Study />} />
+            <Route path="post" element={<StudyPost />} />
+          </Route>
+
           <Route path="post" element={<CommunityPost />} />
         </Route>
         <Route path="qna">
