@@ -21,7 +21,6 @@ const axios = (ContentType: string, baseURL: string) => {
   };
   const instance = Axios.create(config);
 
-  instance.defaults.withCredentials = true;
   instance.interceptors.request.use(
     (request) => {
       const token = getCookie("accessToken");
