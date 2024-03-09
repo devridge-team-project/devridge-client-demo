@@ -7,6 +7,19 @@
   src: url("/public/fonts/Pretendard-Medium.otf") format("opentype");
 }
 
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #808080;
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
 @keyframes slideLeftRight {
   0%, 100% {
     transform: translateX(0%);
