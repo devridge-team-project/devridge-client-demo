@@ -25,7 +25,7 @@ import { Auth } from "./api";
 export default function Router() {
   return (
     <Routes>
-      {/* These is for api only ex)callback */}
+      {/* These are for api only ex)callback */}
       <Route path="/api">
         <Route path="auth/callback">
           <Route path="gitHub" element={<Auth.GitHub />} />
@@ -34,7 +34,7 @@ export default function Router() {
           <Route path="google" element={<Auth.Google />} />
         </Route>
       </Route>
-      {/* These is view for client */}
+      {/* These are views for client */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="sign-in" element={<SignIn />} />
