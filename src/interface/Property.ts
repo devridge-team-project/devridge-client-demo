@@ -2,8 +2,6 @@ import { Dispatch, SetStateAction } from "react";
 
 export type Size = "xs" | "sm" | "md" | "lg" | "full" | "auto";
 export type State<T> = [T, Dispatch<SetStateAction<T>>];
-export type Script = string | string[] | undefined;
-export type Button = [string, () => unknown | (() => Promise<unknown>)];
 type Exception = [boolean | string | null | undefined, React.ReactNode];
 type Component = [boolean | string, React.ReactNode];
 

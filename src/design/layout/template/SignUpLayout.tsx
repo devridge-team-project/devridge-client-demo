@@ -1,9 +1,16 @@
-import { Button, CheckBox, Events, LineBreaks } from "design";
-import { useId } from "react";
+import { Button, CheckBox, Events, Input, LineBreaks } from "design";
+import { useId, useState } from "react";
 import { cn } from "util/classNames";
 import { SignUpLayoutProps } from "interface/Layout";
 
-export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: SignUpLayoutProps) {
+export default function SignUpLayout({
+  titles,
+  buttons,
+  inputs,
+  checkboxes,
+  widgets,
+}: SignUpLayoutProps) {
+  const state = useState<string>("");
   const { title, subtitle } = titles;
   const id = useId();
   const container = {
@@ -18,6 +25,12 @@ export default function SignUpLayout({ titles, buttons, checkboxes, widgets }: S
         <LineBreaks texts={subtitle} className="text-gray-400" />
         {checkboxes?.map(({ flag, title, scripts }) => (
           <CheckBox key={id} title={title} script={scripts} flag={flag} />
+        ))}
+        {inputs?.map(({ title, state, placeholder }) => (
+          <div className="flex w-full flex-col gap-2">
+            <div>{title}</div>
+            <Input state={state} />
+          </div>
         ))}
         {buttons?.map(([title, onClick]) => (
           <Button

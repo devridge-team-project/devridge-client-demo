@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { SignUpLayout, Input } from "design";
+import { SignUpLayout, Input, AlertModal } from "design";
 import { useWidgetStore, useSignUpStore } from "shared";
 import { users } from "connection";
 import useNavigation from "hook/useNavigation";
+import { modal } from "../../static/modal";
 
 export default function UserInformation() {
-  const [nickname, setNickname] = useState<string>("");
-  const [introduction, setIntroduction] = useState<string>("");
+  const nickname = useState<string>("");
+  const introduction = useState<string>("");
   const { signUpData } = useSignUpStore();
   const { email, password, provider } = signUpData;
   const navigate = useNavigation();
@@ -41,14 +42,17 @@ export default function UserInformation() {
     console.log(error);
   }
   if (isSuccess) navigate("/sign-up/success");
+  const isDuplicatedId = false;
 
-  return <SignUpLayout titles={{ title: "개인정보 입력" }} buttons={[["확인", mutate]]} />;
-}
-
-{
-  /* <div className="flex flex-col items-center justify-center gap-4">
-<div className="h-25 w-25 rounded-full bg-gray-400 " />
-<Input title="닉네임" onChange={[nickname, setNickname]} />
-<Input title="자기소개" onChange={[introduction, setIntroduction]} />
-</div> */
+  return (
+    <SignUpLayout
+      widgets={{ components: [[isDuplicatedId, <AlertModal script={modal.duplicatedId} />]] }}
+      titles={{ title: "개인정보 입력" }}
+      inputs={[
+        { title: "닉네임", state: nickname, placeholder: "닉네임" },
+        { title: "자기 소개", state: introduction, placeholder: "자기소개" },
+      ]}
+      buttons={[["확인", mutate]]}
+    />
+  );
 }

@@ -1,29 +1,21 @@
-import { Dispatch, SetStateAction } from "react";
+import { InputProps } from "interface";
 
 export default function Input<T extends string | number | undefined>({
-  title,
-  onChange,
+  state,
   placeholder,
-}: {
-  title?: string;
-  onChange: [T, Dispatch<T>];
-  placeholder?: string;
-}) {
-  const [value, setValue] = onChange;
+}: InputProps<T>) {
+  const [value, setValue] = state;
   const onChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
     setValue(e.target.value as T);
   };
 
   return (
-    <div className="flex w-full flex-col gap-2">
-      <div>{title}</div>
-      <input
-        className="w-full rounded-md border-2 p-4 focus:outline-blue-500"
-        value={value}
-        onChange={onChangeValue}
-        placeholder={placeholder ?? ""}
-        type="text"
-      />
-    </div>
+    <input
+      className="w-full rounded-md border-2 p-4 focus:outline-blue-500"
+      value={value}
+      onChange={onChangeValue}
+      placeholder={placeholder ?? ""}
+      type="text"
+    />
   );
 }

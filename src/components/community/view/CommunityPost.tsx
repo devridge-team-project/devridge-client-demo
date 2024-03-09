@@ -24,7 +24,7 @@ export default function CommunityPost() {
     <Board options={{ gapY: 8 }}>
       <div>
         <div className="text-2xl font-bold">제목</div>
-        <Input onChange={[title, setTitle]} placeholder="제목을 5자 이상 입력해주세요." />
+        <Input state={[title, setTitle]} placeholder="제목을 5자 이상 입력해주세요." />
       </div>
       <div>
         <div className="text-2xl font-bold">내용</div>
