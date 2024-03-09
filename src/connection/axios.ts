@@ -1,5 +1,6 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
-import { getCookie } from "util/cookies";
+import { getCookie, setCookie } from "util/cookies";
+
 const { REACT_APP_SERVER_URL: origin } = process.env;
 
 const apiConfig = {
@@ -20,7 +21,6 @@ const axios = (ContentType: string, baseURL: string) => {
     },
   };
   const instance = Axios.create(config);
-
   instance.interceptors.request.use(
     (request) => {
       const token = getCookie("accessToken");
@@ -30,7 +30,15 @@ const axios = (ContentType: string, baseURL: string) => {
       return request;
     },
     (error: AxiosError) => {
-      console.log(error);
+      return error;
+    },
+  );
+  instance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error: AxiosError) => {
+      return error;
     },
   );
   return instance;

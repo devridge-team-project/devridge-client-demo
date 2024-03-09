@@ -1,8 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { setCookie, removeCookie } from "util/cookies";
 import { LoginRequest } from "../../interface/Login";
-import { axiosJsonInstance } from "../axios";
-import httpRequest from "../axios";
+import httpRequest, { axiosJsonInstance } from "../axios";
 
 export const login = async (user: LoginRequest) => {
   try {
@@ -13,7 +12,7 @@ export const login = async (user: LoginRequest) => {
 
     console.log(accessToken);
     const expiration = new Date(Date.now() + 15 * 60 * 1000);
-    setCookie("accessToken", accessToken, { expires: expiration });
+    setCookie("accessToken", accessToken /* { expires: expiration } */);
 
     return { status: 200, accessToken };
   } catch (error) {

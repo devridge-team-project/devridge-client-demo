@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { refresh } from "connection/api/login";
-import { getCookie, setCookie } from "util/cookies";
+import { getCookie, setCookie, removeCookie } from "util/cookies";
+import { jwtDecode } from "jwt-decode";
 
 /* function isSignIn() {
   const accessToken = getCookie("accessToken");
@@ -9,6 +10,7 @@ import { getCookie, setCookie } from "util/cookies";
 } */
 
 export default function useSignIn() {
+  const { exp } = jwtDecode(getCookie("accessToken") as string);
   const {
     data: accessToken,
     isSuccess,
@@ -16,11 +18,11 @@ export default function useSignIn() {
   } = useQuery({
     queryKey: ["refresh"],
     queryFn: () => refresh(),
-    enabled: !getCookie("accessToken"),
+    enabled: (exp as number) > Date.now(),
   });
   if (isSuccess) {
-    const expiration = new Date(Date.now() + 15 * 60 * 1000);
-    setCookie("accessToken", accessToken, { expires: expiration });
+    removeCookie("accessToken");
+    setCookie("accessToken", accessToken);
   }
   if (isError) {
     alert("로그인이 필요합니다.");
