@@ -5,7 +5,7 @@ export default function Footer() {
     <div className="h-[250px] bg-black ">
       <div className="flex justify-center pt-40">
         <Link to="https://github.com/">
-          <img src="/images/icons/github.png" alt="gitHub" className="w-7.5 h-7.5 mr-2.5" />
+          <img src="/images/icons/gitHub.png" alt="gitHub" className="w-7.5 h-7.5 mr-2.5" />
         </Link>
         <Link to="https://www.instagram.com/">
           <img src="/images/icons/instagram.png" alt="instagram" className="w-7.5 h-7.5 mr-2.5" />
