@@ -110,8 +110,8 @@ export interface Project {
 export interface ProjectPost {
   title: string;
   content: string;
-  role: string;
-  onoff: string;
+  skillIds: number[];
+  meeting: string;
   category: string;
   images: string[];
 }

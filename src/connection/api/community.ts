@@ -44,17 +44,17 @@ export const getProject = () => {
 export const postProject = ({
   title,
   content,
-  role,
+  skillIds,
   category,
-  onoff,
+  meeting,
   images = [],
 }: ProjectPost) => {
   return api.post("api/community/projects", {
     title,
     content,
-    role,
+    skillIds,
     category,
-    onoff,
+    meeting,
     images,
   });
 };
@@ -67,12 +67,12 @@ export const postStudy = ({
   title,
   content,
   category,
-  images = [],
+  images,
   location,
   totalPeople,
   currentPeople,
 }: StudyPost) => {
-  return api.post("api/community/projects", {
+  return api.post("api/community/studies", {
     title,
     content,
     category,
