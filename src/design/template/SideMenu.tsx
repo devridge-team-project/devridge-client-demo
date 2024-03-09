@@ -7,6 +7,7 @@ import useNavigation from "hook/useNavigation";
 import { useWidgetsStore } from "shared/store";
 import { col } from "style";
 import cn from "util/classNames";
+import { getCookie } from "util/cookies";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {
@@ -17,6 +18,7 @@ export default function SideMenu() {
   const { data: userDetails } = useQuery({
     queryKey: ["userDetails"],
     queryFn: () => users.getDetails(),
+    enabled: !!getCookie("accessToken"),
   });
   const { nickname, occupation } = userDetails ?? {};
 
@@ -31,6 +33,7 @@ export default function SideMenu() {
     isOpen ? "cursor-pointer" : "cursor-default",
     "flex items-center gap-4",
   ].join(" ");
+  console.log(userDetails);
 
   return (
     <div className={cn(positions, animations, moves())}>
