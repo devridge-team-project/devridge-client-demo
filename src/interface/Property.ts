@@ -9,7 +9,7 @@ export interface ReplaceProps {
   exceptions?: Exception[];
   children: React.ReactNode;
 }
-export interface InsertProps {
+export interface ShowProps {
   components?: Component[];
   children: React.ReactNode;
 }

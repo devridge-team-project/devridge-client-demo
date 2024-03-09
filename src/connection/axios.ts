@@ -27,7 +27,6 @@ const axios = (ContentType: string, baseURL: string) => {
       if (token) {
         request.headers["Authorization"] = `Bearer ${token}`;
       }
-
       return request;
     },
     (error: AxiosError) => {

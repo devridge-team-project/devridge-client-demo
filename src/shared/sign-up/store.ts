@@ -12,7 +12,7 @@ interface SignUpDataSetProps {
 }
 
 interface SignUpProps {
-  authToken: string;
+  authToken: string | null;
   setAuthToken: (token: string) => void;
 
   agreements: Record<string, boolean> & {
@@ -32,7 +32,7 @@ interface SignUpProps {
 }
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
-  authToken: "",
+  authToken: null,
   setAuthToken: (token) => set({ authToken: token }),
 
   agreements: {

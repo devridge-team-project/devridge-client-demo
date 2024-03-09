@@ -30,6 +30,8 @@ export default function Router() {
         <Route path="auth/callback">
           <Route path="gitHub" element={<Auth.GitHub />} />
           <Route path="naver" element={<Auth.Naver />} />
+          <Route path="kakao" element={<Auth.Kakao />} />
+          <Route path="google" element={<Auth.Google />} />
         </Route>
       </Route>
       {/* These is view for client */}

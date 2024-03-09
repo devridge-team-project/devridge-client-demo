@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import { useWidgetStore } from "shared/store";
-import { ReplaceProps, InsertProps } from "interface";
+import { ReplaceProps, ShowProps } from "interface";
 
-function Show({ components, children }: InsertProps) {
+function Show({ components, children }: ShowProps) {
   const { events } = useWidgetStore();
   return (
     <>

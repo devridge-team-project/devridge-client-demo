@@ -1,16 +1,16 @@
 import { cn } from "util/classNames";
 import { useSearchParams } from "react-router-dom";
 import { Events } from "design";
-import { useWidgetStore } from "shared";
+import { useWidgetStore, useSignUpStore } from "shared";
 import UserInformation from "./join/UserInformation";
 import Credentials from "./join/Credentials";
 import Authentication from "./join/Authentication";
 import Agreements from "./join/Agreements";
 
 export default function Join() {
+  const { authToken } = useSignUpStore();
   const [searchParams] = useSearchParams();
-  const code = searchParams.get("code");
-  const isCode = code !== null;
+  const isToken = authToken !== null;
 
   const conatiner = {
     positions: "absolute top-0 ",
@@ -22,7 +22,7 @@ export default function Join() {
     <div className={cn(conatiner)}>
       <Events.Replace
         exceptions={[
-          [isCode || "personalInformation", <UserInformation />],
+          [isToken || "personalInformation", <UserInformation />],
           ["credentials", <Credentials />],
           ["authentication", <Authentication />],
         ]}

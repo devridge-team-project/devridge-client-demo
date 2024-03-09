@@ -5,6 +5,7 @@ interface Props {
   likeCount: number;
   views: number;
 }
+
 export default function Card({ title, commentCount, likeCount, views, onClick }: Props) {
   return (
     <div
