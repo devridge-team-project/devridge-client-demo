@@ -1,4 +1,4 @@
-import { Button, WidgetsProps } from "./Property";
+import { Button, EventsProps } from "./Property";
 
 export interface SignUpLayoutProps {
   titles: {
@@ -7,5 +7,5 @@ export interface SignUpLayoutProps {
   };
   buttons?: Button[];
   checkboxes?: { flag: string; title: string; scripts?: string }[];
-  widgets?: WidgetsProps;
+  widgets?: EventsProps;
 }

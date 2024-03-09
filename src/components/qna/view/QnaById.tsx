@@ -5,9 +5,10 @@ import { useMutation } from "@tanstack/react-query";
 import { qna } from "connection";
 import { useEffect, useState } from "react";
 import useSignIn from "hook/useSignIn";
+import { getCookie } from "util/cookies";
+import checkSignIn from "util/checkSignIn";
 
 export default function QnaById() {
-  useSignIn();
   const { id } = useParams();
   const [commentContent, setCommentContent] = useState<string>("");
 
@@ -36,6 +37,9 @@ export default function QnaById() {
 
   return (
     <BulletinBoard
+      events={{
+        exceptions: [[!checkSignIn(), <div>로그인이 필요합니다.</div>]],
+      }}
       type="Q&A"
       comments={comments}
       postComment={{
