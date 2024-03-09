@@ -18,9 +18,7 @@ const signUp = {
     token: {
       post: createToken,
     },
-    signUp: {
-      post: signUpAuth,
-    },
+    post: signUpAuth,
   },
 };
 
