@@ -24,12 +24,14 @@ import SignOut from "components/sign-out";
 export default function Router() {
   return (
     <Routes>
-      <Route path="/" element={<Layout />}>
-        {/* These is not view for client */}
-        <Route path="auth">
-          <Route path="gitHub" element={<div>TODO: Kakao</div>} />
+      {/* These is for api only ex)callback */}
+      <Route path="/api">
+        <Route path="auth/callback">
+          <Route path="gitHub" element={<div>hi</div>} />
         </Route>
-        {/* These is view for client */}
+      </Route>
+      {/* These is view for client */}
+      <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
         <Route path="sign-in" element={<SignIn />} />
         <Route path="help-pw">

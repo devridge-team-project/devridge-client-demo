@@ -20,9 +20,9 @@ export function Google() {
   return <div>TODO: Google</div>;
 }
 
-const Callback = {
+const auth = {
   GitHub,
   Kakao,
 };
 
-export default Callback;
+export default auth;
