@@ -1,11 +1,10 @@
 import { QnaComment } from "interface/Qna";
 import { CommunityComments } from "interface/Community";
 import Board from "./Board";
-import { Dispatch, useState } from "react";
-import { Button } from "design/button";
+import { Dispatch } from "react";
 import PostComment from "./PostComment";
-import { MutationFunction } from "@tanstack/react-query";
 import Comment from "./Comment";
+import { EventsProps } from "interface";
 
 export default function BulletinBoard({
   type,
@@ -15,6 +14,7 @@ export default function BulletinBoard({
   comments,
   commentCount,
   postComment,
+  events,
 }: {
   type: string;
   title?: string;
@@ -26,9 +26,10 @@ export default function BulletinBoard({
     submit: () => Promise<unknown>;
     setCommentContent: Dispatch<string>;
   };
+  events?: EventsProps;
 }) {
   return (
-    <Board>
+    <Board events={events}>
       <div>
         <div className="bg-gray-200 rounded-xl text-black w-16 h-8 flex justify-center items-center">
           {type}

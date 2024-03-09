@@ -1,5 +1,5 @@
 import { profiles } from "asset/test/profiles";
-import Card from "./Card";
+import Card from "../widget/Card";
 import randomItem from "util/randomItem";
 export default function ReviewCard({
   image,

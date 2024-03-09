@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { center, col, row } from "style/display";
-import { useSignUpStore } from "shared/sign-up/store";
 import { skills } from "connection/api/skills";
 import Input from "../../common/input";
 import { useQuery } from "@tanstack/react-query";
 
 export default function UpdateAccount() {
   const [skill, setSkill] = useState<string[]>([]);
-  const { nickname, profileImageUrl, occupation, skillIds } = useSignUpStore();
+  const [nickname, setNickname] = useState<string>("");
+  const [occupation, setOccupation] = useState<string>("");
+  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
+  const skillIds = [1, 2, 3];
+
   const onSubmitHandler = async (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
   };

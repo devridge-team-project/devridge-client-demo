@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { qna } from "connection";
 import { col, center } from "style/display";
-import PostCard from "../../../design/card/PostCard";
+import PostCard from "../../../design/card/template/PostCard";
 import useNavigation from "hook/useNavigation";
 import FloatButton from "design/button/FloatButton";
 export default function Qna() {

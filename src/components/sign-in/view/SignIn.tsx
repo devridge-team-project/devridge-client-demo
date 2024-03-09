@@ -72,9 +72,9 @@ export default function SignIn() {
         </div>
         <div className="flex justify-center items-center gap-4">
           <div>아직 계정이 없으신가요?</div>
-          <button onClick={() => navigate("sign-up")} className="text-blue-500">
+          <Link to="/sign-up" className="text-blue-500">
             가입하러 가기{">"}
-          </button>
+          </Link>
         </div>
       </div>
     </div>

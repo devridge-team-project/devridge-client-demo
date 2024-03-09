@@ -1,1 +1,1 @@
-export { default as TeammateCard } from "./TeammateCard";
+export { default as TeammateCard } from "./template/TeammateCard";

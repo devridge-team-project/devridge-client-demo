@@ -1,9 +1,13 @@
-import cn from "util/classNames";
+import { cn } from "util/classNames";
+import { Events } from "design";
+import { EventsProps } from "interface";
 
 export default function Board({
+  events,
   options,
   children,
 }: {
+  events?: EventsProps;
   options?: { gapY?: number };
   children: React.ReactNode;
 }) {
@@ -13,8 +17,12 @@ export default function Board({
   const paddings = "pt-12";
 
   return (
-    <div className="flex justify-center w-full">
-      <div className={cn(displays, sizes, paddings)}>{children}</div>
-    </div>
+    <Events.Show components={events?.components}>
+      <div className="flex justify-center w-full">
+        <Events.Replace exceptions={events?.exceptions}>
+          <div className={cn(displays, sizes, paddings)}>{children}</div>
+        </Events.Replace>
+      </div>
+    </Events.Show>
   );
 }

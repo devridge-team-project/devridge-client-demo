@@ -1,4 +1,4 @@
-import Card from "./Card";
+import Card from "../widget/Card";
 
 export default function TeammateCard({
   occupation,

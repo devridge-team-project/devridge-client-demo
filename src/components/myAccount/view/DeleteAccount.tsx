@@ -8,7 +8,7 @@ import { Button } from "design";
 import Input from "components/common/input";
 
 export default function DeleteAccount() {
-  const { nickname } = useSignUpStore();
+  const [nickname, setNickName] = useState<string>("");
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
