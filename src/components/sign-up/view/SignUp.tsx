@@ -1,6 +1,6 @@
-import { contents } from "asset/sign-up/platform";
 import { center, col } from "style";
 import { Link } from "react-router-dom";
+import { contents } from "../static/auth";
 
 export default function SignUp() {
   return (

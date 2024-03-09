@@ -10,7 +10,7 @@ export default function Success() {
           <div className="text-blue-500">즐거운 경험</div>을 시작해보세요!
         </div>
       </div>
-      <img src="/imgaes/sign-up/clap.png" alt="clap" />
+      <img src="/images/sign-up/clap.png" alt="clap" />
     </SignUpLayout>
   );
 }

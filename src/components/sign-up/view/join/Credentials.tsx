@@ -1,9 +1,8 @@
-import { useSignUpStore } from "shared/sign-up/store";
-import usePasswordConfirm from "hook/sign-up/usePasswordConfirm";
-import { useWidgetStore } from "shared/store";
 import { useMutation } from "@tanstack/react-query";
+import { useWidgetStore, useSignUpStore } from "shared";
 import { emailVerifications } from "connection";
 import { SignUpLayout } from "design";
+import usePasswordConfirm from "hook/sign-up/usePasswordConfirm";
 
 export default function Credentials() {
   const { signUpData, setSignUpData } = useSignUpStore();

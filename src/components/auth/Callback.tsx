@@ -22,7 +22,6 @@ export function GitHub() {
             },
             body: JSON.stringify({ code }),
           });
-          // const accessTokenResponse= await response.json();
         })();
       }
     } catch (error) {

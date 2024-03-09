@@ -22,7 +22,6 @@ function Replace({ exceptions, children }: ReplaceProps) {
     .filter(([exception]) => exception)
     .map(([flag, Component], index) => {
       if (typeof flag === "string") {
-        if (flag === "") return <>{children}</>;
         return events?.some(({ event }) => event === flag) ? <>{Component}</> : null;
       }
       return <Fragment key={index}>{Component}</Fragment>;
