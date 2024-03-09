@@ -1,5 +1,5 @@
 import { Dispatch } from "react";
-import { Button } from "design/button";
+import { Button } from "design";
 
 export default function PostComment({
   submit,

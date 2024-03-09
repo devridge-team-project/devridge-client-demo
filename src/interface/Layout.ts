@@ -1,9 +1,10 @@
 import { Button, EventsProps } from "./Property";
+import { Script } from "interface";
 
 export interface SignUpLayoutProps {
   titles: {
-    title: string[];
-    subtitle?: string[];
+    title: Script;
+    subtitle?: Script;
   };
   buttons?: Button[];
   checkboxes?: { flag: string; title: string; scripts?: string }[];

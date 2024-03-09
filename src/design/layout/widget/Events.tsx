@@ -16,10 +16,18 @@ function Show({ components, children }: InsertProps) {
 }
 
 function Replace({ exceptions, children }: ReplaceProps) {
+  const { events } = useWidgetStore();
   if (!exceptions) return <>{children}</>;
   const trueComponents = exceptions
     .filter(([exception]) => exception)
-    .map(([, Component], index) => <Fragment key={index}>{Component}</Fragment>);
+    .map(([flag, Component], index) => {
+      if (typeof flag === "string") {
+        if (flag === "") return <>{children}</>;
+        return events?.some(({ event }) => event === flag) ? <>{Component}</> : null;
+      }
+      return <Fragment key={index}>{Component}</Fragment>;
+    })
+    .filter((component) => component !== null);
   return <>{trueComponents.length > 0 ? trueComponents : children}</>;
 }
 

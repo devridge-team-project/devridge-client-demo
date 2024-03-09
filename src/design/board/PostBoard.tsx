@@ -7,7 +7,7 @@ import { getCookie } from "util/cookies";
 import useNavigation from "hook/useNavigation";
 
 export default function PostBoard() {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
 
   const navigatior = useNavigation();

@@ -7,7 +7,7 @@ import { Button, Input, TextArea } from "design";
 import { postCommunity } from "connection/api/community";
 
 export default function CommunityPost() {
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState<string>("");
   const [content, setContent] = useState("");
   const [hashtags, setHashtags] = useState([]);
   const navigate = useNavigate();

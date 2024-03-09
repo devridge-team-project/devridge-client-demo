@@ -32,7 +32,6 @@ export default function SideMenu() {
     isOpen ? "cursor-pointer" : "cursor-default",
     "flex items-center gap-4",
   ].join(" ");
-  console.log(userDetails);
 
   return (
     <div className={cn(positions, animations, moves())}>
