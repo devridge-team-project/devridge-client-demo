@@ -7,6 +7,7 @@ import useNavigation from "hook/useNavigation";
 import { useWidgetStore } from "shared/store";
 import { col } from "style";
 import { cn } from "util/classNames";
+import { getCookie } from "util/cookies";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {
