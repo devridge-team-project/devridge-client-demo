@@ -17,11 +17,7 @@ export default function QnaById() {
     mutationFn: () => qna.comments.post(parseInt(id ?? "0", 10), { content: commentContent }),
   });
 
-  const {
-    data: post,
-    isLoading: isLoadingPost,
-    isError,
-  } = useQuery({
+  const { data: posts, isLoading: isLoadingPost } = useQuery({
     queryKey: ["post", mutate, isPost],
     queryFn: () => qna.getById(parseInt(id ?? "0", 10)),
   });
@@ -31,15 +27,16 @@ export default function QnaById() {
     queryFn: () => qna.comments.get(parseInt(id ?? "0", 10)),
   });
 
-  if (!post || !comments) return <div>데이터가 없습니다.</div>;
-  if (isError) return <div>에러가 발생했습니다.</div>;
+  const isLoading = isLoadingPost || isLoadingComments;
+  const data = posts && comments;
 
   return (
     <BulletinBoard
       events={{
         exceptions: [
           [!checkSignIn(), <div>로그인이 필요합니다.</div>],
-          [isLoadingPost || isLoadingComments, <LoadingSpinner />],
+          [isLoading, <LoadingSpinner />],
+          [!data && !isLoading, <div>데이터가 존재하지 않습니다.</div>],
         ],
       }}
       type="Q&A"
@@ -48,7 +45,7 @@ export default function QnaById() {
         submit: mutate as () => Promise<unknown>,
         setCommentContent: setCommentContent,
       }}
-      {...post}
+      {...posts}
     />
   );
 }
