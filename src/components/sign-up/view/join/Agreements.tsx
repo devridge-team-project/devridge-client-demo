@@ -1,17 +1,26 @@
-import { checkboxes } from "components/sign-up/controller/checkboxes";
+import { checkboxes } from "components/sign-up/static/checkboxes";
 import { SignUpLayout } from "design";
 import { AlertModal } from "design";
-import { useSignUpStore } from "shared/sign-up/store";
+import { useSignUpStore, useWidgetStore } from "shared";
 
 export default function Agreements() {
   const { agreements } = useSignUpStore();
-  const agreeNecessary = ["flag1", "flag2"].every((flag) => agreements[flag]);
+  const { events, setView, setModal } = useWidgetStore();
+  const necessary = ["flag1", "flag2"].every((flag) => agreements[flag]);
   return (
     <SignUpLayout
-      widgets={{ components: [[agreeNecessary, <AlertModal />]] }}
+      widgets={{ components: [["necessary", <AlertModal />]] }}
       titles={{ title: ["약관 동의가", "필요해요"] }}
       checkboxes={checkboxes}
-      buttons={[["인증하기", () => {}]]}
+      buttons={[
+        [
+          "인증하기",
+          () => {
+            if (!necessary) return setModal("necessary");
+            return setView("credentials");
+          },
+        ],
+      ]}
     />
   );
 }
