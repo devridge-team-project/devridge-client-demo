@@ -4,10 +4,12 @@ const { REACT_APP_SERVER_URL: origin } = process.env;
 
 const apiConfig = {
   server: process.env.REACT_APP_SERVER_URL,
-  naver: process.env.REACT_APP_NAVER_ORIGIN,
-  kakao: process.env.REACT_APP_KAKAO_ORIGIN,
-  gitHub: process.env.REACT_APP_GITHUB_ORIGIN,
-  google: process.env.REACT_APP_GOOGLE_ORIGIN,
+  auth: {
+    naver: process.env.REACT_APP_AUTH_NAVER_AUTH_ORIGIN,
+    kakao: process.env.REACT_APP_AUTH_KAKAO_AUTH_ORIGIN,
+    gitHub: process.env.REACT_APP_AUTH_GITHUB_ORIGIN,
+    google: process.env.REACT_APP_AUTH_GOOGLE_AUTH_ORIGIN,
+  },
 };
 
 const axios = (ContentType: string, baseURL: string) => {
@@ -67,7 +69,8 @@ const http = (baseURL?: string) => {
 
 const httpRequest = {
   server: http(apiConfig.server),
-  naver: http(apiConfig.naver),
+  gitHub: http(apiConfig.auth.gitHub),
+  naver: http(apiConfig.auth.naver),
   kakao: http("https://kauth.kakao.com"),
 };
 

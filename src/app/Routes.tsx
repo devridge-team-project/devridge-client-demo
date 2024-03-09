@@ -20,6 +20,7 @@ import {
 import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 import { Team } from "components/team";
 import SignOut from "components/sign-out";
+import { Auth } from "./api";
 
 export default function Router() {
   return (
@@ -27,7 +28,8 @@ export default function Router() {
       {/* These is for api only ex)callback */}
       <Route path="/api">
         <Route path="auth/callback">
-          <Route path="gitHub" element={<div>hi</div>} />
+          <Route path="gitHub" element={<Auth.GitHub />} />
+          <Route path="naver" element={<Auth.Naver />} />
         </Route>
       </Route>
       {/* These is view for client */}

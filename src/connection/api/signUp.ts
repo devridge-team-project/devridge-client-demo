@@ -1,11 +1,27 @@
-import httpRequest from "./../axios";
+import httpRequest from "../axios";
+const api = httpRequest.server;
 
-const api = {
-  naver: httpRequest.naver,
+interface CreateTokenProps {
+  token: string;
+}
+
+function createToken(provider: string, code: string) {
+  return api.post<Request, CreateTokenProps>("/api/social-login", { provider, code });
+}
+
+function signUpAuth() {
+  return api.post("/auth/signUp");
+}
+
+const signUp = {
+  auth: {
+    token: {
+      post: createToken,
+    },
+    signUp: {
+      post: signUpAuth,
+    },
+  },
 };
 
-function authenticateNaver({}) {
-  return api.naver.get(
-    `/authorize?response_type=code&client_id=NDaIlH5zYC_WwwacvpXy&redirect_uri=http://localhost:8080/login/oauth2/code/naver`,
-  );
-}
+export default signUp;
