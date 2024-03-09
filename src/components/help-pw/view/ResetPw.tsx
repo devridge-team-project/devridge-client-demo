@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { center, col, row } from "style/display";
 import { useMutation } from "@tanstack/react-query";
 import { resetPassword } from "connection/api/password";
-import Loading from "design/loading/Loading";
+import Loading from "design/interaction/widget/LoadingSpinner";
 import { Button } from "design";
 import Input from "../../common/input";
 

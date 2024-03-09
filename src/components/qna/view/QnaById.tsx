@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import BulletinBoard from "design/board/BulletinBoard";
+import { BulletinBoard, LoadingSpinner } from "design";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { qna } from "connection";
@@ -19,26 +19,28 @@ export default function QnaById() {
 
   const {
     data: post,
-    isLoading: loading,
+    isLoading: isLoadingPost,
     isError,
   } = useQuery({
     queryKey: ["post", mutate, isPost],
     queryFn: () => qna.getById(parseInt(id ?? "0", 10)),
   });
 
-  const { data: comments } = useQuery({
+  const { data: comments, isLoading: isLoadingComments } = useQuery({
     queryKey: [],
     queryFn: () => qna.comments.get(parseInt(id ?? "0", 10)),
   });
 
   if (!post || !comments) return <div>데이터가 없습니다.</div>;
-  if (loading) return <div>로딩중...</div>;
   if (isError) return <div>에러가 발생했습니다.</div>;
 
   return (
     <BulletinBoard
       events={{
-        exceptions: [[!checkSignIn(), <div>로그인이 필요합니다.</div>]],
+        exceptions: [
+          [!checkSignIn(), <div>로그인이 필요합니다.</div>],
+          [isLoadingPost || isLoadingComments, <LoadingSpinner />],
+        ],
       }}
       type="Q&A"
       comments={comments}

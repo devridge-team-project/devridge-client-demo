@@ -1,6 +1,7 @@
 export * from "./button";
 export * from "./card";
 export * from "./layout";
+export * from "./interaction";
 export * from "./text";
 export * from "./modal";
 export { default as BulletinBoard } from "./board/BulletinBoard";
