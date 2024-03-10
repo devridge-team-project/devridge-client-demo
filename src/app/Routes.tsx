@@ -21,6 +21,7 @@ import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 import { Team } from "components/team";
 import SignOut from "components/sign-out";
 import { Auth } from "./api";
+import Test from "components/test/Test";
 
 export default function Router() {
   return (
@@ -34,6 +35,7 @@ export default function Router() {
           <Route path="google" element={<Auth.Google />} />
         </Route>
       </Route>
+      <Route path="test" element={<Test />} />
       {/* These are views for client */}
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
