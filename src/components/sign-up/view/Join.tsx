@@ -6,6 +6,7 @@ import UserInformation from "./join/UserInformation";
 import Credentials from "./join/Credentials";
 import Authentication from "./join/Authentication";
 import Agreements from "./join/Agreements";
+import { useEffect } from "react";
 
 export default function Join() {
   const { authToken } = useSignUpStore();
@@ -17,6 +18,10 @@ export default function Join() {
     displays: "flex flex-col items-center justify-center",
     sizes: "w-full min-h-screen ",
   };
+
+  useEffect(() => {
+    console.log(authToken);
+  }, []);
 
   return (
     <div className={cn(conatiner)}>

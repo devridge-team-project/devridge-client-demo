@@ -2,7 +2,7 @@ import httpRequest from "../axios";
 const api = httpRequest.server;
 
 interface CreateTokenProps {
-  token: string;
+  tempJwt: string;
 }
 
 function createToken(provider: string, code: string) {

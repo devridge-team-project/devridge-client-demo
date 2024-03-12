@@ -15,7 +15,7 @@ function Auth({ provider }: { provider: string }) {
 
   useEffect(() => {
     mutate();
-    if (data && isSuccess) setAuthToken(data.token);
+    if (data && isSuccess) setAuthToken(data.tempJwt);
     console.log(authToken);
   }, []);
   if (isSuccess) navigate("/sign-up/join");
