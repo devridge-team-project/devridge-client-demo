@@ -12,16 +12,6 @@ export interface Qna {
   views: number;
   commentCount: number;
 }
-
-export interface QnaComment {
-  id: number;
-  member: Member;
-  content: string;
-  likes: number;
-  dislikes: number;
-  createdAt: string;
-}
-
 export interface QnaById {
   member: Member;
   title: string;
@@ -31,6 +21,15 @@ export interface QnaById {
   dislikes: number;
   createdAt: string;
   commentCount: number;
+}
+
+export interface QnaComment {
+  id: number;
+  member: Member;
+  content: string;
+  likes: number;
+  dislikes: number;
+  createdAt: string;
 }
 
 export interface QnaPost {
