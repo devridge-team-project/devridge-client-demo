@@ -1,12 +1,12 @@
 import React from "react";
 
-interface Radio {
+interface Select {
   id: string;
   type: string;
   name: string;
-  defaultValue?: string;
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  checked?: boolean;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
 }
 
@@ -14,21 +14,24 @@ export default function SelectButton({
   id,
   type,
   name,
-  defaultValue,
   value,
+  checked,
   onChange,
   className,
-}: Radio) {
+}: Select) {
+  console.log(checked, name, value);
+  const check = type === "radio" && checked ? " bg-gray-200" : "";
+  console.log(check);
   return (
-    <label htmlFor={id} className={`block text-center mr-2.5 ${className}`}>
+    <label htmlFor={id} className={`block text-center mr-2.5 ${className}${check}`}>
       <input
         type={type}
         id={id}
         name={name}
         value={value}
-        checked={defaultValue === value}
+        checked={checked}
         onChange={onChange}
-        className="hidden"
+        className={`${type === "radio" ? "hidden" : ""}`}
       />
       {value}
     </label>
