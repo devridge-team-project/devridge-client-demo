@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import Board from "design/board/Board";
+
 import { center, col, row } from "style/display";
 import { Button } from "design";
 import SelectButton from "design/input/SelectButton";
@@ -11,35 +11,55 @@ export default function ProjectPost() {
   const [project, setProject] = useState({
     title: "",
     content: "",
-    category: "",
     meeting: "",
   });
-  const [skillIds, setSkillIds] = useState([]);
-  const { title, content, category, meeting } = project;
+  const [roles, setRoles] = useState<string[]>([]);
+  const [checkRoles, setCheckRoles] = useState({
+    frontEnd: false,
+    backEnd: false,
+    design: false,
+    pm: false,
+  });
+  const [checkMeeting, setCheckMeeting] = useState({
+    online: false,
+    offline: false,
+  });
+  const [skillIds, setSkillIds] = useState<number[]>([]);
+
+  const { title, content, meeting } = project;
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    console.log(name, value);
+
     setProject({ ...project, [name]: value });
   };
-  const onSelectChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { id, name, value } = e.target;
-    console.log(id, name, value);
+  const onRoleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, checked } = e.target;
+    const set = new Set(roles);
+    setCheckRoles({ ...checkRoles, [id]: checked });
+    if (checked) {
+      set.add(id);
+      setRoles([...set]);
+    } else {
+      set.delete(id);
+      setRoles([...set]);
+    }
   };
   const navigate = useNavigate();
   const { mutate, isSuccess } = useMutation({
     mutationKey: ["postProject"],
-    mutationFn: () => postProject({ ...project, images: ["abc"], skillIds: [1, 2, 3] }),
+    mutationFn: () => postProject({ ...project, roles, skillIds: [1, 2, 3], images: ["abc"] }),
   });
   if (isSuccess) {
     alert("커뮤니티 게시글 등록 성공");
     navigate("/community/project");
   }
+  console.log(roles);
 
   return (
     <div className={`${center.colO(0)}`}>
-      <div className="w-[390px]">
+      <div className="w-80">
         <div>
-          <div className="text-2xl font-bold">제목 </div>
+          <div className="text-xl font-bold mt-4 mb-2.5">제목 </div>
           <input
             type="text"
             name="title"
@@ -49,8 +69,9 @@ export default function ProjectPost() {
           />
         </div>
         <div>
-          <div className="text-2xl font-bold">프로젝트 요약</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">프로젝트 요약</div>
           <textarea
+            className="w-[316px] h-[150px] resize-none"
             name="content"
             value={content}
             onChange={onChange}
@@ -58,79 +79,52 @@ export default function ProjectPost() {
           />
         </div>
         <div>
-          <div className="text-2xl font-bold">모집 역할</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">모집 역할</div>
           <div className="flex">
             <SelectButton
-              id="front"
+              id="frontEnd"
               type="checkbox"
-              name="skillId"
+              name="roles"
               value="프론트엔드"
-              onChange={onSelectChange}
+              checked={checkRoles.frontEnd}
+              onChange={onRoleChange}
             />
             <SelectButton
-              id="back"
+              id="backEnd"
               type="checkbox"
-              name="skillId"
+              name="roles"
               value="백엔드"
-              onChange={onSelectChange}
+              checked={checkRoles.backEnd}
+              onChange={onRoleChange}
             />
             <SelectButton
               id="design"
               type="checkbox"
-              name="skillId"
+              name="roles"
               value="디자인"
-              onChange={onSelectChange}
+              checked={checkRoles.design}
+              onChange={onRoleChange}
             />
             <SelectButton
               id="pm"
               type="checkbox"
-              name="skillId"
+              name="roles"
               value="기획"
-              onChange={onSelectChange}
+              checked={checkRoles.pm}
+              onChange={onRoleChange}
             />
           </div>
         </div>
-        <div>
-          <div className="text-2xl font-bold">카테고리</div>
-          <div className="flex">
-            <SelectButton
-              id="side"
-              type="radio"
-              name="category"
-              defaultValue={category}
-              value="TOY_PROJECT"
-              onChange={onChange}
-              className=" w-[105px] h-7.5 border-2 border-gray-200"
-            />
-            <SelectButton
-              id="portfolio"
-              type="radio"
-              name="category"
-              defaultValue={category}
-              value="PORTFOLIO_PROJECT"
-              onChange={onChange}
-              className=" w-[130px] h-7.5 border-2 border-gray-200"
-            />
-            <SelectButton
-              id="general"
-              type="radio"
-              name="category"
-              defaultValue={category}
-              value="ETC"
-              onChange={onChange}
-              className=" w-[70px] h-7.5 border-2 border-gray-200"
-            />
-          </div>
-        </div>
-        <div>
-          <div className="text-2xl font-bold">참여방식</div>
+
+        <div className="mb-4">
+          <div className="text-xl font-bold mt-4 mb-2.5">참여방식</div>
           <div className="flex">
             <SelectButton
               id="online"
               type="radio"
               name="meeting"
-              defaultValue={meeting}
               value="온라인"
+              checked={meeting === "온라인"}
               onChange={onChange}
               className="w-40 h-7.5 border-2 border-gray-200"
             />
@@ -138,16 +132,15 @@ export default function ProjectPost() {
               id="offline"
               type="radio"
               name="meeting"
-              defaultValue={meeting}
               value="오프라인"
+              checked={meeting === "오프라인"}
               onChange={onChange}
               className="w-40 h-7.5 border-2 border-gray-200"
             />
           </div>
         </div>
+        <Button title="작성하기" onClick={mutate} options={{ size: "full" }} />
       </div>
-
-      <Button title="작성하기" onClick={mutate} />
     </div>
   );
 }
