@@ -7,6 +7,8 @@ module.exports = {
     },
     extend: {
       fontSize: {
+        xxxxs: "0.225rem",
+        xxxs: "0.5rem",
         xxs: "0.625rem",
         xm: "0.875rem",
         "1xl": "1rem",
@@ -15,6 +17,8 @@ module.exports = {
         300: "75rem",
       },
       spacing: {
+        2: "0.5rem",
+        3: "0.75rem",
         6: "1.5rem",
         7: "1.75rem",
         7.5: "1.875rem",
@@ -74,6 +78,7 @@ module.exports = {
         "near-black": "#0C0E0F",
         "medium-grey": "#AFAFAF",
         "blue-grey": "#4F26F4",
+        "dark-grey": "#464646",
         "white-purple": "rgba(79, 38, 244, 0.25)",
       },
       opacity: {

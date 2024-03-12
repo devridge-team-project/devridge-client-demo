@@ -4,14 +4,15 @@ import { col, center } from "style/display";
 import PostCard from "../../../design/card/template/PostCard";
 import useNavigation from "hook/useNavigation";
 import FloatButton from "design/button/FloatButton";
+import PostCardRecent from "design/card/template/PostCard.recent";
 export default function Qna() {
   const { data: viewsQnaData, isLoading: isLoadingViews } = useQuery({
     queryKey: ["viewsQna"],
-    queryFn: () => qna.get("views"),
+    queryFn: () => qna.getAll("views"),
   });
   const { data: latestQnaData, isLoading: isLoadingLatest } = useQuery({
     queryKey: ["latestQna"],
-    queryFn: () => qna.get("latest"),
+    queryFn: () => qna.getAll("latest"),
   });
   const navigate = useNavigation();
   if (isLoadingViews || isLoadingLatest) return <div>로딩중...</div>;
@@ -21,7 +22,10 @@ export default function Qna() {
       <div className="flex flex-col gap-12 pt-8">
         <div className="text-3xl font-bold">Q&A</div>
         <div className={col(2)}>
-          <div className="text-xl font-bold">오늘의 조회수 TOP 5</div>
+          <div className="flex items-center gap-2 ">
+            <div className="text-xl font-bold">오늘의 조회수 TOP 5</div>
+            <img src="/images/icons/fire.svg" alt="fire" className="w-5 h-5" />
+          </div>
           {viewsQnaData?.map(({ id, title, commentCount, likes, views }, index) => (
             <PostCard
               key={id}
@@ -37,7 +41,8 @@ export default function Qna() {
         <div className={col(2)}>
           <div className="text-xl font-bold">최근 Q&A</div>
           {latestQnaData?.map(({ id, title, commentCount, likes, views }) => (
-            <PostCard
+            <PostCardRecent
+              id={id}
               key={id}
               onClick={() => navigate(`/qna/${id}`)}
               title={title}

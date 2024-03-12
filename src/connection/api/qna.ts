@@ -3,11 +3,11 @@ import { Qna, QnaById, QnaComment, QnaPost } from "interface/Qna";
 
 const api = httpRequest.server;
 
-function getQna(sortOption: "views" | "latest") {
+function getQnaAll(sortOption: "views" | "latest") {
   return api.get<Qna[]>("/api/qna", { params: { sortOption } });
 }
 
-function getQnaById(id: number) {
+function getQna(id: number) {
   return api.get<QnaById>(`/api/qna/${id}`);
 }
 
@@ -24,8 +24,8 @@ function postComments(id: number, data: object) {
 }
 
 export const qna = {
+  getAll: getQnaAll,
   get: getQna,
-  getById: getQnaById,
   post: postQna,
   comments: {
     get: getComments,

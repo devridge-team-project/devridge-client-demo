@@ -19,7 +19,7 @@ export default function QnaById() {
 
   const { data: posts, isLoading: isLoadingPost } = useQuery({
     queryKey: ["post", mutate, isPost],
-    queryFn: () => qna.getById(parseInt(id ?? "0", 10)),
+    queryFn: () => qna.get(parseInt(id ?? "0", 10)),
   });
 
   const { data: comments, isLoading: isLoadingComments } = useQuery({

@@ -15,10 +15,8 @@ export default function Qna() {
   useEffect(() => {
     (async () => {
       try {
-        const topQnas = (await qna.get("latest")).slice(0, 4);
-        const qnaPromises = topQnas.map(({ id }) =>
-          qna.getById(id).then((data) => ({ ...data, id })),
-        );
+        const topQnas = (await qna.getAll("latest")).slice(0, 4);
+        const qnaPromises = topQnas.map(({ id }) => qna.get(id).then((data) => ({ ...data, id })));
         const qnaData = await Promise.all(qnaPromises);
         setQnas(qnaData);
       } catch (e) {

@@ -1,4 +1,5 @@
 import { Card } from "design";
+import { cn } from "util/classNames";
 
 export default function PostCard({
   onClick,
@@ -15,20 +16,22 @@ export default function PostCard({
   likes: number;
   views: number;
 }) {
+  const container = {
+    displays: "flex items-center gap-4",
+  };
+
   return (
-    <Card onClick={onClick}>
-      <div className="flex items-center h-full gap-4">
-        {index && (
-          <div className="w-6 h-6 rounded-md flex justify-center items-center bg-black text-white text-lg font-bold ">
-            {index}
-          </div>
-        )}
-        <div className="flex flex-col items-start">
-          <div className="text-base font-bold ">{title}</div>
-          <div className="flex justify-end gap-4 text-xs text-gray-300">
-            <div>답변수 {commentCount}</div>
-            <div>조회수 {views}</div>
-          </div>
+    <Card onClick={onClick} classNames={cn(container)} options={{ isBorder: true }}>
+      {index && (
+        <div className="w-6 h-6 rounded-md flex justify-center items-center bg-dark-grey text-white text-lg font-bold ">
+          {index}
+        </div>
+      )}
+      <div className="flex flex-col items-start gap-1">
+        <div className="text-base font-bold ">{title}</div>
+        <div className="flex justify-end gap-4 text-xs text-gray-300">
+          <div>답변수 {commentCount}</div>
+          <div>조회수 {views}</div>
         </div>
       </div>
     </Card>
