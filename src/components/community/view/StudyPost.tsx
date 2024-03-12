@@ -18,6 +18,7 @@ export default function StudyPost() {
   const { title, location, category, onoff, content, images } = project;
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
+
     console.log(name, value);
     setProject({ ...project, [name]: value });
   };
@@ -42,9 +43,9 @@ export default function StudyPost() {
 
   return (
     <div className={`${center.colO(0)}`}>
-      <div className="w-[390px]">
+      <div className="w-80">
         <div>
-          <div className="text-2xl font-bold">제목</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">제목</div>
           <input
             type="text"
             name="title"
@@ -54,7 +55,7 @@ export default function StudyPost() {
           />
         </div>
         <div>
-          <div className="text-2xl font-bold">위치</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">위치</div>
           <input
             type="text"
             name="location"
@@ -64,54 +65,64 @@ export default function StudyPost() {
           />
         </div>
         <div>
-          <div className="text-2xl font-bold">카테고리</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">카테고리</div>
           <div className="flex">
             <SelectButton
               id="side"
               type="radio"
               name="category"
-              defaultValue={category}
-              value="CODING_TEST_STUDY"
+              checked={category === "코테 스터디"}
+              value="코테 스터디"
               onChange={onChange}
-              className=" w-[105px] h-7.5 border-2 border-gray-200"
+              className=" w-[90px] h-7.5 border-2 border-gray-200"
             />
             <SelectButton
               id="portfolio"
               type="radio"
               name="category"
-              defaultValue={category}
-              value="CS_STUDY"
+              checked={category === "CS 스터디"}
+              value="CS 스터디"
               onChange={onChange}
-              className=" w-[130px] h-7.5 border-2 border-gray-200"
+              className=" w-20 h-7.5 border-2 border-gray-200"
+            />
+            <SelectButton
+              id="interview"
+              type="radio"
+              name="category"
+              checked={category === "면접 스터디"}
+              value="면접 스터디"
+              onChange={onChange}
+              className=" w-20 h-7.5 border-2 border-gray-200"
             />
             <SelectButton
               id="general"
               type="radio"
               name="category"
-              defaultValue={category}
-              value="INTERVIEW_STUDY"
+              checked={category === "기타"}
+              value="기타"
               onChange={onChange}
-              className=" w-[70px] h-7.5 border-2 border-gray-200"
+              className=" w-10 h-7.5 border-2 border-gray-200"
             />
           </div>
         </div>
         <div>
-          <div className="text-2xl font-bold">내용</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">내용</div>
           <textarea
+            className="w-[316px] h-[150px] resize-none"
             name="content"
             value={content}
             onChange={onChange}
             placeholder="스터디 내용을 작성해주세요."
           />
         </div>
-        <div>
-          <div className="text-2xl font-bold">참여방식</div>
+        <div className="mb-4">
+          <div className="text-xl font-bold mt-4 mb-2.5">참여방식</div>
           <div className="flex">
             <SelectButton
               id="online"
               type="radio"
               name="onoff"
-              defaultValue={onoff}
+              checked={onoff === "온라인"}
               value="온라인"
               onChange={onChange}
               className="w-40 h-7.5 border-2 border-gray-200"
@@ -120,16 +131,15 @@ export default function StudyPost() {
               id="offline"
               type="radio"
               name="onoff"
-              defaultValue={onoff}
+              checked={onoff === "오프라인"}
               value="오프라인"
               onChange={onChange}
               className="w-40 h-7.5 border-2 border-gray-200"
             />
           </div>
         </div>
+        <Button title="작성하기" onClick={mutate} options={{ size: "full" }} />
       </div>
-
-      <Button title="작성하기" onClick={mutate} />
     </div>
   );
 }
