@@ -36,7 +36,7 @@ export default function Card({
   const container = {
     sizes: `${widthSize[width ?? "md"]} ${heightSize[height ?? "sm"]}`,
     clickEvents: onClick ? "cursor-pointer" : "",
-    border: isBorder && "border-b ",
+    styles: isBorder && `border-2 shadow-md rounded-${round ?? "md"} p-2`,
     classNames,
   };
 

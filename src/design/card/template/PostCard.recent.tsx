@@ -29,6 +29,7 @@ export default function PostCardRecent({
 
   const container = {
     displays: "flex items-center gap-4",
+    styles: "border-b",
   };
 
   const { member, createdAt } = data ?? {};
@@ -37,7 +38,7 @@ export default function PostCardRecent({
   const dateStr = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 
   return (
-    <Card onClick={onClick} classNames={cn(container)} options={{ height: "md", isBorder: true }}>
+    <Card onClick={onClick} classNames={cn(container)} options={{ height: "md" }}>
       <div className="flex flex-col items-start gap-2 w-full">
         <div>
           <div className="text-xxs text-gray-300">

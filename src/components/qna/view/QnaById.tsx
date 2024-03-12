@@ -3,9 +3,7 @@ import { BulletinBoard, LoadingSpinner } from "design";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { qna } from "connection";
-import { useEffect, useState } from "react";
-import useSignIn from "hook/useSignIn";
-import { getCookie } from "util/cookies";
+import { useState } from "react";
 import checkSignIn from "util/checkSignIn";
 
 export default function QnaById() {

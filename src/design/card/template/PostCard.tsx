@@ -18,10 +18,11 @@ export default function PostCard({
 }) {
   const container = {
     displays: "flex items-center gap-4",
+    styles: "border-b",
   };
 
   return (
-    <Card onClick={onClick} classNames={cn(container)} options={{ isBorder: true }}>
+    <Card onClick={onClick} classNames={cn(container)}>
       {index && (
         <div className="w-6 h-6 rounded-md flex justify-center items-center bg-dark-grey text-white text-lg font-bold ">
           {index}
