@@ -112,7 +112,7 @@ export interface ProjectPost {
   content: string;
   skillIds: number[];
   meeting: string;
-  category: string;
+  roles: string[];
   images: string[];
 }
 

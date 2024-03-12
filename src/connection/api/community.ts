@@ -45,7 +45,7 @@ export const postProject = ({
   title,
   content,
   skillIds,
-  category,
+  roles,
   meeting,
   images = [],
 }: ProjectPost) => {
@@ -53,7 +53,7 @@ export const postProject = ({
     title,
     content,
     skillIds,
-    category,
+    roles,
     meeting,
     images,
   });
