@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 export default function Join() {
   const { authToken } = useSignUpStore();
-  const [searchParams] = useSearchParams();
   const isToken = authToken !== null;
 
   const conatiner = {

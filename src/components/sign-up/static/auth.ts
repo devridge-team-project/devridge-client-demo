@@ -9,7 +9,7 @@ const {
   REACT_APP_AUTH_NAVER_CLIENT_ID: naverClientId,
 } = process.env;
 
-const redirectUri = "https://devridge-client.vercel.app/api/auth/callback";
+const redirectUri = "http%3A//localhost:3000/login/oauth2/code";
 const readOnly = "https%3A//www.googleapis.com/auth/drive.metadata.readonly";
 const state = "test";
 

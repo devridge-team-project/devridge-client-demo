@@ -15,10 +15,12 @@ function Auth({ provider }: { provider: string }) {
 
   useEffect(() => {
     mutate();
-    if (data && isSuccess) setAuthToken(data.tempJwt);
-    console.log(authToken);
-  }, []);
-  if (isSuccess) navigate("/sign-up/join");
+    if (data && isSuccess) {
+      console.log(data.tempJwt);
+      return setAuthToken(data.tempJwt);
+    }
+  }, [mutate, data, isSuccess, setAuthToken, authToken]);
+  if (authToken !== null && isSuccess) navigate("/sign-up/join");
   return null;
 }
 

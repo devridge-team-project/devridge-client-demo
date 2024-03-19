@@ -70,5 +70,9 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
     skillIds: [],
   },
 
-  setSignUpData: (data) => set((state) => ({ ...state, ...data })),
+  setSignUpData: (data) =>
+    set((state) => {
+      const newSignUpData = { ...state.signUpData, ...data };
+      return { ...state, signUpData: newSignUpData };
+    }),
 }));

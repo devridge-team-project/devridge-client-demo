@@ -27,8 +27,8 @@ export default function Router() {
   return (
     <Routes>
       {/* These are for api only ex)callback */}
-      <Route path="/api">
-        <Route path="auth/callback">
+      <Route path="/login">
+        <Route path="oauth2/code">
           <Route path="gitHub" element={<Auth.GitHub />} />
           <Route path="naver" element={<Auth.Naver />} />
           <Route path="kakao" element={<Auth.Kakao />} />

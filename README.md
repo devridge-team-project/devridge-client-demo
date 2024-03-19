@@ -16,10 +16,11 @@ npm start
 - tailwindcss
 - zustand
 
-## Screen Flow Chart
+## User Flow Chart
 ```mermaid
 flowchart LR
-Start --> End
+Start --> registerd?
+registerd? --> |Yes| SignIn
 ```
 
 ## Environment Variables
