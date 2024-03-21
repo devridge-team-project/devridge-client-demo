@@ -1,8 +1,6 @@
 import Axios, { AxiosError, AxiosRequestConfig } from "axios";
 import { getCookie, setCookie } from "util/cookies";
 
-const { REACT_APP_SERVER_URL: origin } = process.env;
-
 const apiConfig = {
   server: process.env.REACT_APP_SERVER_URL,
   auth: {
@@ -13,14 +11,17 @@ const apiConfig = {
   },
 };
 
-const axios = (ContentType: string, baseURL: string) => {
+export const axios = (ContentType: string, baseURL: string) => {
   const config: AxiosRequestConfig = {
     baseURL: baseURL || "/api",
     headers: {
       "Content-type": ContentType,
     },
+    // withCredentials: true,
   };
+
   const instance = Axios.create(config);
+
   instance.interceptors.request.use(
     (request) => {
       const token = getCookie("accessToken");
@@ -38,6 +39,8 @@ const axios = (ContentType: string, baseURL: string) => {
       return response;
     },
     (error: AxiosError) => {
+      console.log(error?.response);
+
       return error;
     },
   );
