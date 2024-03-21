@@ -4,12 +4,11 @@ import { logout } from "connection/api/login";
 import { users } from "connection/api/users";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useQuery, useMutation } from "@tanstack/react-query";
-import useSignIn from "hook/useSignIn";
+
 import { Button } from "design";
 import { useEffect, useState } from "react";
 import { removeCookie } from "util/cookies";
 export default function MyAccount() {
-  useSignIn();
   const [nickname, setNickname] = useState<string>("");
   const [occupation, setOccupation] = useState<string>("");
   const [skillIds, setSkillIds] = useState<number[]>([]);
