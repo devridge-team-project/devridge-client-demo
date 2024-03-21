@@ -5,12 +5,14 @@ import { Link, useNavigate } from "react-router-dom";
 import Card from "components/common/card";
 import CommunityLayout from "design/template/CommunityLayout";
 import { getCommunity } from "connection/api/community";
+
 export default function Community() {
   const navigate = useNavigate();
   const { data: datas, isLoading: isLoadingViews } = useQuery({
     queryKey: ["Community"],
     queryFn: () => getCommunity(),
   });
+
   /*
   export interface Issue {
     id: number;
@@ -67,9 +69,9 @@ export default function Community() {
           },
         )}
         <div className={`flex justify-end ${row(2)}`}>
-          <a href="community/post">
+          <Link to="post">
             <img src="/images/write.png" alt="write" />
-          </a>
+          </Link>
         </div>
       </div>
     </CommunityLayout>
