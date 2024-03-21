@@ -46,6 +46,7 @@
     "react/react-in-jsx-scope": "off",
     "react/jsx-key": "off",
     "react/jsx-no-useless-fragment": "off",
+    "global-require": "off",
     "prettier/prettier": [
       "error",
       {
