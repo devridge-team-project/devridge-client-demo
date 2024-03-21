@@ -21,7 +21,9 @@ import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
 import { Team } from "components/team";
 import SignOut from "components/sign-out";
 import { Auth } from "./api";
+import { CoffeeChatMessage, CoffeeChatMessageById, CoffeeChatReq } from "components/coffeechat";
 import Test from "components/test/Test";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 export default function Router() {
   return (
@@ -45,13 +47,7 @@ export default function Router() {
           <Route path="email-auth" element={<EmailAuth />} />
           <Route path="reset-pw" element={<ResetPw />} />
         </Route>
-        <Route path="mypage">
-          <Route index element={<MyAccount />} />
-          <Route path="delete-account" element={<DeleteAccount />} />
-          <Route path="update-account" element={<UpdateAccount />} />
-          <Route path="change-pw" element={<ChangePassword />} />
-          <Route path="ask" element={<Question />} />
-        </Route>
+
         <Route path="sign-up">
           <Route index element={<SignUp />} />
           <Route path="join" element={<Join />} />
@@ -59,26 +55,40 @@ export default function Router() {
         </Route>
         <Route path="community">
           <Route index element={<Community />} />
-          <Route path=":id" element={<CommunityById />} />
           <Route path="project">
             <Route index element={<Project />} />
-            <Route path="post" element={<ProjectPost />} />
           </Route>
           <Route path="study">
             <Route index element={<Study />} />
-            <Route path="post" element={<StudyPost />} />
           </Route>
-
-          <Route path="post" element={<CommunityPost />} />
         </Route>
         <Route path="qna">
           <Route index element={<Qna />} />
-          <Route path=":id" element={<QnaById />} />
-          <Route path="post" element={<QnaPost />} />
-          <Route path="success" element={<QnaSuccess />} />
         </Route>
         <Route path="team">
           <Route index element={<Team />} />
+        </Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="mypage">
+            <Route index element={<MyAccount />} />
+            <Route path="delete-account" element={<DeleteAccount />} />
+            <Route path="update-account" element={<UpdateAccount />} />
+            <Route path="change-pw" element={<ChangePassword />} />
+            <Route path="ask" element={<Question />} />
+          </Route>
+          <Route path="community/post" element={<CommunityPost />} />
+          <Route path="community/:id" element={<CommunityById />} />
+          <Route path="community/project/post" element={<ProjectPost />} />
+          <Route path="community/study/post" element={<StudyPost />} />
+          <Route path="coffeechat">
+            <Route index element={<CoffeeChatMessage />} />
+            <Route path=":id" element={<CoffeeChatMessageById />} />
+            <Route path="res" element={<CoffeeChatReq />} />
+            <Route path="req" element={<CoffeeChatReq />} />
+          </Route>
+          <Route path="qna/:id" element={<QnaById />} />
+          <Route path="qna/post" element={<QnaPost />} />
+          <Route path="qna/success" element={<QnaSuccess />} />
         </Route>
       </Route>
       <Route path="sign-out" element={<SignOut />} />

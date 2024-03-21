@@ -33,7 +33,10 @@ interface SignUpProps {
 
 export const useSignUpStore = create<SignUpProps>((set) => ({
   authToken: null,
-  setAuthToken: (token) => set({ authToken: token }),
+  setAuthToken: (token: string) =>
+    set({
+      authToken: token,
+    }),
 
   agreements: {
     all: false,
