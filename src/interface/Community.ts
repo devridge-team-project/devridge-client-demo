@@ -7,13 +7,18 @@ export interface Member {
 export interface Hashtag {
   id: number;
   word: string;
-  count: number;
+}
+
+export interface Sort {
+  sorted: boolean;
+  unsorted: boolean;
+  empty: boolean;
 }
 
 export interface Issue {
   id: number;
   title: string;
-  views: number;
+  viewCount: number;
   likeCount: number;
   comments: number;
   member: Member;
@@ -22,11 +27,7 @@ export interface Issue {
   hashtags: Hashtag[];
   scraps: number;
 }
-export interface Sort {
-  sorted: boolean;
-  unsorted: boolean;
-  empty: boolean;
-}
+
 export interface Community {
   content?: Issue[];
   pageable: {

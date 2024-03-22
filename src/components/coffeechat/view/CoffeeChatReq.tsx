@@ -53,14 +53,14 @@ export default function CoffeeChatReq() {
                 <div className="mt-6.25 mb-3.75 mx-7.5 flex justify-end">
                   <button
                     type="button"
-                    className="w-17.5 h-7.5 border-r-4 bg-blue-grey text-white"
+                    className="w-17.5 h-7.5 rounded bg-blue-grey text-white"
                     onClick={() => mutate({ id, answer: "Y" })}
                   >
                     수락
                   </button>
                   <button
                     type="button"
-                    className="w-17.5 h-7.5 border-r-4 border-[1px] border-solid border-white-grey"
+                    className="w-17.5 h-7.5 rounded border-[1px] border-solid border-white-grey"
                     onClick={() => mutate({ id, answer: "N" })}
                   >
                     거절

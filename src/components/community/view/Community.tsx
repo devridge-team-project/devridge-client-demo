@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useQuery } from "@tanstack/react-query";
-import { col, center, row } from "style/display";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { row } from "style/display";
 import { Link, useNavigate } from "react-router-dom";
-import Card from "components/common/card";
 import CommunityLayout from "design/template/CommunityLayout";
+import { postCoffeeChat } from "connection/api/coffeeChat";
 import { getCommunity } from "connection/api/community";
 
 export default function Community() {
@@ -13,40 +13,45 @@ export default function Community() {
     queryFn: () => getCommunity(),
   });
 
-  /*
-  export interface Issue {
-    id: number;
-    title: string;
-    views: number;
-    likeCount: number;
-    comments: number;
-    member: Member;
-    createdAt: string;
-    updatedAt: string;
-    hashtags: Hashtag[];
-    scraps: number;
-  }
-  export interface Member {
-    id: number;
-    nickname: string;
-    profileImageUrl: string | null;
-    introduction: string;
-  } */
+  const { mutate, isSuccess, isError } = useMutation({
+    mutationFn: (variables: { toMemberId: number; message: string }) =>
+      postCoffeeChat(variables.toMemberId, variables.message),
+  });
+
+  const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const { id } = e.currentTarget;
+    const message = prompt("메세지를 입력하세요:") as string;
+    console.log(message, id);
+    mutate({ toMemberId: Number(id), message });
+    if (isSuccess) {
+      alert("메세지가 잘 전달됬습니다.");
+    } else if (isError) {
+      alert("메세지 전송에 실패했습니다.");
+    }
+  };
+
   console.log(datas);
   return (
     <CommunityLayout tag="issue">
-      <div className={`${col(0, 80)} mx-[35px]`}>
-        {datas?.content?.map(
-          ({
-            id,
-            title,
-            views,
-            likeCount,
-            member: { nickname, profileImageUrl, introduction },
-            comments,
-          }) => {
-            return (
-              <Link to={`${id}`} className="h-40">
+      <div className="h-22.5 border-y border-white-grey text-white-grey flex justify-center items-center">
+        <div className="mr-20">자유롭게 의견을 공유해봐요</div>
+        <Link to="post">
+          <img src="/images/write-white.png" alt="write" />
+        </Link>
+      </div>
+      {datas?.content?.map(
+        ({
+          id,
+          title,
+          viewCount,
+          likeCount,
+          member: { id: toMemberId, nickname, profileImageUrl, introduction },
+          comments,
+          scraps,
+        }) => {
+          return (
+            <div className="border-b border-white-grey px-8.75">
+              <div className="flex justify-between mt-7">
                 <div className="flex">
                   <img
                     src={profileImageUrl}
@@ -58,21 +63,35 @@ export default function Community() {
                     <div className="text-1xl">{introduction}</div>
                   </div>
                 </div>
-                <div className="text-1xl font-bold">{title}</div>
-                <div className="text-xxs">게시판 내용 api 추가해주세요.</div>
-                <div className="text-[8px] text-gray-400 flex justify-end">
-                  <div className="mr-2.5">조회수: {views}</div>
-                  <div>추천: {likeCount}</div>
-                </div>
+                <button
+                  type="button"
+                  id={String(toMemberId)}
+                  className="w-17.5 h-7.5 rounded bg-blue-grey text-white"
+                  onClick={onClickHandler}
+                >
+                  커피챗
+                </button>
+              </div>
+              <Link to={`${id}`}>
+                <div className="text-1xl font-bold mt-6.25">{title}</div>
+                <div className="text-xm mt-3.75">게시판 내용 api 추가해주세요.</div>
               </Link>
-            );
-          },
-        )}
-        <div className={`flex justify-end ${row(2)}`}>
-          <Link to="post">
-            <img src="/images/write.png" alt="write" />
-          </Link>
-        </div>
+
+              <div className="text-xs text-gray-400 flex justify-between mt-8.75">
+                <div className="flex">
+                  <div className="mr-2.5">좋아요 {likeCount}</div>
+                  <div>저장 {scraps}</div>
+                </div>
+                <div>추천: {viewCount}</div>
+              </div>
+            </div>
+          );
+        },
+      )}
+      <div className={`flex justify-end ${row(2)}`}>
+        <Link to="post">
+          <img src="/images/write.png" alt="write" />
+        </Link>
       </div>
     </CommunityLayout>
   );

@@ -14,6 +14,11 @@ export const getCoffeeChatReq = (viewOption: "send" | "receive") => {
   return api.get<CoffeeChatReq>("api/coffee-chat/request", { params: { viewOption } });
 };
 
+export const postCoffeeChat = (toMemberId: number, message: string) => {
+  console.log(message);
+  return api.post("api/coffee-chat/request", { toMemberId, message });
+};
+
 export const patchCoffeeChatReq = (id: number, answer: string) => {
   return api.patch(`api/coffee-chat/request/${id}`, { answer });
 };
