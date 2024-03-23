@@ -23,6 +23,7 @@
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "eslint-plugin-tailwindcss"],
   "rules": {
+    "radix":"off",
     "prefer-template":"off",
     "import/no-cycle": "off",
     "react/no-array-index-key": "off",

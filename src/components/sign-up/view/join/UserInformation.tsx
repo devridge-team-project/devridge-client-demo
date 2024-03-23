@@ -9,7 +9,7 @@ import { modal } from "../../static/modal";
 export default function UserInformation() {
   const nickname = useState<string>("");
   const introduction = useState<string>("");
-  const { signUpData } = useSignUpStore();
+  const { authToken, signUpData } = useSignUpStore();
   const { email, password, provider } = signUpData;
   const navigate = useNavigation();
 
@@ -45,14 +45,17 @@ export default function UserInformation() {
   const isDuplicatedId = false;
 
   return (
-    <SignUpLayout
-      widgets={{ components: [[isDuplicatedId, <AlertModal script={modal.duplicatedId} />]] }}
-      titles={{ title: "개인정보 입력" }}
-      inputs={[
-        { title: "닉네임", state: nickname, placeholder: "닉네임" },
-        { title: "자기 소개", state: introduction, placeholder: "자기소개" },
-      ]}
-      buttons={[["확인", mutate]]}
-    />
+    <>
+      <div className="text-xs">{authToken}</div>
+      <SignUpLayout
+        widgets={{ components: [[isDuplicatedId, <AlertModal script={modal.duplicatedId} />]] }}
+        titles={{ title: "회원 가입" }}
+        inputs={[
+          { title: "닉네임", state: nickname, placeholder: "닉네임" },
+          { title: "자기 소개", state: introduction, placeholder: "자기소개" },
+        ]}
+        buttons={[["확인", mutate]]}
+      />
+    </>
   );
 }

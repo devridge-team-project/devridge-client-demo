@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { signUp } from "connection";
 import { useSignUpStore } from "shared";
 import { useEffect } from "react";
@@ -9,19 +9,21 @@ function Auth({ provider }: { provider: string }) {
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const navigate = useNavigate();
-  const { mutate, data, isSuccess } = useMutation({
-    mutationFn: () => signUp.auth.token.post(provider, code ?? ""),
+  const { data, isSuccess } = useQuery({
+    queryKey: ["auth", code],
+    queryFn: () => signUp.auth.token.post(provider, code ?? ""),
   });
 
   useEffect(() => {
-    mutate();
-    if (data && isSuccess) {
-      console.log(data.tempJwt);
-      return setAuthToken(data.tempJwt);
+    setAuthToken(data?.tempJwt ?? "");
+    console.log(authToken);
+    if (isSuccess) {
+      navigate("/sign-up/join");
     }
-  }, [mutate, data, isSuccess, setAuthToken, authToken]);
-  if (authToken !== null && isSuccess) navigate("/sign-up/join");
-  return null;
+  }, [isSuccess]);
+  if (!isSuccess) return <div>loading...</div>;
+
+  return <div>{code ?? "No code"}</div>;
 }
 
 function GitHub() {

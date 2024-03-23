@@ -2,7 +2,7 @@ import httpRequest from "../axios";
 
 const api = httpRequest.server;
 
-function postCodeVerifications(email: string, code: number | undefined) {
+function postCodeVerifications(email: string, code: number) {
   return api.post(`/api/email-verifications/code?email=${email}&code=${code}`);
 }
 

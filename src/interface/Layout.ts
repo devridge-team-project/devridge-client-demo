@@ -5,8 +5,9 @@ export interface SignUpLayoutProps {
     title: Script;
     subtitle?: Script;
   };
+  children?: React.ReactNode;
   inputs?: ({
-    title: string;
+    title?: string | null;
   } & InputProps<string>)[];
   buttons?: Button[];
   checkboxes?: { flag: string; title: string; scripts?: string }[];

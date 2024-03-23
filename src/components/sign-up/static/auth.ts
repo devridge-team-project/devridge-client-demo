@@ -9,7 +9,7 @@ const {
   REACT_APP_AUTH_NAVER_CLIENT_ID: naverClientId,
 } = process.env;
 
-const redirectUri = "http%3A//localhost:3000/login/oauth2/code";
+const redirectUri = "http://localhost:3000/login/oauth2/code";
 const readOnly = "https%3A//www.googleapis.com/auth/drive.metadata.readonly";
 const state = "test";
 
@@ -47,3 +47,4 @@ export const contents = [
     href: `${naver}?response_type=code&client_id=${naverClientId}&redirect_uri=${redirectUri}/naver`,
   },
 ];
+// "https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=NDaIlH5zYC_WwwacvpXy&redirect_uri=http://localhost:3000/login/oauth2/code/naver"
