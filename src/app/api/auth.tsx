@@ -21,7 +21,7 @@ function Auth({ provider }: { provider: string }) {
     }
   }, [isSuccess]);
 
-  return <div>{code ?? "No code"}</div>;
+  return null;
 }
 
 function GitHub() {

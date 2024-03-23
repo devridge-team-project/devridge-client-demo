@@ -9,8 +9,8 @@ function createToken(provider: string, code: string) {
   return api.post<Request, CreateTokenProp>("/api/social-login", { provider, code });
 }
 
-function signUpAuth() {
-  return api.post("/auth/signUp");
+function signUpAuth(data: any) {
+  return api.post("/social-login/signUp", data);
 }
 
 const signUp = {

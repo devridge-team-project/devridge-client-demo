@@ -1,16 +1,20 @@
 import { cn } from "util/classNames";
 import { Events } from "design";
-import { useSignUpStore } from "shared";
+import { useSignUpStore, useWidgetStore } from "shared";
 import UserInformation from "./join/UserInformation";
 import Credentials from "./join/Credentials";
 import Authentication from "./join/Authentication";
 import Agreements from "./join/Agreements";
 import Skills from "./join/Skills";
+import { useEffect } from "react";
 
 export default function Join() {
   const { authToken } = useSignUpStore();
+  const { setView } = useWidgetStore();
   const isToken = authToken !== "";
-
+  useEffect(() => {
+    if (isToken) return setView("skills");
+  }, []);
   const conatiner = {
     positions: "absolute top-0 ",
     displays: "flex flex-col items-center justify-center",
@@ -21,10 +25,10 @@ export default function Join() {
     <div className={cn(conatiner)}>
       <Events.Replace
         exceptions={[
-          [isToken || "skills", <Skills />],
-          ["personalInformation", <UserInformation />],
+          ["skills", <Skills />],
           ["credentials", <Credentials />],
           ["authentication", <Authentication />],
+          ["personalInformation", <UserInformation />],
         ]}
       >
         <Agreements />

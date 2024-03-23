@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { SignUpLayout, Input, AlertModal } from "design";
 import { useWidgetStore, useSignUpStore } from "shared";
@@ -11,8 +11,22 @@ export default function UserInformation() {
   const introduction = useState<string>("");
   const occupation = useState<number>(2);
   const { authToken, signUpData } = useSignUpStore();
-  const { email, password, provider } = signUpData;
   const navigate = useNavigation();
+
+  /**
+   * @규칙
+   * - nickname
+   *  - 영어, 한글, 숫자만 허용
+   *  - 자음 모음만 오는 것은 안됨.
+   *  - 3글자 이상 12글자 이하
+   * - introduction
+   *  - 영어, 한글, 숫자만 허용
+   *  - 자음 모음만 오는 것은 안됨.
+   *  - 5글자 이상 25글자 이하.
+   *  - , . ! ? 만 허용
+   * - skillIds: number[]
+   * - occupation: number
+   */
 
   const data = {
     email: "test135125137@test.com",
@@ -25,8 +39,8 @@ export default function UserInformation() {
   };
 
   const authData = {
-    nickname: nickname,
-    introduction: introduction,
+    nickname: nickname[0],
+    introduction: introduction[0],
     skillIds: [1, 2, 3],
     occupationId: 2,
     tempJwt: authToken,
@@ -34,32 +48,33 @@ export default function UserInformation() {
 
   const formData = new FormData();
   const blob = new Blob([JSON.stringify(data)], { type: "application/json" });
-  // if (profileImageUrl) {
-  //   formData.append("image", profileImageUrl);
-  //   const file = new File([""], "/images/test/default.png");
-  //   formData.append("image", file);
-  // }
+
   formData.append("member", blob);
 
   const { mutate, error, isError, isSuccess } = useMutation({
     mutationKey: ["user"],
     mutationFn: () => users.post(formData),
   });
-  const { mutate: mutateAuth } = useMutation({
+  const { mutate: mutateAuth, isSuccess: isSuccessAuth } = useMutation({
     mutationKey: ["signUpAuth"],
-    mutationFn: () => signUp.auth.post(),
+    mutationFn: () => signUp.auth.post(authData),
   });
 
-  if (isError) {
-    console.log("email", email, "password", password, "provider", provider, "nickname", nickname);
-    console.log(error);
-  }
-  if (isSuccess) navigate("/sign-up/success");
-  const isDuplicatedId = false;
+  const success = isSuccess || isSuccessAuth;
+
+  useEffect(() => {
+    if (success) return navigate("/sign-up/success");
+  }, [success]);
+
+  const necessary = nickname[0] !== "" && introduction[0] !== "" && occupation[0] !== 0;
+  const handleSignUp = () => {
+    if (!necessary) return alert("필수 항목을 입력해주세요.");
+    if (authToken !== "") return mutateAuth();
+    return mutate();
+  };
 
   return (
     <SignUpLayout
-      widgets={{ components: [[isDuplicatedId, <AlertModal script={modal.duplicatedId} />]] }}
       titles={{ title: "회원 가입" }}
       inputs={[
         { title: "닉네임", state: nickname, placeholder: "프로필 이름" },
@@ -77,7 +92,7 @@ export default function UserInformation() {
           state: occupation,
         },
       ]}
-      buttons={[["확인", mutate]]}
+      buttons={[["확인", handleSignUp]]}
     />
   );
 }
