@@ -5,7 +5,7 @@ import { useSignUpStore } from "shared";
 import { useEffect } from "react";
 
 function Auth({ provider }: { provider: string }) {
-  const { authToken, setAuthToken } = useSignUpStore();
+  const { setAuthToken } = useSignUpStore();
   const [searchParams] = useSearchParams();
   const code = searchParams.get("code");
   const navigate = useNavigate();
@@ -16,12 +16,10 @@ function Auth({ provider }: { provider: string }) {
 
   useEffect(() => {
     setAuthToken(data?.tempJwt ?? "");
-    console.log(authToken);
     if (isSuccess) {
       navigate("/sign-up/join");
     }
   }, [isSuccess]);
-  if (!isSuccess) return <div>loading...</div>;
 
   return <div>{code ?? "No code"}</div>;
 }

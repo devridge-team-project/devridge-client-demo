@@ -21,6 +21,28 @@ export const axios = (ContentType: string, baseURL: string) => {
   };
 
   const instance = Axios.create(config);
+  instance.interceptors.request.use(
+    (request) => {
+      const token = getCookie("accessToken");
+      if (token) {
+        request.headers["Authorization"] = `Bearer ${token}`;
+      }
+      return request;
+    },
+    (error: AxiosError) => {
+      return error;
+    },
+  );
+  instance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error: AxiosError) => {
+      console.log(error?.response);
+
+      return error;
+    },
+  );
   return instance;
 };
 

@@ -28,7 +28,7 @@ export const contents = [
     textColor: "text-black",
     borderColor: "medium-grey",
     image: "google",
-    href: `${google}?scope=${readOnly}&redirect_uri=${redirectUri}&client_id=${googleClientId}&response_type=code&scope=email&access_type=offline`,
+    href: `${google}?redirect_uri=${redirectUri}/google&client_id=${googleClientId}&response_type=code&scope=email`,
   },
   {
     title: "깃허브",

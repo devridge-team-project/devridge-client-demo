@@ -1,4 +1,4 @@
-import { Button, CheckBox, Events, Input, LineBreaks } from "design";
+import { Button, CheckBox, Events, Input, LineBreaks, Select } from "design";
 import { useId } from "react";
 import { cn } from "util/classNames";
 import { SignUpLayoutProps } from "interface/Layout";
@@ -8,6 +8,7 @@ export default function SignUpLayout({
   buttons,
   inputs,
   checkboxes,
+  selects,
   widgets,
   children,
 }: SignUpLayoutProps) {
@@ -30,6 +31,12 @@ export default function SignUpLayout({
           <div className="flex w-full flex-col gap-2">
             {title && <div>{title}</div>}
             <Input state={state} placeholder={placeholder} />
+          </div>
+        ))}
+        {selects?.map(({ title, state, selectOptions, placeholder }) => (
+          <div className="flex w-full flex-col gap-2">
+            {title && <div>{title}</div>}
+            <Select state={state} selectOptions={selectOptions} placeholder={placeholder} />
           </div>
         ))}
         {children}

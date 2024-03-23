@@ -21,10 +21,10 @@ export default function Join() {
     <div className={cn(conatiner)}>
       <Events.Replace
         exceptions={[
-          [isToken || "personalInformation", <UserInformation />],
+          [isToken || "skills", <Skills />],
+          ["personalInformation", <UserInformation />],
           ["credentials", <Credentials />],
           ["authentication", <Authentication />],
-          ["skills", <Skills />],
         ]}
       >
         <Agreements />

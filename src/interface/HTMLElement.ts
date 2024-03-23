@@ -1,10 +1,14 @@
-import { State } from "./Property";
-import { Size } from "./Property";
+import { State, Size } from "./Property";
 
 export type Script = string | string[] | undefined;
 export type Button = [string, () => unknown | (() => Promise<unknown>)];
 export interface InputProps<T> {
   state: State<T>;
+  placeholder?: string;
+}
+export interface SelectProps<T> {
+  state: State<T>;
+  selectOptions: { value: number; title: string }[];
   placeholder?: string;
 }
 

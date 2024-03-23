@@ -1,4 +1,4 @@
-import { Button, EventsProps, InputProps, Script } from "interface";
+import { Button, EventsProps, InputProps, Script, SelectProps } from "interface";
 
 export interface SignUpLayoutProps {
   titles: {
@@ -9,6 +9,9 @@ export interface SignUpLayoutProps {
   inputs?: ({
     title?: string | null;
   } & InputProps<string>)[];
+  selects?: ({
+    title?: string | null;
+  } & SelectProps<number>)[];
   buttons?: Button[];
   checkboxes?: { flag: string; title: string; scripts?: string }[];
   widgets?: EventsProps;
