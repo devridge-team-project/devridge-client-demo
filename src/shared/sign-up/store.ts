@@ -7,6 +7,8 @@ interface SignUpDataSetProps {
   provider: string;
   nickname: string;
   occupation: string;
+  introduction: string;
+  imageUrl: string | null;
   selectedSkills: number[];
   skillIds: number[];
 }
@@ -69,6 +71,8 @@ export const useSignUpStore = create<SignUpProps>((set) => ({
     provider: "",
     nickname: "",
     occupation: "",
+    introduction: "",
+    imageUrl: null,
     selectedSkills: [],
     skillIds: [],
   },

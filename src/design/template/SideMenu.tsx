@@ -5,21 +5,32 @@ import { users } from "connection";
 import { Button } from "design";
 import useNavigation from "hook/useNavigation";
 import { useWidgetStore } from "shared/store";
+import { useSignUpStore } from "shared";
 import { col } from "style";
 import { cn } from "util/classNames";
 import { getCookie } from "util/cookies";
+import { useEffect } from "react";
 import randomItem from "util/randomItem";
 
 export default function SideMenu() {
   const { events, removeView, clearView } = useWidgetStore();
+  const {
+    signUpData: { nickname, occupation },
+    setSignUpData,
+  } = useSignUpStore();
   const isOpen = events.some(({ event }) => event === "sideMenu");
   const navigate = useNavigation();
-  const { data: userDetails } = useQuery({
+  const { data: userDetails, isSuccess } = useQuery({
     queryKey: ["userDetails"],
     queryFn: () => users.getDetails(),
     enabled: !!getCookie("accessToken"),
   });
-  const { nickname, occupation } = userDetails ?? {};
+  useEffect(() => {
+    if (isSuccess && userDetails) {
+      const { nickname, occupation, imageUrl, introduction, skillIds } = userDetails;
+      setSignUpData({ nickname, occupation, imageUrl, introduction, skillIds });
+    }
+  }, [userDetails]);
 
   const positions = "fixed top-0 right-0";
   const animations = "duration-500";

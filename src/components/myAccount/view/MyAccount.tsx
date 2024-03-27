@@ -1,23 +1,15 @@
 import { center, col, row } from "style/display";
 import { Link } from "react-router-dom";
 import { logout } from "connection/api/login";
-import { users } from "connection/api/users";
 import { useSignUpStore } from "shared/sign-up/store";
-import { useQuery, useMutation } from "@tanstack/react-query";
-
+import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
 import { useEffect, useState } from "react";
 import { removeCookie } from "util/cookies";
 export default function MyAccount() {
-  const [nickname, setNickname] = useState<string>("");
-  const [occupation, setOccupation] = useState<string>("");
-  const [skillIds, setSkillIds] = useState<number[]>([]);
-  const [profileImageUrl, setProfileImageUrl] = useState<string>("");
-
-  const { data: user, isLoading: loading } = useQuery({
-    queryKey: ["MyAccount"],
-    queryFn: () => users.getDetails(),
-  });
+  const {
+    signUpData: { nickname, occupation, imageUrl },
+  } = useSignUpStore();
   const { mutate, isSuccess } = useMutation({
     mutationKey: ["logout"],
     mutationFn: () => logout(),
@@ -27,22 +19,12 @@ export default function MyAccount() {
     alert("로그아웃 되었습니다. ");
   }
 
-  useEffect(() => {
-    if (user) {
-      const { nickname, occupation, skillIds, imageUrl } = user;
-      setProfileImageUrl(imageUrl ?? "");
-      setNickname(nickname);
-      setOccupation(occupation);
-      setSkillIds(skillIds);
-    }
-  }, [user]);
-
   return (
     <div className={`mt-[25px] ${center.colO(0)}`}>
       <div className={`${col(2, 80)}`}>
         <div className="flex">
           <img
-            src={profileImageUrl}
+            src={imageUrl as string}
             className="h-25 w-25 rounded-full bg-gray-200 "
             alt="profileImage"
           />
