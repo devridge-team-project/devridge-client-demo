@@ -13,14 +13,8 @@ export default function Qna() {
     { data: latestQnaData, isLoading: isLoadingLatest },
   ] = useQueries({
     queries: [
-      {
-        queryKey: ["viewsQna"],
-        queryFn: () => qna.getAll("views"),
-      },
-      {
-        queryKey: ["latestQna"],
-        queryFn: () => qna.getAll("latest"),
-      },
+      { queryKey: ["viewsQna"], queryFn: () => qna.getAll("views") },
+      { queryKey: ["latestQna"], queryFn: () => qna.getAll("latest") },
     ],
   });
 
