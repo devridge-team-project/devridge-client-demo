@@ -1,8 +1,10 @@
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
-
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
+import { Skill } from "interface/Skill";
+import { skills } from "connection/api/skills";
 import { center, col, row } from "style/display";
+import Input from "../../common/input";
 import { Button } from "design";
 import SelectButton from "design/input/SelectButton";
 import { postProject } from "connection/api/community";
@@ -13,6 +15,7 @@ export default function ProjectPost() {
     content: "",
     meeting: "",
   });
+  const [skill, setSkill] = useState<string[]>([]);
   const [roles, setRoles] = useState<string[]>([]);
   const [checkRoles, setCheckRoles] = useState({
     frontEnd: false,
@@ -24,7 +27,20 @@ export default function ProjectPost() {
     online: false,
     offline: false,
   });
-  const [skillIds, setSkillIds] = useState<number[]>([]);
+  const [searchWord, setSearchWord] = useState<string>("");
+  const [searchItems, setSearchItems] = useState<Skill[]>([]);
+  const { data: skillInfo } = useQuery({ queryKey: ["skill"], queryFn: () => skills.get() });
+
+  const onAddSkillHandler = (e: React.MouseEvent<HTMLDivElement>) => {
+    const set = new Set(skill);
+    const target = e.target as HTMLDivElement;
+    console.log(target.dataset.skillName);
+    set.add(target.dataset.skillName as string);
+    setSkill([...set]);
+  };
+  const onSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchWord(e.target.value);
+  };
 
   const { title, content, meeting } = project;
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -47,13 +63,30 @@ export default function ProjectPost() {
   const navigate = useNavigate();
   const { mutate, isSuccess } = useMutation({
     mutationKey: ["postProject"],
-    mutationFn: () => postProject({ ...project, roles, skillIds: [1, 2, 3], images: ["abc"] }),
+    mutationFn: () =>
+      postProject({
+        ...project,
+        roles,
+        skillIds: skill.map((skillName) => {
+          const matchedSkill = skillInfo?.find((skill) => skill.skillName === skillName);
+          return matchedSkill?.id;
+        }) as number[],
+        images: ["abc"],
+      }),
   });
   if (isSuccess) {
     alert("커뮤니티 게시글 등록 성공");
     navigate("/community/project");
   }
   console.log(roles);
+
+  useEffect(() => {
+    if (skillInfo) {
+      setSearchItems([
+        ...skillInfo.filter(({ id, skillName }) => skillName.includes(searchWord) === true),
+      ]);
+    }
+  }, [searchWord]);
 
   return (
     <div className={`${center.colO(0)}`}>
@@ -115,6 +148,24 @@ export default function ProjectPost() {
             />
           </div>
         </div>
+        <div className=" font-bold text-xs mt-5">필요 스킬</div>
+        <Input
+          className="mt-1.5 block h-14 w-80 border"
+          type="text"
+          name="search-skills"
+          placeholder="스킬을 검색해보세요"
+          onChange={onSearchHandler}
+          value={searchWord}
+        />
+        {searchWord && (
+          <div className="max-h-40 ">
+            {searchItems.map(({ id, skillName }) => (
+              <div onClick={onAddSkillHandler} data-skill-name={skillName}>
+                {skillName}
+              </div>
+            ))}
+          </div>
+        )}
 
         <div className="mb-4">
           <div className="text-xl font-bold mt-4 mb-2.5">참여방식</div>

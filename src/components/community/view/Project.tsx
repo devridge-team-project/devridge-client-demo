@@ -36,7 +36,13 @@ export default function Project() {
                 {category}
               </div>
               <div className="flex">
-                <div>{isRecruiting ? "모집 중 |" : "모집 완료 |"}</div>
+                <div
+                  className={`text-1xl font-bold ${
+                    isRecruiting ? "text-blue-grey" : "text-white-grey"
+                  }`}
+                >
+                  {isRecruiting ? "모집 중 |" : "모집 완료 |"}
+                </div>
                 <div className="text-1xl font-bold">{title}</div>
               </div>
               <div className="text-xxs">{content}</div>
