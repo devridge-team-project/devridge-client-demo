@@ -43,6 +43,7 @@ export default function Community() {
         ({
           id,
           title,
+          content,
           viewCount,
           likeCount,
           member: { id: toMemberId, nickname, profileImageUrl, introduction },
@@ -74,7 +75,7 @@ export default function Community() {
               </div>
               <Link to={`${id}`}>
                 <div className="text-1xl font-bold mt-6.25">{title}</div>
-                <div className="text-xm mt-3.75">게시판 내용 api 추가해주세요.</div>
+                <div className="text-xm mt-3.75">{content}</div>
               </Link>
 
               <div className="text-xs text-gray-400 flex justify-between mt-8.75">

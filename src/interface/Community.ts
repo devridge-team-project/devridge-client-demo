@@ -15,9 +15,19 @@ export interface Sort {
   empty: boolean;
 }
 
+export interface Pageable {
+  sort: Sort;
+  pageNumber: number;
+  pageSize: number;
+  offset: number;
+  paged: boolean;
+  unpaged: boolean;
+}
+
 export interface Issue {
   id: number;
   title: string;
+  content: string;
   viewCount: number;
   likeCount: number;
   comments: number;
@@ -30,14 +40,7 @@ export interface Issue {
 
 export interface Community {
   content?: Issue[];
-  pageable: {
-    sort: Sort;
-    pageNumber: number;
-    pageSize: number;
-    offset: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
+  pageable: Pageable;
   sort: Sort;
   numberOfElements: number;
   first: boolean;
@@ -91,14 +94,7 @@ export interface Content {
 
 export interface Project {
   content?: Issue1[];
-  pageable: {
-    sort: Sort;
-    pageNumber: number;
-    pageSize: number;
-    offset: number;
-    paged: boolean;
-    unpaged: boolean;
-  };
+  pageable: Pageable;
   sort: Sort;
   numberOfElements: number;
   first: boolean;
@@ -117,7 +113,7 @@ export interface ProjectPost {
   images: string[];
 }
 
-export interface Study {
+export interface Issue2 {
   studyId: number;
   category: string;
   title: string;
@@ -128,6 +124,17 @@ export interface Study {
   location: string | null;
   totalPeople: number | null;
   currentPeople: number | null;
+}
+
+export interface Study {
+  content?: Issue2[];
+  pageable: Pageable;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  size: number;
+  empty: boolean;
 }
 
 export interface StudyPost {

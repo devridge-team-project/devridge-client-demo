@@ -17,6 +17,7 @@ export const axios = (ContentType: string, baseURL: string) => {
     headers: {
       "Content-type": ContentType,
     },
+    timeout: 3000,
     // withCredentials: true,
   };
 
@@ -62,6 +63,12 @@ const http = (baseURL?: string) => {
       data?: Request | object,
     ) {
       return axiosMultipart.post<Response>(url, data).then((res) => res.data);
+    },
+    patchMultipart: function <Request = any, Response = unknown>(
+      url: string,
+      data?: Request | object,
+    ) {
+      return axiosMultipart.patch<Response>(url, data).then((res) => res.data);
     },
     put: function <Request = any, Response = unknown>(url: string, data?: Request) {
       return axiosJson.put<Response>(url, data).then((res) => res.data);

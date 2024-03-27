@@ -13,11 +13,13 @@ export default function useVerifyToken(key: string) {
     queryKey: ["refresh"],
     queryFn: () => refresh(),
   });
+
   console.log(token);
   useEffect(() => {
     if (token) {
       const { exp } = jwtDecode(token);
-      if ((exp as number) <= Math.floor(Date.now() / 1000)) {
+      const timeOutFlag = (exp as number) <= Math.floor(Date.now() / 1000);
+      if (timeOutFlag) {
         if (isSuccess) {
           const expiration = new Date(Date.now() + 20 * 60 * 1000);
           removeCookie("accessToken");
