@@ -51,17 +51,22 @@ export default function Qna() {
           </div>
           <div className={col(2)}>
             <div className="text-xl font-bold">최근 Q&A</div>
-            {latestQnaData?.map(({ id, title, commentCount, likes, views }) => (
-              <PostCardRecent
-                id={id}
-                key={id}
-                onClick={() => navigate(`/qna/${id}`)}
-                title={title}
-                commentCount={commentCount}
-                likes={likes}
-                views={views}
-              />
-            ))}
+            {latestQnaData?.map(
+              ({ id, nickname, title, content, commentCount, likes, views, createdAt }) => (
+                <PostCardRecent
+                  id={id}
+                  key={id}
+                  onClick={() => navigate(`/qna/${id}`)}
+                  nickname={nickname}
+                  title={title}
+                  content={content}
+                  commentCount={commentCount}
+                  likes={likes}
+                  views={views}
+                  createdAt={createdAt}
+                />
+              ),
+            )}
           </div>
         </div>
         <FloatButton

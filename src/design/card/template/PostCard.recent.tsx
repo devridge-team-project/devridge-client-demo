@@ -8,33 +8,32 @@ import { cn } from "util/classNames";
 export default function PostCardRecent({
   id,
   onClick,
+  nickname,
   title,
+  content,
   index,
   commentCount,
   likes,
   views,
+  createdAt,
 }: {
   id: number;
   onClick: () => void;
+  nickname: string;
   title: string;
+  content: string;
   index?: number;
   commentCount: number;
   likes: number;
   views: number;
+  createdAt: string;
 }) {
-  const { data, isLoading: isLoadingPost } = useQuery({
-    queryKey: ["post", id],
-    queryFn: () => qna.get(id),
-  });
-
   const container = {
     displays: "flex items-center gap-4",
     styles: "border-b",
   };
 
-  const { member, createdAt } = data ?? {};
-
-  const date = new Date(createdAt ?? 0);
+  const date = new Date(createdAt);
   const dateStr = `${date.getFullYear()}.${date.getMonth() + 1}.${date.getDate()}`;
 
   return (
@@ -42,10 +41,10 @@ export default function PostCardRecent({
       <div className="flex flex-col items-start gap-2 w-full">
         <div>
           <div className="text-xxs text-gray-300">
-            {dateStr} · {member?.nickname}님의 질문
+            {dateStr} · {nickname}님의 질문
           </div>
           <div className="text-base font-bold ">{title}</div>
-          <div className="text-xs truncate w-64">{data?.content}</div>
+          <div className="text-xs truncate w-64">{content}</div>
         </div>
         <div className="w-full">
           <div className="flex justify-center bg-blue-grey/25 text-blue-grey h-3 w-10 text-xxxs rounded-sm">

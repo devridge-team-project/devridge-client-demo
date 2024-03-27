@@ -7,10 +7,13 @@ export interface Member {
 
 export interface Qna {
   id: number;
+  nickname: string;
   title: string;
+  content: string;
   likes: number;
   views: number;
   commentCount: number;
+  createdAt: string;
 }
 export interface QnaById {
   member: Member;
