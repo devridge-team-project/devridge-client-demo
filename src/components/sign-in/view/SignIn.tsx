@@ -12,7 +12,6 @@ import { Button } from "design";
 export default function SignIn() {
   const [info, setInfo] = useState({ email: "", password: "" });
   const navigate = useNavigate();
-  // const { authToken, setAuthToken } = useSignUpStore();
   const { email, password } = info;
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -24,14 +23,12 @@ export default function SignIn() {
   if (isSuccess && data) {
     console.log(data);
     const expiration = new Date(Date.now() + 20 * 60 * 1000);
-    // setAuthToken(data.accessToken);
-    setCookie("accessToken", data.accessToken, { expires: expiration });
-    alert("로그인 되었습니다.");
+    // setCookie("accessToken", data.accessToken, { expires: expiration });
+    // alert("로그인 되었습니다.");
     navigate("/");
   } else if (isError) {
     alert("이메일 또는 비밀번호가 틀렸습니다.");
   }
-  // console.log(authToken);
 
   return (
     <div className={`absolute top-0 w-full min-h-screen ${center.colO(0)}`}>

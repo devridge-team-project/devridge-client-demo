@@ -28,7 +28,7 @@ export default function CommunityPost() {
       </div>
       <div>
         <div className="text-2xl font-bold">내용</div>
-        <TextArea onChange={[content, setContent]} placeholder="궁금한 것을 작성해보세요." />
+        <TextArea state={[content, setContent]} placeholder="궁금한 것을 작성해보세요." />
       </div>
       <Button title="작성하기" onClick={mutate} options={{ size: "full" }} />
     </Board>

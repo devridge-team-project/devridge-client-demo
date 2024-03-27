@@ -48,6 +48,7 @@ module.exports = {
         76: "19rem",
         78: "19.5rem",
         80: "20rem",
+        80.5: "20.125rem",
         84: "21rem",
         92: "23rem",
         96: "24rem",
@@ -74,6 +75,7 @@ module.exports = {
       },
       minHeight: {
         60: "15rem",
+        80: "20rem",
       },
       colors: {
         "kakao-yellow": "#FEE500",

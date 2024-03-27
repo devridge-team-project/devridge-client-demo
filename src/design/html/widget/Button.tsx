@@ -7,7 +7,7 @@ const sizes = {
   sm: "w-50 h-12 rounded-full",
   md: "w-72 h-12 rounded-full",
   lg: "w-80 h-15 rounded-md",
-  full: "w-full h-15 rounded-md",
+  full: "w-full h-12 rounded-md",
 } as Record<Size, string>;
 
 const colorSet = {
@@ -17,7 +17,6 @@ const colorSet = {
 
 export default function Button({ title, type, onClick, options, freeze }: ButtonProps) {
   const { size, color } = options ?? {};
-
   const container = {
     positions: center.colO(0),
     sizes: sizes[size ?? "sm"],

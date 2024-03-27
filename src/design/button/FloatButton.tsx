@@ -7,12 +7,14 @@ export default function FloatButton({
   icon: string;
   onClick: () => unknown | (() => Promise<unknown>);
 }) {
-  const positions = "fixed bottom-8 right-8 z-50";
-  const displays = "flex justify-center items-center";
-  const sizes = "w-24 h-24";
-  const styles = "bg-black text-white rounded-full cursor-pointer";
+  const container = {
+    positions: "fixed bottom-8 right-8 z-40",
+    displays: "flex justify-center items-center",
+    sizes: "w-24 h-24",
+    styles: "bg-black text-white rounded-full cursor-pointer",
+  };
   return (
-    <div className={cn(positions, displays, sizes, styles)} onClick={onClick}>
+    <div className={cn(container)} onClick={onClick}>
       <img src={icon} alt="float button" />
     </div>
   );

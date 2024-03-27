@@ -1,4 +1,4 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQueries, useQuery } from "@tanstack/react-query";
 import { BulletinBoard, LoadingSpinner } from "design";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
@@ -15,14 +15,20 @@ export default function QnaById() {
     mutationFn: () => qna.comments.post(parseInt(id ?? "0", 10), { content: commentContent }),
   });
 
-  const { data: posts, isLoading: isLoadingPost } = useQuery({
-    queryKey: ["post", mutate, isPost],
-    queryFn: () => qna.get(parseInt(id ?? "0", 10)),
-  });
-
-  const { data: comments, isLoading: isLoadingComments } = useQuery({
-    queryKey: [],
-    queryFn: () => qna.comments.get(parseInt(id ?? "0", 10)),
+  const [
+    { data: posts, isLoading: isLoadingPost },
+    { data: comments, isLoading: isLoadingComments },
+  ] = useQueries({
+    queries: [
+      {
+        queryKey: ["post", mutate, isPost],
+        queryFn: () => qna.get(parseInt(id ?? "0", 10)),
+      },
+      {
+        queryKey: [],
+        queryFn: () => qna.comments.get(parseInt(id ?? "0", 10)),
+      },
+    ],
   });
 
   const isLoading = isLoadingPost || isLoadingComments;

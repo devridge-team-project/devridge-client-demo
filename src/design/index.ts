@@ -7,4 +7,4 @@ export * from "./text";
 export * from "./modal";
 export { default as BulletinBoard } from "./board/BulletinBoard";
 export { default as Card } from "./card/widget/Card";
-export { default as TextArea } from "./input/TextArea";
+export { default as TextArea } from "./html/widget/TextArea";
