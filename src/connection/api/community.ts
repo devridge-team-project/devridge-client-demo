@@ -60,7 +60,7 @@ export const postProject = ({
 };
 
 export const getStudy = () => {
-  return api.get<Study[]>("api/community/studies");
+  return api.get<Study>("api/community/studies");
 };
 
 export const postStudy = ({
