@@ -71,7 +71,6 @@ export default function ProjectPost() {
           const matchedSkill = skillInfo?.find((skill) => skill.skillName === skillName);
           return matchedSkill?.id;
         }) as number[],
-        images: ["abc"],
       }),
   });
   if (isSuccess) {

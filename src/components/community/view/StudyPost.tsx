@@ -6,6 +6,17 @@ import { Button } from "design";
 import SelectButton from "design/input/SelectButton";
 import { postStudy } from "connection/api/community";
 
+interface CategoryDictionary {
+  [key: string]: string;
+}
+
+const categoryDic: CategoryDictionary = {
+  CODING_TEST_STUDY: "코테 스터디",
+  CS_STUDY: "CS 스터디",
+  INTERVIEW_STUDY: "면접 스터디",
+  ETC: "기타",
+};
+
 export default function StudyPost() {
   const [project, setProject] = useState({
     title: "",
@@ -13,14 +24,17 @@ export default function StudyPost() {
     category: "",
     onoff: "",
     content: "",
-    images: [],
+    // images: [],
   });
-  const { title, location, category, onoff, content, images } = project;
+  const { title, location, category, onoff, content } = project;
   const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-
-    console.log(name, value);
-    setProject({ ...project, [name]: value });
+    if (name === "category") {
+      const category = Object.keys(categoryDic).find((key) => categoryDic[key] === value);
+      setProject({ ...project, [name as string]: category });
+    } else {
+      setProject({ ...project, [name]: value });
+    }
   };
   const navigate = useNavigate();
   const { mutate, isSuccess } = useMutation({
@@ -30,7 +44,7 @@ export default function StudyPost() {
         title,
         content,
         category,
-        images: ["abc"],
+        // images: ["abc"],
         location,
         totalPeople: 1,
         currentPeople: 1,
@@ -71,7 +85,7 @@ export default function StudyPost() {
               id="side"
               type="radio"
               name="category"
-              checked={category === "코테 스터디"}
+              checked={category === "CODING_TEST_STUDY"}
               value="코테 스터디"
               onChange={onChange}
               className=" w-[90px] h-7.5 border-2 border-gray-200"
@@ -80,7 +94,7 @@ export default function StudyPost() {
               id="portfolio"
               type="radio"
               name="category"
-              checked={category === "CS 스터디"}
+              checked={category === "CS_STUDY"}
               value="CS 스터디"
               onChange={onChange}
               className=" w-20 h-7.5 border-2 border-gray-200"
@@ -89,7 +103,7 @@ export default function StudyPost() {
               id="interview"
               type="radio"
               name="category"
-              checked={category === "면접 스터디"}
+              checked={category === "INTERVIEW_STUDY"}
               value="면접 스터디"
               onChange={onChange}
               className=" w-20 h-7.5 border-2 border-gray-200"
@@ -98,7 +112,7 @@ export default function StudyPost() {
               id="general"
               type="radio"
               name="category"
-              checked={category === "기타"}
+              checked={category === "ETC"}
               value="기타"
               onChange={onChange}
               className=" w-10 h-7.5 border-2 border-gray-200"

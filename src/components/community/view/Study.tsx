@@ -45,9 +45,9 @@ export default function Study() {
       </div>
 
       <div className={`flex justify-end ${row(2)}`}>
-        <a href="study/post">
+        <Link to="post">
           <img src="/images/write.png" alt="studyPost" />
-        </a>
+        </Link>
       </div>
     </CommunityLayout>
   );

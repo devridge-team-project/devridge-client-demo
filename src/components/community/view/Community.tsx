@@ -13,7 +13,7 @@ export default function Community() {
     queryFn: () => getCommunity(),
   });
 
-  const { mutate, isSuccess, isError } = useMutation({
+  const { mutate, isSuccess } = useMutation({
     mutationFn: (variables: { toMemberId: number; message: string }) =>
       postCoffeeChat(variables.toMemberId, variables.message),
   });
@@ -23,9 +23,10 @@ export default function Community() {
     const message = prompt("메세지를 입력하세요:") as string;
     console.log(message, id);
     mutate({ toMemberId: Number(id), message });
+    console.log(isSuccess);
     if (isSuccess) {
       alert("메세지가 잘 전달됬습니다.");
-    } else if (isError) {
+    } else {
       alert("메세지 전송에 실패했습니다.");
     }
   };
