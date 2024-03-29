@@ -41,21 +41,13 @@ export const getProject = () => {
   return api.get<Project>("api/community/projects");
 };
 
-export const postProject = ({
-  title,
-  content,
-  skillIds,
-  roles,
-  meeting,
-  images = [],
-}: ProjectPost) => {
+export const postProject = ({ title, content, skillIds, roles, meeting }: ProjectPost) => {
   return api.post("api/community/projects", {
     title,
     content,
     skillIds,
     roles,
     meeting,
-    images,
   });
 };
 
@@ -67,7 +59,6 @@ export const postStudy = ({
   title,
   content,
   category,
-  images,
   location,
   totalPeople,
   currentPeople,
@@ -76,7 +67,6 @@ export const postStudy = ({
     title,
     content,
     category,
-    images,
     location,
     totalPeople,
     currentPeople,

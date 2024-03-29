@@ -110,7 +110,7 @@ export interface ProjectPost {
   skillIds: number[];
   meeting: string;
   roles: string[];
-  images: string[];
+  // images: string[];
 }
 
 export interface Issue2 {
@@ -141,7 +141,7 @@ export interface StudyPost {
   title: string;
   content: string;
   category: string;
-  images: string[];
+  // images: string[];
   location: string;
   totalPeople: number;
   currentPeople: number;
