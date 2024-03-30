@@ -77,7 +77,6 @@ export interface CommunityPost {
 
 export interface Issue1 {
   id: number;
-  category: string;
   title: string;
   content: string;
   view: number;

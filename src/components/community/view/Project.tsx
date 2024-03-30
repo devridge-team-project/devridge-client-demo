@@ -29,11 +29,11 @@ export default function Project() {
       </div>
 
       <div>
-        {Project?.content?.map(({ title, content, category, isRecruiting }) => {
+        {Project?.content?.map(({ title, content, isRecruiting }) => {
           return (
             <div className="h-[86px] border-b-2 pt-5">
-              <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3  text-center">
-                {category}
+              <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3">
+                사이드 프로젝트
               </div>
               <div className="flex">
                 <div
