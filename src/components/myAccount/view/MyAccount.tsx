@@ -4,20 +4,21 @@ import { logout } from "connection/api/login";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
-import { useEffect, useState } from "react";
 import { removeCookie } from "util/cookies";
 export default function MyAccount() {
   const {
+    setAuthToken,
     signUpData: { nickname, occupation, imageUrl },
   } = useSignUpStore();
-  const { mutate, isSuccess } = useMutation({
+  const { mutate } = useMutation({
     mutationKey: ["logout"],
     mutationFn: () => logout(),
+    onSuccess: () => {
+      removeCookie("accessToken");
+      setAuthToken("");
+      alert("로그아웃 되었습니다. ");
+    },
   });
-  if (isSuccess) {
-    removeCookie("accessToken");
-    alert("로그아웃 되었습니다. ");
-  }
 
   return (
     <div className={`mt-[25px] ${center.colO(0)}`}>

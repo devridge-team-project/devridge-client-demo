@@ -5,23 +5,29 @@ import { deleteAccount } from "connection/api/login";
 import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
+import { removeCookie } from "util/cookies";
 import Input from "components/common/input";
 
 export default function DeleteAccount() {
-  const [nickname, setNickName] = useState<string>("");
+  const {
+    setAuthToken,
+    signUpData: { nickname },
+  } = useSignUpStore();
   const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     setPassword(value);
   };
-  const { mutate, isSuccess } = useMutation({
+  const { mutate } = useMutation({
     mutationFn: () => deleteAccount(password),
+    onSuccess: () => {
+      alert("회원 탈퇴 되었습니다.");
+      setAuthToken("");
+      removeCookie("accessToken");
+      navigate("/");
+    },
   });
-  if (isSuccess) {
-    alert("회원 탈퇴 되었습니다.");
-    navigate("/");
-  }
 
   return (
     <div className={`min-h-screen ${center.colO(0)}`}>
