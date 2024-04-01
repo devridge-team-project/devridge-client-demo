@@ -1,5 +1,5 @@
 import { setCookie } from "util/cookies";
-import { useState, useEffect, useRef } from "react";
+import { useState, useLayoutEffect, useRef } from "react";
 import { jwtDecode } from "jwt-decode";
 import { useSignUpStore } from "shared";
 import { refresh } from "connection/api/login";
@@ -15,25 +15,27 @@ export default function useVerifyToken(key: string) {
   const { data, isSuccess, isError } = useQuery({
     queryKey: ["refresh"],
     queryFn: () => refresh(),
-    enabled: timeOutFlag,
+    enabled: !!authToken,
   });
+  console.log(data, timeOutFlag);
 
-  useEffect(() => {
-    if (authToken) {
-      if (timeOutFlag) {
-        if (isSuccess) {
-          const expiration = new Date(Date.now() + 12 * 60 * 60 * 1000);
-          setCookie("accessToken", data?.accessToken, { expires: expiration });
-          setAuthToken(data?.accessToken);
-          isValidRef.current = true;
-        } else if (isError) {
-          console.log(isError);
-        }
-      } else {
+  if (authToken) {
+    if (timeOutFlag) {
+      if (isSuccess) {
+        const expiration = new Date(Date.now() + 12 * 60 * 60 * 1000);
+        setCookie("accessToken", data?.accessToken, { expires: expiration });
+        setAuthToken(data?.accessToken);
         isValidRef.current = true;
+      } else if (isError) {
+        console.log(isError);
       }
+    } else {
+      console.log("타임아웃이 안됬어요");
+      isValidRef.current = true;
     }
-  }, [authToken, key, timeOutFlag]);
+  }
+
+  console.log(isValidRef);
 
   return isValidRef.current;
 }
