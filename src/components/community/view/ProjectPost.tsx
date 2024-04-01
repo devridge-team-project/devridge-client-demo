@@ -21,7 +21,7 @@ export default function ProjectPost() {
     frontEnd: false,
     backEnd: false,
     design: false,
-    pm: false,
+    PM: false,
   });
   const [checkMeeting, setCheckMeeting] = useState({
     online: false,
@@ -37,6 +37,7 @@ export default function ProjectPost() {
     console.log(target.dataset.skillName);
     set.add(target.dataset.skillName as string);
     setSkill([...set]);
+    setSearchWord("");
   };
   const onSearchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchWord(e.target.value);
@@ -111,7 +112,7 @@ export default function ProjectPost() {
           />
         </div>
         <div>
-          <div className="text-xl font-bold mt-4 mb-2.5">모집 역할</div>
+          <div className="text-xl font-bold mt-4 mb-2.5">모집 분야</div>
           <div className="flex">
             <SelectButton
               id="frontEnd"
@@ -142,12 +143,12 @@ export default function ProjectPost() {
               type="checkbox"
               name="roles"
               value="기획"
-              checked={checkRoles.pm}
+              checked={checkRoles.PM}
               onChange={onRoleChange}
             />
           </div>
         </div>
-        <div className=" font-bold text-xs mt-5">필요 스킬</div>
+        <div className=" font-bold text-xl mt-5">기술 스택</div>
         <Input
           className="mt-1.5 block h-14 w-80 border"
           type="text"
@@ -159,7 +160,11 @@ export default function ProjectPost() {
         {searchWord && (
           <div className="max-h-40 ">
             {searchItems.map(({ id, skillName }) => (
-              <div onClick={onAddSkillHandler} data-skill-name={skillName}>
+              <div
+                onClick={onAddSkillHandler}
+                data-skill-name={skillName}
+                className="hover:bg-gray-100"
+              >
                 {skillName}
               </div>
             ))}
