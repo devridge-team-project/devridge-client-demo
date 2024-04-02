@@ -45,7 +45,7 @@ export default function Qna() {
               name={nickname}
               introduction={introduction}
               review={{ title, content }}
-              onClick={() => navigate(`/qna/${id}`)}
+              onClick={() => navigate(`/questions/${id}`)}
             />
           ),
         )}
