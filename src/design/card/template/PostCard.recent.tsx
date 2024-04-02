@@ -1,7 +1,6 @@
 // TODO: 가능하면 이거 추상화를 통해서 PostCard와 합치면 좋을 것 같다!
 
 import { useQuery } from "@tanstack/react-query";
-import { qna } from "connection";
 import { Card, Events } from "design";
 import { cn } from "util/classNames";
 

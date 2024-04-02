@@ -7,7 +7,7 @@ export const navigations = [
   },
   {
     name: "Q&A",
-    href: "/qna",
+    href: "/questions",
     icon: "circle-and-square.svg",
   },
   {

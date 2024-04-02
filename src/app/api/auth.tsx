@@ -15,6 +15,9 @@ function Auth({ provider }: { provider: string }) {
   });
 
   useEffect(() => {
+    if (data?.accessToken) {
+      return navigate("/");
+    }
     setAuthToken(data?.tempJwt ?? "");
     if (isSuccess) {
       navigate("/sign-up/join");

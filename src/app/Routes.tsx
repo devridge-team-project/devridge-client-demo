@@ -17,7 +17,7 @@ import {
   ChangePassword,
   Question,
 } from "components/myAccount";
-import { Qna, QnaById, QnaPost, QnaSuccess } from "components/qna";
+import { Qna, QnaById, QnaPost, QnaSuccess } from "components/questions";
 import { Team } from "components/team";
 import SignOut from "components/sign-out";
 import { Auth } from "./api";
@@ -47,7 +47,6 @@ export default function Router() {
           <Route path="email-auth" element={<EmailAuth />} />
           <Route path="reset-pw" element={<ResetPw />} />
         </Route>
-
         <Route path="sign-up">
           <Route index element={<SignUp />} />
           <Route path="join" element={<Join />} />

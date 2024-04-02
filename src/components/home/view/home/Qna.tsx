@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { qna } from "connection";
+import { questionApi } from "connection";
 import { Button } from "design";
 import { QnaById } from "interface/Qna";
 import ReviewCard from "design/card/template/ReviewCard";
@@ -15,8 +15,10 @@ export default function Qna() {
   useEffect(() => {
     (async () => {
       try {
-        const topQnas = (await qna.getAll("latest")).slice(0, 4);
-        const qnaPromises = topQnas.map(({ id }) => qna.get(id).then((data) => ({ ...data, id })));
+        const topQnas = (await questionApi.getAll("latest")).slice(0, 4);
+        const qnaPromises = topQnas.map(({ id }) =>
+          questionApi.get(id).then((data) => ({ ...data, id })),
+        );
         const qnaData = await Promise.all(qnaPromises);
         setQnas(qnaData);
       } catch (e) {

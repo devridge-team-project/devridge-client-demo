@@ -1,12 +1,13 @@
 import httpRequest from "../axios";
 const api = httpRequest.server;
 
-interface CreateTokenProp {
+interface SocialLoginResponse {
   tempJwt: string;
+  accessToken: string;
 }
 
 function createToken(provider: string, code: string) {
-  return api.post<Request, CreateTokenProp>("/api/social-login", { provider, code });
+  return api.post<Request, Partial<SocialLoginResponse>>("/api/social-login", { provider, code });
 }
 
 function signUpAuth(data: any) {

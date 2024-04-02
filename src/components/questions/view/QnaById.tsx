@@ -2,7 +2,7 @@ import { useQueries, useQuery } from "@tanstack/react-query";
 import { BulletinBoard, LoadingSpinner } from "design";
 import { useParams } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
-import { qna } from "connection";
+import { questionApi } from "connection";
 import { useState } from "react";
 import checkSignIn from "util/checkSignIn";
 
@@ -12,7 +12,7 @@ export default function QnaById() {
 
   const { mutate, isSuccess: isPost } = useMutation({
     mutationKey: [],
-    mutationFn: () => qna.comments.post(parseInt(id ?? "0", 10), { content: commentContent }),
+    mutationFn: () => questionApi.answer.post(parseInt(id ?? "0", 10), { content: commentContent }),
   });
 
   const [
@@ -22,11 +22,11 @@ export default function QnaById() {
     queries: [
       {
         queryKey: ["post", mutate, isPost],
-        queryFn: () => qna.get(parseInt(id ?? "0", 10)),
+        queryFn: () => questionApi.get(parseInt(id ?? "0", 10)),
       },
       {
         queryKey: [],
-        queryFn: () => qna.comments.get(parseInt(id ?? "0", 10)),
+        queryFn: () => questionApi.answer.get(parseInt(id ?? "0", 10)),
       },
     ],
   });

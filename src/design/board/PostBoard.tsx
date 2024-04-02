@@ -2,7 +2,7 @@ import { Button, Input, TextArea } from "design";
 import Board from "./Board";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import { qna } from "connection";
+import { questionApi } from "connection";
 import useNavigation from "hook/useNavigation";
 
 export default function PostBoard() {
@@ -13,7 +13,7 @@ export default function PostBoard() {
 
   const { mutate, isSuccess } = useMutation({
     mutationKey: ["postQna"],
-    mutationFn: () => qna.post({ title, content }),
+    mutationFn: () => questionApi.post({ title, content }),
   });
   if (isSuccess) navigatior("/qna/success");
 
