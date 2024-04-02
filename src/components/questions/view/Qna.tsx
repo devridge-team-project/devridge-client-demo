@@ -35,7 +35,7 @@ export default function Qna() {
               <PostCard
                 key={id}
                 index={index + 1}
-                onClick={() => navigate(`/qna/${id}`)}
+                onClick={() => navigate(`/questions/${id}`)}
                 title={title}
                 commentCount={commentCount}
                 likes={likes}
@@ -66,7 +66,7 @@ export default function Qna() {
         <FloatButton
           icon="/images/icons/writing-white.svg"
           onClick={() => {
-            navigate("/qna/post");
+            navigate("/questions/post");
           }}
         />
       </div>

@@ -8,7 +8,7 @@ export default function Header() {
   const navigate = useNavigation();
   const location = useLocation().pathname;
 
-  const isLocated = location === "/qna";
+  const isLocated = location === "/questions";
   const container = {
     positions: "fixed top-0 left-0 z-40",
     displays: "flex flex-col ",

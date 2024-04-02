@@ -15,7 +15,7 @@ export default function PostBoard() {
     mutationKey: ["postQna"],
     mutationFn: () => questionApi.post({ title, content }),
   });
-  if (isSuccess) navigatior("/qna/success");
+  if (isSuccess) navigatior("/questions/success");
 
   return (
     <Board options={{ gapY: 8 }}>

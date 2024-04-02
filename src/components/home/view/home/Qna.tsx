@@ -10,7 +10,7 @@ interface QnaByIdWithId extends QnaById {
 }
 
 export default function Qna() {
-  const [qnas, setQnas] = useState<QnaByIdWithId[]>([]);
+  const [questions, setQuestions] = useState<QnaByIdWithId[]>([]);
   const navigate = useNavigation();
   useEffect(() => {
     (async () => {
@@ -20,7 +20,7 @@ export default function Qna() {
           questionApi.get(id).then((data) => ({ ...data, id })),
         );
         const qnaData = await Promise.all(qnaPromises);
-        setQnas(qnaData);
+        setQuestions(qnaData);
       } catch (e) {
         console.error(e);
       }
@@ -35,9 +35,9 @@ export default function Qna() {
           <div className="text-blue-500">지식 공유 플랫폼</div>DEVRIDGE!
         </div>
       </div>
-      <Button title="질문하러 가기" onClick={() => navigate("/qna")} />
+      <Button title="질문하러 가기" onClick={() => navigate("/questions")} />
       <div className="grid grid-cols-2 gap-x-5 ">
-        {qnas.map(
+        {questions.map(
           ({ member: { nickname, introduction }, id, createdAt, title, content }, index) => (
             <ReviewCard
               key={createdAt}

@@ -13,7 +13,7 @@ export default function QnaSuccess() {
       <Button
         title="게시판으로 가기"
         onClick={() => {
-          navigator("/qna");
+          navigator("/questions");
         }}
         options={{ size: "lg" }}
       />
