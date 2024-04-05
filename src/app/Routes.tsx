@@ -61,9 +61,6 @@ export default function Router() {
             <Route index element={<Study />} />
           </Route>
         </Route>
-        <Route path="qna">
-          <Route index element={<Qna />} />
-        </Route>
         <Route path="team">
           <Route index element={<Team />} />
         </Route>
@@ -85,9 +82,12 @@ export default function Router() {
             <Route path="res" element={<CoffeeChatReq />} />
             <Route path="req" element={<CoffeeChatReq />} />
           </Route>
-          <Route path="questions/:id" element={<QnaById />} />
-          <Route path="questions/post" element={<QnaPost />} />
-          <Route path="questions/success" element={<QnaSuccess />} />
+          <Route path="questions">
+            <Route index element={<Qna />} />
+            <Route path=":id" element={<QnaById />} />
+            <Route path="post" element={<QnaPost />} />
+            <Route path="success" element={<QnaSuccess />} />
+          </Route>
         </Route>
       </Route>
       <Route path="sign-out" element={<SignOut />} />
