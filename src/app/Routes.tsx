@@ -2,12 +2,14 @@ import { Home, Join, Layout, SignIn, SignUp, Success } from "components/sign-up"
 import { Route, Routes } from "react-router-dom";
 import {
   Community,
-  CommunityById,
+  CommunityDetail,
   CommunityPost,
   Project,
   ProjectPost,
+  ProjectDetail,
   Study,
   StudyPost,
+  StudyDetail,
 } from "components/community";
 import { HelpPw, EmailAuth, ResetPw } from "components/help-pw";
 import {
@@ -61,6 +63,9 @@ export default function Router() {
             <Route index element={<Study />} />
           </Route>
         </Route>
+        <Route path="questions">
+          <Route index element={<Qna />} />
+        </Route>
         <Route path="team">
           <Route index element={<Team />} />
         </Route>
@@ -73,9 +78,11 @@ export default function Router() {
             <Route path="ask" element={<Question />} />
           </Route>
           <Route path="community/post" element={<CommunityPost />} />
-          <Route path="community/:id" element={<CommunityById />} />
+          <Route path="community/:id" element={<CommunityDetail />} />
           <Route path="community/project/post" element={<ProjectPost />} />
+          <Route path="community/project/:id" element={<ProjectDetail />} />
           <Route path="community/study/post" element={<StudyPost />} />
+          <Route path="community/study/:id" element={<StudyDetail />} />
           <Route path="coffeechat">
             <Route index element={<CoffeeChatMessage />} />
             <Route path=":id" element={<CoffeeChatMessageById />} />
@@ -83,7 +90,6 @@ export default function Router() {
             <Route path="req" element={<CoffeeChatReq />} />
           </Route>
           <Route path="questions">
-            <Route index element={<Qna />} />
             <Route path=":id" element={<QnaById />} />
             <Route path="post" element={<QnaPost />} />
             <Route path="success" element={<QnaSuccess />} />
