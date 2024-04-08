@@ -15,17 +15,18 @@ function CoffeeChatMessageById() {
   const {
     state: { nickname },
   } = useLocation();
-  const { data: messages } = useQuery({
-    queryKey: [`coffee-chat-message${id}`],
+  const { data: messages, isLoading } = useQuery({
+    queryKey: [`coffee-chat-message,${id}`],
     queryFn: () => getCoffeeChatMessageById(Number(id)),
   });
-  const [Messages, setMessages] = useState<CoffeeChatMessage[]>([]);
 
-  useEffect(() => {
+  const [Messages, setMessages] = useState<CoffeeChatMessage[]>(messages as CoffeeChatMessage[]);
+
+  /* useEffect(() => {
     if (messages) {
       setMessages(messages);
     }
-  }, [messages]);
+  }, [messages]); */
 
   useEffect(() => {
     const stomp = new Client({
@@ -48,7 +49,9 @@ function CoffeeChatMessageById() {
       stomp.subscribe(subDestination, (frame) => {
         try {
           const parsedMessage = JSON.parse(frame.body);
+          console.log(Messages);
           console.log(parsedMessage);
+
           setMessages([...(Messages as CoffeeChatMessage[]), parsedMessage]);
         } catch (error) {
           console.error("오류가 발생했습니다:", error);
