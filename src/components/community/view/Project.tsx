@@ -29,23 +29,25 @@ export default function Project() {
       </div>
 
       <div>
-        {Project?.content?.map(({ title, content, isRecruiting }) => {
+        {Project?.content?.map(({ id, title, content, isRecruiting }) => {
           return (
-            <div className="h-[86px] border-b-2 pt-5">
-              <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3">
-                사이드 프로젝트
-              </div>
-              <div className="flex">
-                <div
-                  className={`text-1xl font-bold ${
-                    isRecruiting ? "text-blue-grey" : "text-white-grey"
-                  }`}
-                >
-                  {isRecruiting ? "모집 중 |" : "모집 완료 |"}
+            <div key={id} className="h-[86px] border-b-2 pt-5">
+              <Link to={`${id}`}>
+                <div className="bg-white-purple border-r-2 text-center text-[6px] text-purple w-12.5 h-3">
+                  사이드 프로젝트
                 </div>
-                <div className="text-1xl font-bold">{title}</div>
-              </div>
-              <div className="text-xxs">{content}</div>
+                <div className="flex">
+                  <div
+                    className={`text-1xl font-bold ${
+                      isRecruiting ? "text-blue-grey" : "text-white-grey"
+                    }`}
+                  >
+                    {isRecruiting ? "모집 중 |" : "모집 완료 |"}
+                  </div>
+                  <div className="text-1xl font-bold">{title}</div>
+                </div>
+                <div className="text-xxs">{content}</div>
+              </Link>
             </div>
           );
         })}

@@ -1,5 +1,5 @@
 import { QnaComment } from "interface/Qna";
-import { CommunityComments } from "interface/Community";
+import { ProjectComment, CommunityComment, StudyComment } from "interface/Community";
 import Board from "./Board";
 import { Dispatch } from "react";
 import PostComment from "./PostComment";
@@ -21,7 +21,7 @@ export default function BulletinBoard({
   createdAt?: string;
   content?: string;
   commentCount?: number;
-  comments?: QnaComment[] | CommunityComments[];
+  comments?: QnaComment[] | CommunityComment[] | ProjectComment[] | StudyComment[];
   postComment?: {
     submit: () => Promise<unknown>;
     setCommentContent: Dispatch<string>;

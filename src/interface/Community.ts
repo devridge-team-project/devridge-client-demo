@@ -52,16 +52,7 @@ export interface Community {
 export interface CommunityById {
   id: number;
   member: Member;
-  content: string;
-  likes: number;
-  dislikes: number;
-  createdAt: string;
-  updatedAt: string;
-}
-
-export interface CommunityComments {
-  id: number;
-  member: Member;
+  title: string;
   content: string;
   likes: number;
   dislikes: number;
@@ -112,6 +103,22 @@ export interface ProjectPost {
   // images: string[];
 }
 
+export interface ProjectById {
+  id: number;
+  title: string;
+  content: string;
+  roles: string;
+  member: Member;
+  views: number;
+  createdAt: string;
+  updatedAt: string;
+  likes: number;
+  dislikes: number;
+  skills: string[];
+  meeting: string;
+  isRecruiting: boolean;
+}
+
 export interface Issue2 {
   studyId: number;
   category: string;
@@ -140,8 +147,88 @@ export interface StudyPost {
   title: string;
   content: string;
   category: string;
-  // images: string[];
   location: string;
   totalPeople: number;
   currentPeople: number;
+}
+
+export interface StudyById {
+  id: number;
+  title: string;
+  content: string;
+  likes: number;
+  dislikes: number;
+  views: number;
+  createdAt: string;
+  updatedAt: string;
+  location: string | null;
+  totalPeople: number | null;
+  currentPeople: number | null;
+  member: Member;
+}
+
+export interface CommunityComment {
+  id: number;
+  member: Member;
+  content: string;
+  likes: number;
+  dislikes: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface CommunityComments {
+  content?: CommunityComment[];
+  pageable: Pageable;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  size: number;
+  empty: boolean;
+}
+
+export interface ProjectComment {
+  id: number;
+  member: Member;
+  content: string;
+  likes: number;
+  dislikes: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface ProjectComments {
+  content?: ProjectComment[];
+  pageable: Pageable;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  size: number;
+  empty: boolean;
+}
+
+export interface StudyComment {
+  id: number;
+  member: Member;
+  content: string;
+  likeCount: number;
+  dislikeCount: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface StudyComments {
+  content?: StudyComment[];
+  pageable: Pageable;
+  sort: Sort;
+  numberOfElements: number;
+  first: boolean;
+  last: boolean;
+  number: number;
+  size: number;
+  empty: boolean;
 }
