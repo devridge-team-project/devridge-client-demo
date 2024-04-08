@@ -6,8 +6,12 @@ import {
   CommunityComments,
   Project,
   ProjectPost,
+  ProjectById,
+  ProjectComments,
   Study,
   StudyPost,
+  StudyById,
+  StudyComments,
 } from "interface/Community";
 import httpRequest from "../axios";
 
@@ -30,7 +34,7 @@ export const getCommunityById = (id: number) => {
 };
 
 export const getComments = (id: number) => {
-  return api.get<CommunityComments[]>(`api/community/${id}/comments`);
+  return api.get<CommunityComments>(`api/community/${id}/comments`);
 };
 
 export const postComments = (id: number, content: Content) => {
@@ -49,6 +53,18 @@ export const postProject = ({ title, content, skillIds, roles, meeting }: Projec
     roles,
     meeting,
   });
+};
+
+export const getProjectById = (id: number) => {
+  return api.get<ProjectById>(`api/community/projects/${id}`);
+};
+
+export const getProjectComments = (id: number) => {
+  return api.get<ProjectComments>(`api/community/projects/${id}/comments`);
+};
+
+export const postProjectComments = (id: number, content: Content) => {
+  return api.post(`api/community/projects/${id}/comments`, content);
 };
 
 export const getStudy = () => {
@@ -71,6 +87,18 @@ export const postStudy = ({
     totalPeople,
     currentPeople,
   });
+};
+
+export const getStudyById = (id: number) => {
+  return api.get<StudyById>(`api/community/studies/${id}`);
+};
+
+export const getStudyComments = (id: number) => {
+  return api.get<StudyComments>(`api/community/studies/${id}/comments`);
+};
+
+export const postStudyComments = (id: number, content: Content) => {
+  return api.post(`api/community/studies/${id}/comments`, content);
 };
 export const comment = {
   get: getComments,
