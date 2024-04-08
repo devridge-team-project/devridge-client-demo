@@ -1,22 +1,20 @@
 import { center, col, row } from "style/display";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logout } from "connection/api/login";
 import { useSignUpStore } from "shared/sign-up/store";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "design";
-import { removeCookie } from "util/cookies";
+
 export default function MyAccount() {
   const {
-    setAuthToken,
     signUpData: { nickname, occupation, imageUrl },
   } = useSignUpStore();
+  const navigate = useNavigate();
   const { mutate } = useMutation({
     mutationKey: ["logout"],
     mutationFn: () => logout(),
     onSuccess: () => {
-      removeCookie("accessToken");
-      setAuthToken("");
-      alert("로그아웃 되었습니다. ");
+      navigate("/sign-out");
     },
   });
 
